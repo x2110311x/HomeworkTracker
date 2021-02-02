@@ -1,7 +1,7 @@
 # Homework Tracker
 ## Brief Description of the Proposed Research Project:
 ### Minimum Viable Product:
-* Web-based app
+* **Web-based app**
 * The user adds tasks and due dates for each class or tag. 
 *  Course information and course tasks may be imported through a blackboard account or scraped from Kent website, or manually inserted by the user.
 * Each task may be associated with a tag which can either be a class or a custom tag (work, personal, student club, etc.) 
@@ -22,8 +22,8 @@ Three features of this app which I would have really enjoyed using in my college
   *  And then also, I like assigning priorities to my tasks for the day. That way I’m sure to get the important ones done in time.
 
 ## Technologies and Tools:
-* Project Management: Trello
-* Code Repository: Github
+* Project Management: [Trello](https://trello.com/b/37bE0DaK/agile-sprint-board)
+* Code Repository: [GitHub](https://github.com/x2110311x/HomeworkTracker)
 * Web Scraping: Python - William
 * Front End Web:HTML/CSS/JS - Donovan
 * Back End: Node.js - Eman	
