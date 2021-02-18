@@ -1,0 +1,30 @@
+hr{
+    border-top: 3px dashed white;
+}
+
+.login{
+    background-color: #334672;
+    color:white;
+    width:80%;
+}
+
+.register{
+    background-color: #2E4D34;
+    color:white;
+    width:80%;
+}
+
+.center{
+    text-align:center;
+}
+
+.homeContent{
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 20%;
+    text-align: center;
+}
+
+
+
+
