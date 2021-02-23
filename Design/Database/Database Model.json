@@ -1,0 +1,737 @@
+{
+    "modelName": "New model",
+    "collections": [
+        {
+            "collectionName": "Courses",
+            "type": "object",
+            "properties": [
+                {
+                    "primaryKey": true,
+                    "type": "string",
+                    "name": "full_name",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "072e78f0-7248-11eb-9740-9b48114dc18e",
+                    "required": true,
+                    "description": "Course number",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    },
+                    "parentRelationship": "",
+                    "childRelationships": []
+                },
+                {
+                    "primaryKey": true,
+                    "type": "string",
+                    "name": "short_name",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "0435ab50-7248-11eb-9740-9b48114dc18e",
+                    "required": true,
+                    "description": "Course number",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    },
+                    "parentRelationship": "",
+                    "childRelationships": []
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "2cbf0c40-7245-11eb-9740-9b48114dc18e"
+            },
+            "isActivated": true,
+            "collectionUsers": [],
+            "GUID": "2cbb62c0-7245-11eb-9740-9b48114dc18e",
+            "bucketId": "197d6410-7245-11eb-9740-9b48114dc18e"
+        },
+        {
+            "collectionName": "Users",
+            "type": "object",
+            "properties": [
+                {
+                    "primaryKey": true,
+                    "type": "string",
+                    "name": "email",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "95ce7ea0-7245-11eb-9740-9b48114dc18e",
+                    "required": true,
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "primaryKey": false,
+                    "type": "string",
+                    "name": "name",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "a07f9dc0-7245-11eb-9740-9b48114dc18e",
+                    "required": true,
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "primaryKey": true,
+                    "type": "string",
+                    "name": "uid",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "a8b5aac0-7245-11eb-9740-9b48114dc18e",
+                    "required": true
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "30359560-7245-11eb-9740-9b48114dc18e"
+            },
+            "isActivated": true,
+            "collectionUsers": [],
+            "GUID": "303176b0-7245-11eb-9740-9b48114dc18e",
+            "bucketId": "197d6410-7245-11eb-9740-9b48114dc18e",
+            "childCollection": [
+                "42f8e5d0-7245-11eb-9740-9b48114dc18e",
+                "4edd06b0-7245-11eb-9740-9b48114dc18e",
+                "534060d0-7245-11eb-9740-9b48114dc18e",
+                "56cf53f0-7245-11eb-9740-9b48114dc18e"
+            ]
+        },
+        {
+            "collectionName": "courses",
+            "type": "object",
+            "properties": [
+                {
+                    "properties": [
+                        {
+                            "primaryKey": false,
+                            "type": "timestamp",
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "GUID": "9707fe20-7247-11eb-9740-9b48114dc18e",
+                            "arrayItem": true,
+                            "displayName": "start",
+                            "error": {}
+                        },
+                        {
+                            "primaryKey": false,
+                            "type": "timestamp",
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "GUID": "48ccfc10-7247-11eb-9740-9b48114dc18e",
+                            "arrayItem": true,
+                            "arrayParentType": "array",
+                            "error": {},
+                            "displayName": "end"
+                        },
+                        {
+                            "primaryKey": false,
+                            "type": "string",
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "GUID": "a04ae740-7247-11eb-9740-9b48114dc18e",
+                            "arrayItem": true,
+                            "displayName": "name",
+                            "error": {}
+                        }
+                    ],
+                    "primaryKey": false,
+                    "additionalItems": true,
+                    "uniqueItems": false,
+                    "childType": "array",
+                    "type": "array",
+                    "name": "semester",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "48c226a0-7247-11eb-9740-9b48114dc18e",
+                    "comments": "This is a map",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "primaryKey": false,
+                    "type": "string",
+                    "name": "friendly_name",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "3d0786c0-7247-11eb-9740-9b48114dc18e",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "exclusiveMinimum": false,
+                    "exclusiveMaximum": false,
+                    "primaryKey": false,
+                    "childType": "number",
+                    "type": "numeric",
+                    "name": "color",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "390cb270-7247-11eb-9740-9b48114dc18e",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "GUID": "4d6b9500-7248-11eb-9740-9b48114dc18e",
+                    "name": "global_course",
+                    "type": "reference",
+                    "$ref": "#model/definitions/short_name",
+                    "refType": "model",
+                    "ref": "7699e880-7245-11eb-9740-9b48114dc18e",
+                    "refIdPath": [
+                        "149633f0-7245-11eb-9740-9b48114dc18e",
+                        "149633f1-7245-11eb-9740-9b48114dc18e",
+                        "7699e880-7245-11eb-9740-9b48114dc18e"
+                    ],
+                    "required": true,
+                    "isActivated": true,
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "42fcdd70-7245-11eb-9740-9b48114dc18e"
+            },
+            "isActivated": true,
+            "GUID": "42f8e5d0-7245-11eb-9740-9b48114dc18e",
+            "bucketId": "197d6410-7245-11eb-9740-9b48114dc18e",
+            "parentCollection": "303176b0-7245-11eb-9740-9b48114dc18e"
+        },
+        {
+            "collectionName": "freetime",
+            "type": "object",
+            "properties": [
+                {
+                    "properties": [
+                        {
+                            "primaryKey": false,
+                            "type": "timestamp",
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "GUID": "aa854fc0-7247-11eb-9740-9b48114dc18e",
+                            "arrayItem": true,
+                            "arrayParentType": "array",
+                            "error": {},
+                            "displayName": "end_time"
+                        },
+                        {
+                            "primaryKey": false,
+                            "type": "timestamp",
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "GUID": "b84d72e0-7247-11eb-9740-9b48114dc18e",
+                            "arrayItem": true,
+                            "displayName": "start_time",
+                            "error": {}
+                        }
+                    ],
+                    "primaryKey": false,
+                    "additionalItems": true,
+                    "uniqueItems": false,
+                    "childType": "array",
+                    "type": "array",
+                    "name": "times",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "aa745fd0-7247-11eb-9740-9b48114dc18e",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "primaryKey": false,
+                    "type": "timestamp",
+                    "name": "week_start",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "ad08ed60-7247-11eb-9740-9b48114dc18e",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "4ee03b00-7245-11eb-9740-9b48114dc18e"
+            },
+            "isActivated": true,
+            "GUID": "4edd06b0-7245-11eb-9740-9b48114dc18e",
+            "bucketId": "197d6410-7245-11eb-9740-9b48114dc18e",
+            "parentCollection": "303176b0-7245-11eb-9740-9b48114dc18e"
+        },
+        {
+            "collectionName": "tags",
+            "type": "object",
+            "properties": [
+                {
+                    "primaryKey": false,
+                    "type": "timestamp",
+                    "name": "date_created",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "295876c0-7247-11eb-9740-9b48114dc18e",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "primaryKey": false,
+                    "type": "string",
+                    "name": "full_name",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "216677a0-7247-11eb-9740-9b48114dc18e",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "primaryKey": false,
+                    "type": "string",
+                    "name": "short_name",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "1ba7d340-7247-11eb-9740-9b48114dc18e",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "exclusiveMinimum": false,
+                    "exclusiveMaximum": false,
+                    "primaryKey": false,
+                    "childType": "number",
+                    "type": "numeric",
+                    "name": "color",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "175a7220-7247-11eb-9740-9b48114dc18e",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "5343e340-7245-11eb-9740-9b48114dc18e"
+            },
+            "isActivated": true,
+            "GUID": "534060d0-7245-11eb-9740-9b48114dc18e",
+            "bucketId": "197d6410-7245-11eb-9740-9b48114dc18e",
+            "parentCollection": "303176b0-7245-11eb-9740-9b48114dc18e"
+        },
+        {
+            "collectionName": "tasks",
+            "type": "object",
+            "properties": [
+                {
+                    "primaryKey": false,
+                    "type": "string",
+                    "name": "name",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "8ee399d0-7246-11eb-9740-9b48114dc18e",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "exclusiveMinimum": false,
+                    "exclusiveMaximum": false,
+                    "primaryKey": false,
+                    "childType": "number",
+                    "type": "numeric",
+                    "name": "est_time",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "82fc44a0-7246-11eb-9740-9b48114dc18e",
+                    "comments": "Stored in minutes",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "primaryKey": false,
+                    "type": "timestamp",
+                    "name": "due_date",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "7d85f3e0-7246-11eb-9740-9b48114dc18e",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "primaryKey": false,
+                    "type": "string",
+                    "name": "description",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "7716c430-7246-11eb-9740-9b48114dc18e",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "primaryKey": false,
+                    "childType": "boolean",
+                    "type": "boolean",
+                    "name": "completed",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "b9df4860-7245-11eb-9740-9b48114dc18e",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "exclusiveMinimum": false,
+                    "exclusiveMaximum": false,
+                    "primaryKey": false,
+                    "childType": "number",
+                    "type": "numeric",
+                    "name": "priority",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "96615350-7246-11eb-9740-9b48114dc18e",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "primaryKey": false,
+                    "type": "timestamp",
+                    "name": "scheduled_time_start",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "a8408550-7246-11eb-9740-9b48114dc18e",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "primaryKey": false,
+                    "type": "timestamp",
+                    "name": "scheduled_time_end",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "b5348f90-7246-11eb-9740-9b48114dc18e",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    }
+                },
+                {
+                    "properties": [],
+                    "primaryKey": false,
+                    "additionalItems": true,
+                    "uniqueItems": false,
+                    "childType": "array",
+                    "type": "array",
+                    "name": "tags(1)",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "GUID": "c7e15550-7247-11eb-9740-9b48114dc18e",
+                    "error": {
+                        "name": false,
+                        "code": false
+                    },
+                    "parentRelationship": "",
+                    "childRelationships": []
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [
+                    {
+                        "properties": [],
+                        "primaryKey": false,
+                        "additionalItems": true,
+                        "uniqueItems": false,
+                        "childType": "array",
+                        "type": "array",
+                        "name": "tags",
+                        "hackoladeMeta": {},
+                        "isActivated": true,
+                        "GUID": "bcd03150-7246-11eb-9740-9b48114dc18e",
+                        "error": {
+                            "name": false,
+                            "code": false
+                        },
+                        "definitionRefs": []
+                    }
+                ],
+                "GUID": "56d2af50-7245-11eb-9740-9b48114dc18e"
+            },
+            "isActivated": true,
+            "GUID": "56cf53f0-7245-11eb-9740-9b48114dc18e",
+            "bucketId": "197d6410-7245-11eb-9740-9b48114dc18e",
+            "parentCollection": "303176b0-7245-11eb-9740-9b48114dc18e",
+            "childCollection": []
+        }
+    ],
+    "buckets": [
+        {
+            "name": "HomeworkTracker",
+            "type": "bucket",
+            "collectionIds": [
+                "2cbb62c0-7245-11eb-9740-9b48114dc18e",
+                "303176b0-7245-11eb-9740-9b48114dc18e",
+                "42f8e5d0-7245-11eb-9740-9b48114dc18e",
+                "4edd06b0-7245-11eb-9740-9b48114dc18e",
+                "534060d0-7245-11eb-9740-9b48114dc18e",
+                "56cf53f0-7245-11eb-9740-9b48114dc18e"
+            ],
+            "backgroundColor": {
+                "r": 33,
+                "g": 150,
+                "b": 243,
+                "a": 1
+            },
+            "show": true,
+            "isActivated": true,
+            "indexes": [],
+            "GUID": "197d6410-7245-11eb-9740-9b48114dc18e",
+            "documentIdName": "^[a-zA-Z0-9_.-]{20}$",
+            "documentIdType": "object"
+        }
+    ],
+    "views": [],
+    "relationships": [
+        {
+            "name": "New Relationship",
+            "relationshipType": "",
+            "parentField": [],
+            "parentCardinality": "1",
+            "childField": [],
+            "childCardinality": "1",
+            "GUID": "cf33b910-7247-11eb-9740-9b48114dc18e",
+            "parentCollection": "2cbb62c0-7245-11eb-9740-9b48114dc18e",
+            "childCollection": "42f8e5d0-7245-11eb-9740-9b48114dc18e"
+        }
+    ],
+    "users": [],
+    "diagramViews": [],
+    "idToNameHashTable": {
+        "197d6410-7245-11eb-9740-9b48114dc18e": "HomeworkTracker",
+        "2cbb62c0-7245-11eb-9740-9b48114dc18e": "Courses",
+        "303176b0-7245-11eb-9740-9b48114dc18e": "Users",
+        "42f8e5d0-7245-11eb-9740-9b48114dc18e": "courses",
+        "4edd06b0-7245-11eb-9740-9b48114dc18e": "freetime",
+        "534060d0-7245-11eb-9740-9b48114dc18e": "tags",
+        "56cf53f0-7245-11eb-9740-9b48114dc18e": "tasks",
+        "95ce7ea0-7245-11eb-9740-9b48114dc18e": "email",
+        "a07f9dc0-7245-11eb-9740-9b48114dc18e": "name",
+        "a8b5aac0-7245-11eb-9740-9b48114dc18e": "uid",
+        "b9df4860-7245-11eb-9740-9b48114dc18e": "completed",
+        "7716c430-7246-11eb-9740-9b48114dc18e": "description",
+        "7d85f3e0-7246-11eb-9740-9b48114dc18e": "due_date",
+        "82fc44a0-7246-11eb-9740-9b48114dc18e": "est_time",
+        "8ee399d0-7246-11eb-9740-9b48114dc18e": "name",
+        "96615350-7246-11eb-9740-9b48114dc18e": "priority",
+        "a8408550-7246-11eb-9740-9b48114dc18e": "scheduled_time_start",
+        "b5348f90-7246-11eb-9740-9b48114dc18e": "scheduled_time_end",
+        "175a7220-7247-11eb-9740-9b48114dc18e": "color",
+        "1ba7d340-7247-11eb-9740-9b48114dc18e": "short_name",
+        "216677a0-7247-11eb-9740-9b48114dc18e": "full_name",
+        "295876c0-7247-11eb-9740-9b48114dc18e": "date_created",
+        "390cb270-7247-11eb-9740-9b48114dc18e": "color",
+        "3d0786c0-7247-11eb-9740-9b48114dc18e": "friendly_name",
+        "48c226a0-7247-11eb-9740-9b48114dc18e": "semester",
+        "aa745fd0-7247-11eb-9740-9b48114dc18e": "times",
+        "ad08ed60-7247-11eb-9740-9b48114dc18e": "week_start",
+        "c7e15550-7247-11eb-9740-9b48114dc18e": "tags(1)",
+        "cf33b910-7247-11eb-9740-9b48114dc18e": "New Relationship",
+        "0435ab50-7248-11eb-9740-9b48114dc18e": "short_name",
+        "072e78f0-7248-11eb-9740-9b48114dc18e": "full_name",
+        "4d6b9500-7248-11eb-9740-9b48114dc18e": "global_course"
+    },
+    "definitions": {
+        "type": "definitions",
+        "properties": [
+            {
+                "primaryKey": true,
+                "type": "string",
+                "name": "short_name",
+                "hackoladeMeta": {},
+                "isActivated": true,
+                "GUID": "7699e880-7245-11eb-9740-9b48114dc18e",
+                "required": true,
+                "description": "Course number",
+                "error": {
+                    "name": false,
+                    "code": false
+                },
+                "definitionRefs": [
+                    [
+                        "42f8e5d0-7245-11eb-9740-9b48114dc18e",
+                        "4d6b9500-7248-11eb-9740-9b48114dc18e"
+                    ]
+                ]
+            },
+            {
+                "exclusiveMinimum": false,
+                "exclusiveMaximum": false,
+                "primaryKey": false,
+                "childType": "number",
+                "type": "numeric",
+                "name": "id",
+                "hackoladeMeta": {},
+                "isActivated": true,
+                "GUID": "105379d0-7248-11eb-9740-9b48114dc18e",
+                "error": {
+                    "name": false,
+                    "code": false
+                },
+                "definitionRefs": []
+            }
+        ],
+        "GUID": "149633f1-7245-11eb-9740-9b48114dc18e"
+    },
+    "externalDefinitions": {
+        "type": "externalDefinitions",
+        "properties": [],
+        "GUID": "149633f2-7245-11eb-9740-9b48114dc18e"
+    },
+    "decorativeSymbols": [],
+    "dbVendor": "Cloud Firestore",
+    "appTarget": "FIRESTORE",
+    "creationTS": "2021-02-18T23:57:38.863Z",
+    "GUID": "149633f0-7245-11eb-9740-9b48114dc18e",
+    "lastModifTS": "2021-02-19T00:21:08.845Z",
+    "persistenceSchemaVersion": "4",
+    "isCreatedByPlugin": true,
+    "pluginInformation": {
+        "pluginName": "Firestore",
+        "pluginVersion": "0.1.4",
+        "pluginEngineVersion": "1.0.0"
+    },
+    "applicationInformation": {
+        "version": "4.3.7"
+    },
+    "settings": {
+        "centralPane": {
+            "dbLevel": {
+                "erd": [
+                    {
+                        "GUID": "2cbb62c0-7245-11eb-9740-9b48114dc18e",
+                        "x": 111,
+                        "y": 204,
+                        "width": 238,
+                        "height": 61,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "303176b0-7245-11eb-9740-9b48114dc18e",
+                        "x": 579,
+                        "y": 234,
+                        "width": 174,
+                        "height": 75,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "42f8e5d0-7245-11eb-9740-9b48114dc18e",
+                        "x": 145.5,
+                        "y": 339,
+                        "width": 262,
+                        "height": 131,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "4edd06b0-7245-11eb-9740-9b48114dc18e",
+                        "x": 437.5,
+                        "y": 339,
+                        "width": 210,
+                        "height": 89,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "534060d0-7245-11eb-9740-9b48114dc18e",
+                        "x": 677.5,
+                        "y": 339,
+                        "width": 202,
+                        "height": 89,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "56cf53f0-7245-11eb-9740-9b48114dc18e",
+                        "x": 909.5,
+                        "y": 339,
+                        "width": 277,
+                        "height": 159,
+                        "color": {}
+                    }
+                ],
+                "buckets": [
+                    {
+                        "x": 71,
+                        "y": 164,
+                        "GUID": "197d6410-7245-11eb-9740-9b48114dc18e"
+                    }
+                ],
+                "collapsedNodes": [],
+                "activeRelationship": "",
+                "activeRelationshipFields": {
+                    "childField": [],
+                    "parentField": []
+                },
+                "selectedCollections": [],
+                "displayColorPicker": false,
+                "graphView": {
+                    "erd": [],
+                    "buckets": [],
+                    "decorativeSymbols": [],
+                    "hideRelationshipName": false,
+                    "showPropertiesBoxes": false,
+                    "nameAlongTheLine": false,
+                    "forceLayout": true,
+                    "defaultLinkLength": 300
+                },
+                "diagramViews": [],
+                "decorativeSymbols": [],
+                "nestedCollectionsLayout": "horizontal",
+                "options": []
+            },
+            "collectionLevel": {},
+            "changed": false
+        },
+        "dtDiagram": {
+            "collapsedNodes": [],
+            "details": true,
+            "hideErdDetails": false,
+            "shouldDistributeCollections": false
+        }
+    }
+}
