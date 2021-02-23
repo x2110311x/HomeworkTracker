@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Home</title>
+  <title>Login</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
@@ -10,11 +10,11 @@
   <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
 
   <link rel="stylesheet" href="nav.css">
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
 <div class="navBackground">
-  <div class="container">
+<div class="container">
     <ul class=" nav">
       <li class="nav-item">
         <a class="nav-link" href="index.html">Home</a>
@@ -32,38 +32,32 @@
           <a class="nav-link" href="login.html">Login</a>
       </li>
     </ul>
-  
-  
-  </div>
+
+
+</div>
 </div>
 <div class="container">
-    <div class="homeContent">
+    <div class="loginContent">
 
     <h2>
-        HW Tracker
+        Reset: 
     </h2>
-    
-    <h4>
-        Welcome to your new life. 
-    </h4>
-    
-    <hr class="dotted">   
-    <div class="row">
-        <div class="col-6 center">
-            <button class="btn login"  onclick="window.location.href='login.html'">
-                Login
-            </button>
+    <form action="login.html" onsubmit > 
+        <div class="form-group">
+            <label for="usr">Recovery email:</label>
+            <input type="text" class="form-control" id="usr">
         </div>
-        <div class="col-6 center">
-            <button class="btn register"  onclick="window.location.href='register.html'">
-                Register
-            </button>
-        </div>
+        <button class="btn login">
+            Send Link
+        </button>
+
+       
+
+    </form>
+    
+
     </div>
 
-   
-    
-    </div>
 </div>
 
 
