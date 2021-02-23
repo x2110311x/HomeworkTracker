@@ -201,7 +201,9 @@
                     "error": {
                         "name": false,
                         "code": false
-                    }
+                    },
+                    "parentRelationship": "cf33b910-7247-11eb-9740-9b48114dc18e",
+                    "foreignCollection": "2cbb62c0-7245-11eb-9740-9b48114dc18e"
                 }
             ],
             "definitions": {
@@ -317,7 +319,10 @@
                     "error": {
                         "name": false,
                         "code": false
-                    }
+                    },
+                    "childRelationships": [
+                        "f15b3170-760d-11eb-899c-3586cc3a4f78"
+                    ]
                 },
                 {
                     "exclusiveMinimum": false,
@@ -454,7 +459,25 @@
                     }
                 },
                 {
-                    "properties": [],
+                    "properties": [
+                        {
+                            "primaryKey": false,
+                            "type": "string",
+                            "hackoladeMeta": {},
+                            "isActivated": true,
+                            "GUID": "411e3310-760e-11eb-899c-3586cc3a4f78",
+                            "arrayItem": true,
+                            "arrayParentType": "array",
+                            "relationshipType": "Foreign Key",
+                            "foreignCollection": "534060d0-7245-11eb-9740-9b48114dc18e",
+                            "foreignField": [
+                                "534060d0-7245-11eb-9740-9b48114dc18e",
+                                "1ba7d340-7247-11eb-9740-9b48114dc18e"
+                            ],
+                            "displayName": "tag1",
+                            "comments": "This references a document in the user tags or courses"
+                        }
+                    ],
                     "primaryKey": false,
                     "additionalItems": true,
                     "uniqueItems": false,
@@ -464,12 +487,10 @@
                     "hackoladeMeta": {},
                     "isActivated": true,
                     "GUID": "c7e15550-7247-11eb-9740-9b48114dc18e",
-                    "error": {
-                        "name": false,
-                        "code": false
-                    },
                     "parentRelationship": "",
-                    "childRelationships": []
+                    "childRelationships": [],
+                    "foreignCollection": "534060d0-7245-11eb-9740-9b48114dc18e",
+                    "comments": "References user tags or courses"
                 }
             ],
             "definitions": {
@@ -531,15 +552,58 @@
     "views": [],
     "relationships": [
         {
-            "name": "New Relationship",
-            "relationshipType": "",
+            "name": "CoursestoUserCourses",
+            "relationshipType": "Foreign Key",
             "parentField": [],
             "parentCardinality": "1",
-            "childField": [],
-            "childCardinality": "1",
+            "childField": [
+                [
+                    "42f8e5d0-7245-11eb-9740-9b48114dc18e",
+                    "4d6b9500-7248-11eb-9740-9b48114dc18e"
+                ]
+            ],
+            "childCardinality": "0..1",
             "GUID": "cf33b910-7247-11eb-9740-9b48114dc18e",
             "parentCollection": "2cbb62c0-7245-11eb-9740-9b48114dc18e",
             "childCollection": "42f8e5d0-7245-11eb-9740-9b48114dc18e"
+        },
+        {
+            "name": "TaskTags",
+            "relationshipType": "Foreign Key",
+            "parentField": [
+                [
+                    "534060d0-7245-11eb-9740-9b48114dc18e",
+                    "1ba7d340-7247-11eb-9740-9b48114dc18e"
+                ]
+            ],
+            "parentCardinality": "0..n",
+            "childField": [
+                [
+                    "56cf53f0-7245-11eb-9740-9b48114dc18e",
+                    "c7e15550-7247-11eb-9740-9b48114dc18e",
+                    "411e3310-760e-11eb-899c-3586cc3a4f78"
+                ]
+            ],
+            "childCardinality": "1",
+            "GUID": "f15b3170-760d-11eb-899c-3586cc3a4f78",
+            "parentCollection": "534060d0-7245-11eb-9740-9b48114dc18e",
+            "childCollection": "56cf53f0-7245-11eb-9740-9b48114dc18e"
+        },
+        {
+            "name": "TaskCourseTags",
+            "relationshipType": "Foreign Key",
+            "parentField": [
+                [
+                    "42f8e5d0-7245-11eb-9740-9b48114dc18e",
+                    "4d6b9500-7248-11eb-9740-9b48114dc18e"
+                ]
+            ],
+            "parentCardinality": "1",
+            "childField": [],
+            "childCardinality": "1",
+            "GUID": "81cb82f0-760e-11eb-899c-3586cc3a4f78",
+            "parentCollection": "42f8e5d0-7245-11eb-9740-9b48114dc18e",
+            "childCollection": "56cf53f0-7245-11eb-9740-9b48114dc18e"
         }
     ],
     "users": [],
@@ -573,10 +637,12 @@
         "aa745fd0-7247-11eb-9740-9b48114dc18e": "times",
         "ad08ed60-7247-11eb-9740-9b48114dc18e": "week_start",
         "c7e15550-7247-11eb-9740-9b48114dc18e": "tags(1)",
-        "cf33b910-7247-11eb-9740-9b48114dc18e": "New Relationship",
+        "cf33b910-7247-11eb-9740-9b48114dc18e": "CoursestoUserCourses",
         "0435ab50-7248-11eb-9740-9b48114dc18e": "short_name",
         "072e78f0-7248-11eb-9740-9b48114dc18e": "full_name",
-        "4d6b9500-7248-11eb-9740-9b48114dc18e": "global_course"
+        "4d6b9500-7248-11eb-9740-9b48114dc18e": "global_course",
+        "f15b3170-760d-11eb-899c-3586cc3a4f78": "TaskTags",
+        "81cb82f0-760e-11eb-899c-3586cc3a4f78": "TaskCourseTags"
     },
     "definitions": {
         "type": "definitions",
@@ -630,7 +696,7 @@
     "appTarget": "FIRESTORE",
     "creationTS": "2021-02-18T23:57:38.863Z",
     "GUID": "149633f0-7245-11eb-9740-9b48114dc18e",
-    "lastModifTS": "2021-02-19T00:21:08.845Z",
+    "lastModifTS": "2021-02-23T19:38:04.196Z",
     "persistenceSchemaVersion": "4",
     "isCreatedByPlugin": true,
     "pluginInformation": {
@@ -641,63 +707,64 @@
     "applicationInformation": {
         "version": "4.3.7"
     },
+    "hackoladeMeta": {},
     "settings": {
         "centralPane": {
             "dbLevel": {
                 "erd": [
                     {
                         "GUID": "2cbb62c0-7245-11eb-9740-9b48114dc18e",
-                        "x": 111,
-                        "y": 204,
+                        "x": 146.60000000000002,
+                        "y": 194.66666666666686,
                         "width": 238,
                         "height": 61,
                         "color": {}
                     },
                     {
                         "GUID": "303176b0-7245-11eb-9740-9b48114dc18e",
-                        "x": 579,
-                        "y": 234,
+                        "x": 550,
+                        "y": 204.66666666666686,
                         "width": 174,
                         "height": 75,
                         "color": {}
                     },
                     {
                         "GUID": "42f8e5d0-7245-11eb-9740-9b48114dc18e",
-                        "x": 145.5,
-                        "y": 339,
-                        "width": 262,
-                        "height": 131,
+                        "x": 127.5,
+                        "y": 309.66666666666686,
+                        "width": 273,
+                        "height": 197,
                         "color": {}
                     },
                     {
                         "GUID": "4edd06b0-7245-11eb-9740-9b48114dc18e",
-                        "x": 437.5,
-                        "y": 339,
-                        "width": 210,
+                        "x": 430.5,
+                        "y": 309.66666666666686,
+                        "width": 202,
                         "height": 89,
                         "color": {}
                     },
                     {
                         "GUID": "534060d0-7245-11eb-9740-9b48114dc18e",
-                        "x": 677.5,
-                        "y": 339,
+                        "x": 662.5,
+                        "y": 309.66666666666686,
                         "width": 202,
                         "height": 89,
                         "color": {}
                     },
                     {
                         "GUID": "56cf53f0-7245-11eb-9740-9b48114dc18e",
-                        "x": 909.5,
-                        "y": 339,
-                        "width": 277,
-                        "height": 159,
+                        "x": 894.5,
+                        "y": 309.66666666666686,
+                        "width": 252,
+                        "height": 220,
                         "color": {}
                     }
                 ],
                 "buckets": [
                     {
-                        "x": 71,
-                        "y": 164,
+                        "x": 87.5,
+                        "y": 154.66666666666686,
                         "GUID": "197d6410-7245-11eb-9740-9b48114dc18e"
                     }
                 ],
