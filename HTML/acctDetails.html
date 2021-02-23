@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Register</title>
+  <title>Home</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
@@ -10,7 +10,7 @@
   <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
 
   <link rel="stylesheet" href="nav.css">
-  <link rel="stylesheet" href="register.css">
+  <link rel="stylesheet" href="acctDetails.css">
 </head>
 <body>
 <div class="navBackground">
@@ -29,7 +29,7 @@
       <a class="nav-link" href="#">Add a Tag</a>
     </li>
     <li class="nav-item rightSide">
-        <a class="nav-link" href="login.html">Login</a>
+        <a class="nav-link" href="acctDetails.html">View Account Details</a>
     </li>
   </ul>
 
@@ -37,31 +37,40 @@
 </div>
 </div>
 <div class="container">
-    <div class="registerContent">
+    <div class="homeContent">
 
     <h2>
-        Register: 
+        Account Details
     </h2>
-    <form action="login.html"> 
-        <div class="form-group">
-            <label for="usr">Name:</label>
-            <input type="text" class="form-control" id="usr">
-        </div>
-        <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd">
-        </div> 
-        <p>Already Have an account? <a href="login.html" class="linkStyle">Click here to log in</a> </p>
-
-        <button class="btn register">
-            Register
-        </button>
-
-    </form>
     
+    <h4>
+        Welcome, {{name}}
+    </h4>
+    <br>
+   
+    
+    
+            <button class="btn signOut"  onclick="window.location.href='index.html'">
+                Sign Out
+            </button>
 
+            <hr class="dotted">
+
+            <button class="btn delete"  onclick="window.location.href='login.html'">
+                Delete Your Account
+            </button>
+
+            <hr class="dotted">  
+
+            <button class="btn passReset"  onclick="window.location.href='register.html'">
+                Reset Password
+            </button>
+ 
+
+
+   
+    
     </div>
-
 </div>
 
 

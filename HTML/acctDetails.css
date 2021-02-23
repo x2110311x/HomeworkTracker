@@ -2,14 +2,20 @@
     border-top: 3px dashed white;
 }
 
-.login{
-    background-color: #334672;
+.delete{
+    background-color: #412e25;
     color:white;
     width:80%;
 }
 
-.register{
-    background-color: #2E4D34;
+.passReset{
+    background-color: #274b6d;
+    color:white;
+    width:80%;
+}
+
+.signOut{
+    background-color: #1a5235;
     color:white;
     width:80%;
 }
