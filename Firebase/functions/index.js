@@ -1,15 +1,17 @@
-const functions = require("firebase-functions");
-const express = require('express');
-const path = require('path');
-const cors = require('cors');
-const engines = require('consolidate');
+const functions     = require("firebase-functions");
+const express       = require('express');
+const path          = require('path');
+const cors          = require('cors');
+const engines       = require('consolidate');
+const cookieParser  = require('cookie-parser');
+const admin           = require('firebase-admin');
+const bodyParser      = require('body-parser');
+const firebase        = require("firebase/app");
 
-var bodyParser = require('body-parser');
-var firebase = require("firebase/app");
 require("firebase/auth");
 require("firebase/firestore");
 
-
+// Initialize Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyC2IAgV5O3rg7GtmsnM3oCEwKrhng0DFKI",
     authDomain: "homeworktracker-b9805.firebaseapp.com",
@@ -19,10 +21,16 @@ const firebaseConfig = {
     messagingSenderId: "346231056217",
     appId: "1:346231056217:web:bb8d74795e12b65eba0e48",
     measurementId: "G-DDVP2Z4XL4"
-  };
-  
-// Initialize Firebase
+};
 firebase.initializeApp(firebaseConfig);
+
+var serviceAccount = require("./config/serviceAccountKey.json");
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://homeworktracker-b9805-default-rtdb.firebaseio.com"
+});
+
+// Setup Express
 const app = express();
 
 app.use(express.json());
@@ -33,122 +41,104 @@ app.set('view engine', 'hbs');
 app.use(cors({ origin: true }));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(cookieParser());
 
 var auth = firebase.auth();
 
-app.post('/auth-login', (request, response) => {
-    if (request.method == "POST") {
-        var email = request.body.email;
-        var password = request.body.password;
-        auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // Signed in
-            var user = userCredential.user;
-            response.redirect('/'); 
-        })
-        .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            response.render('login', {error: errorMessage});
-        });
-    } else{
-        response.redirect('/');
-    }
-});
-
-app.post('/auth-register', (request, response) => {
-    if (request.method == "POST") {
-        var email = request.body.email;
-        var password = request.body.password;
-        var name = request.body.name;
-        auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // Signed in 
-            const user = firebase.auth().currentUser;
-            user.updateProfile({
-                displayName: name,
-            }).then(function() {
-                response.redirect('/');
-            }, function(error) {
-                response.render('register', {error: errorMessage});
-            });
-        })
-        .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            response.render('register', {error: errorMessage});
-        });
-    } else{
-        response.redirect('/');
-    }
-});
+function checkCookieMiddleware(req, res, next) {
+    const sessionCookie = req.cookies.__session || '';
+    admin.auth().verifySessionCookie(
+		sessionCookie, true).then((decodedClaims) => {
+			req.decodedClaims = decodedClaims;
+            req.signedin = true;
+			next();
+		})
+		.catch(error => {
+			req.signedin = false;
+            next();
+		});
+}
 
 app.get('/logout', (request, response) => {
-    var user = firebase.auth();
-    user.signOut().then(() => {
-        response.redirect('/');
-    }).catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-        response.status(200).send(errorMessage);
-    });
+    response.clearCookie('__session');
+    response.redirect('/');
 });
 
-app.get('/delete-account', (request, response) => {
-    var user = firebase.auth().currentUser;
-    user.delete().then(() => {
+app.get('/sessionLogin', (req, res) => {
+    idToken = req.query.idToken
+	// Set session expiration to 5 days.
+	// Create the session cookie. This will also verify the ID token in the process.
+	// The session cookie will have the same claims as the ID token.
+	
+	const expiresIn = 60 * 60 * 24 * 5 * 1000;
+	admin.auth().createSessionCookie(idToken, {expiresIn}).then((sessionCookie) => {
+		
+		// Set cookie policy for session cookie and set in response.
+		const options = {maxAge: expiresIn, httpOnly: true, secure: true};
+		res.cookie('__session', sessionCookie, options);
+		
+		admin.auth().verifyIdToken(idToken).then(function(decodedClaims) {
+			res.redirect('/');
+		});
+			
+	}, error => {
+		res.status(401).send('UNAUTHORIZED REQUEST!');
+	});	
+  });
+
+app.get('/delete-account', checkCookieMiddleware, (request, response) => {
+    if (request.signedin){
+        let user = request.decodedClaims;
+        admin.auth().deleteUser(user.uid).then(() => {
+            response.redirect('/');
+        }).catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
+            response.status(200).send(errorMessage);
+        });
+    } else {
         response.redirect('/');
-    }).catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-        response.status(200).send(errorMessage);
-    });
+    }
 });
 
-
-app.get('/', (request, response) => {
-    var user = auth.currentUser;
-    if (user) {
-        response.render('loggedin', {name: user.displayName});
+app.get('/', checkCookieMiddleware, (request, response) => {
+    if (request.signedin) {
+        let user = request.decodedClaims;
+        response.render('loggedin', {name: user.name});
     } else {
         response.render('loggedout');
     }
 });
 
-app.get('/account', (request, response) => {
-    var user = auth.currentUser;
-    if (user) {
-        response.render('acctDetails', {name: user.displayName});
+app.get('/account', checkCookieMiddleware, (request, response) => {
+    if (request.signedin) {
+        let user = request.decodedClaims;
+        response.render('acctDetails', {name: user.name});
     } else {
         response.redirect('/');
     }
 });
 
-app.get('/login', (request, response) => {
-    var user = auth.currentUser;
-    if (user) {
+app.get('/login', checkCookieMiddleware, (request, response) => {
+    if (request.signedin) {
         response.redirect('/');
     } else {
         response.render('login');
     }
 });
 
-app.get('/register', (request, response) => {
-    var user = auth.currentUser;
-    if (user) {
+app.get('/register', checkCookieMiddleware, (request, response) => {
+    if (request.signedin) {
         response.redirect('/');
     } else {
         response.render('register');
     }
 });
 
-app.get('/reset', (request, response) => {
-    var user = auth.currentUser;
-    if (user) {
+app.get('/reset', checkCookieMiddleware, (request, response) => {
+    if (request.signedin){
         response.redirect('/');
     } else {
         response.render('reset');
@@ -159,4 +149,18 @@ app.get('*', (request, response) => {
     response.status(404).render('404');
 });
 
+async function addUser(uid, email, displayName){
+    const data = {
+        uid: uid,
+        email: email,
+        name: displayName,
+        creationDate: admin.firestore.Timestamp.now()
+    };
+    const writeResult = await admin.firestore().collection('Users').add(data);
+    console.log("User has been added,", writeResult.id);
+}
+
+exports.addUser = functions.auth.user().onCreate((user) => {
+    return addUser(user.uid, user.email, user.displayName);
+});
 exports.auth = functions.https.onRequest(app);

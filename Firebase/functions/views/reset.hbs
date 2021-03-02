@@ -8,9 +8,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
-
-  <link rel="stylesheet" href="nav.css">
-  <link rel="stylesheet" href="login.css">
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <script src="scripts/auth.js"></script>
+  <link rel="stylesheet" href="stylesheets/nav.css">
+  <link rel="stylesheet" href="stylesheets/login.css">
 </head>
 <body>
 <div class="navBackground">
@@ -42,24 +43,19 @@
     <h2>
         Reset: 
     </h2>
-    <form action="auth-reset" onsubmit > 
         <div class="form-group">
             <label for="usr">Recovery email:</label>
             <input type="text" class="form-control" id="usr">
         </div>
-        <button class="btn login">
+        <div id="alertbox" hidden class="alert alert-danger" role="alert">  
+        </div>
+        <div id="successbox" hidden class="alert alert-success" role="alert">
+          Password reset email sent.  
+        </div>
+        <button onclick="SendPasswordReset()" class="btn login">
             Send Link
         </button>
-
-       
-
-    </form>
-    
-
     </div>
-
 </div>
-
-
 </body>
 </html>
