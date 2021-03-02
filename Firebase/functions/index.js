@@ -121,6 +121,24 @@ app.get('/account', checkCookieMiddleware, (request, response) => {
     }
 });
 
+app.get('/addTask', checkCookieMiddleware, (request, response) => {
+    if (request.signedin) {
+        let user = request.decodedClaims;
+        response.render('addTask', {name: user.name});
+    } else {
+        response.redirect('/');
+    }
+});
+
+app.get('/addTag', checkCookieMiddleware, (request, response) => {
+    if (request.signedin) {
+        let user = request.decodedClaims;
+        response.render('addTag', {name: user.name});
+    } else {
+        response.redirect('/');
+    }
+});
+
 app.get('/login', checkCookieMiddleware, (request, response) => {
     if (request.signedin) {
         response.redirect('/');
@@ -145,11 +163,14 @@ app.get('/reset', checkCookieMiddleware, (request, response) => {
     }
 });
 
+
+
+
 app.get('*', (request, response) => {
     response.status(404).render('404');
 });
 
-app.post("/task", checkCookieMiddleware, (request, response) => {
+app.post("/addTask", checkCookieMiddleware, (request, response) => { //NOTE: CHANGED THIS TO ADD TASK SINCE WE WILL HAVE MULTIPLE TASK PAGES
   if (request.method == "POST" && request.signedin) {
     var name = request.body.name;
     var estTime = request.body.estTime;

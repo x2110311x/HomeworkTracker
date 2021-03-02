@@ -1,0 +1,31 @@
+.submit{
+    background-color: #334672;
+    color:white;
+    width:80%;
+    margin-left: 10%;
+}
+
+.centerContent{
+    width: 60%;
+    margin: 5% 20%;
+}
+
+.centerContent h2{
+    text-align:center;
+}
+
+.linkStyle{
+    color:#334672;
+}
+
+.tagHeader{
+    text-align: center;
+    margin:10% 0;
+}
+
+.addTag{
+    background-color: white;
+    border: 2px solid #555655;
+    width:40%;
+    margin-right:5%;
+}
