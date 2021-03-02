@@ -1,11 +1,10 @@
-const { response } = require("express");
-
 function addTask(){
     document.getElementById("alertbox").hidden = true;
     document.getElementById("alertbox").classList.remove("alert-danger");
     document.getElementById("alertbox").classList.remove("alert-success");
-    data = {
-        name:document.getElementById("name").value,
+
+    var data = {
+        name: document.getElementById("name").value,
         description: document.getElementById("description").value,
         tag: document.getElementById("tag").value,
         dueDate: document.getElementById("dueDate").value,
@@ -21,12 +20,11 @@ function addTask(){
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
-    }).then(response => response.json())
-    .then(data => {
+    }).then(response => response.text().then((text) => {
         document.getElementById("alertbox").hidden = false;
         document.getElementById("alertbox").classList.add("alert-success");
-        document.getElementById("alertbox").innerHTML = data;
-    }).catch((error) =>{
+        document.getElementById("alertbox").innerHTML = text;
+    })).catch((error) =>{
         document.getElementById("alertbox").hidden = false;
         document.getElementById("alertbox").classList.add("alert-danger");
         document.getElementById("alertbox").innerHTML = error.message;
