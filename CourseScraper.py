@@ -1,3 +1,6 @@
+# Majority of code modified from the following source
+# https://www.youtube.com/watch?v=XQgXKtPSzUI&t=1613s&ab_channel=DataScienceDojo
+
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import csv
