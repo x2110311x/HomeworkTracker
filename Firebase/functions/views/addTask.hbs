@@ -8,7 +8,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <script src="scripts/tasks.js"></script>
   <link rel="stylesheet" href="stylesheets/nav.css">
   <link rel="stylesheet" href="stylesheets/addTask.css">
 </head>
@@ -81,7 +82,7 @@
                 <label for="estTime">Estimated Time to Completion (minutes):</label>
                 <input type="number" class="form-control" id="estTime" name="estTime" >
             </div> 
-            <div id="alertbox" hidden class="alert alert-danger" role="alert">  
+            <div id="alertbox" hidden class="alert" role="alert">  
             </div>
             <div class="row">
                 <div class="col-6">
@@ -99,7 +100,7 @@
             </div>
 
             <br>
-            <button class="btn submit"> <!-- ADD TO DB-->
+            <button onclick="addTask()" class="btn submit"> <!-- ADD TO DB-->
                 Add Task
             </button>
             <br>
