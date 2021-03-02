@@ -8,9 +8,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
-
-  <link rel="stylesheet" href="nav.css">
-  <link rel="stylesheet" href="register.css">
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <script src="scripts/auth.js"></script>
+  <link rel="stylesheet" href="stylesheets/nav.css">
+  <link rel="stylesheet" href="stylesheets/register.css">
 </head>
 <body>
 <div class="navBackground">
@@ -41,30 +42,27 @@
     <h2>
         Register: 
     </h2>
-    <form action="auth-register" method="POST"> 
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
-        </div>
-        <div class="form-group">
-            <label for="usr">Email Address:</label>
-            <input type="email" class="form-control" id="usr" name="email" placeholder="Enter email">
-        </div>
-        <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd" name="password" placeholder="Password">
-        </div>
-        {{#if error}}
-        <div class="alert alert-danger" role="alert">
-          {{error}}
-        </div>
-        {{/if}}
-        <p>Already Have an account? <a href="login" class="linkStyle">Click here to log in</a> </p>
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+    </div>
+    <div class="form-group">
+        <label for="usr">Email Address:</label>
+        <input type="email" class="form-control" id="usr" name="email" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" name="password" placeholder="Password">
+    </div>
+    <div id="alertbox" class="alert alert-danger" hidden role="alert">
+    </div>
+    <p>Already Have an account? <a href="login" class="linkStyle">Click here to log in</a> </p>
 
-        <button class="btn register">
-            Register
-        </button>
-    </form>
+    <button onclick="signUpWithEmailPassword()" class="btn register">
+        Register
+    </button>
+
+    <button onclick="signInWithGoogle()" class="btn google btn-danger btn-block"><i class="fa fa-google"></i> Sign up with <b>Google</b></button>
 </div>
 </div>
 </body>
