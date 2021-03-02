@@ -184,7 +184,7 @@ async function addUser(uid, email, displayName){
         name: displayName,
         creationDate: admin.firestore.Timestamp.now()
     };
-    const writeResult = await admin.firestore().collection('Users').add(data);
+    const writeResult = await admin.firestore().collection('Users').doc(uid).set(data);
     console.log("User has been added,", writeResult.id);
 }
 
