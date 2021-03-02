@@ -4,6 +4,7 @@
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import csv
+import re
 
 class_list = []
 class_links = []
@@ -73,8 +74,14 @@ def get_course_soup(class_link):
 
 
 def retrieve_course_names(title):
-    segments = title.text.split('\t')
-    course_titles.append(','.join(segments[0:1]))
+    course_code = re.findall("^[A-Z]{2,4}\s[0-9]{5}", title.text)[0]
+    course_codelen = len(course_code)
+    credit_hours = re.findall("(\\s+[0-9](\\-{0,1},{0,1}[0-9]{0,2}){0,1}\\sCredit\\sHour(s){0,1})$", title.text)[0][0]
+    
+    credit_hoursindex = title.text.find(credit_hours)
+    course_title = title.text[course_codelen+6:credit_hoursindex]
+
+    course_titles.append(f"{course_code},{course_title}")
 
 
 def write_all_lists_to_file():
