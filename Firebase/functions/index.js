@@ -171,7 +171,8 @@ app.post("/task", checkCookieMiddleware, (request, response) => {
     };
 
     // Add a new task
-    await admin.firestore().collection('Users').doc(request.decodedClaims.uid).collection('tasks').set(data);
+    const writeResult = admin.firestore().collection('Users').doc(request.decodedClaims.uid).collection('tasks').set(data);
+    console.log("Task has been added,", writeResult.id);
   } else {
     response.redirect("/");
   }
