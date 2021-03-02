@@ -149,6 +149,34 @@ app.get('*', (request, response) => {
     response.status(404).render('404');
 });
 
+app.post("/task", checkCookieMiddleware, (request, response) => {
+  if (request.method == "POST" && request.signedin) {
+    var name = request.body.name;
+    var estTime = request.body.estTime;
+    var dueDate = request.body.dueDate;
+    var description = request.body.description;
+    var priority = request.body.priority;
+    var scheduledTimeStart = request.body.scheduledTimeStart;
+    var scheduledTimeEnd = request.body.scheduledTimeEnd;
+
+    const data = {
+      name: name,
+      est_time: estTime,
+      due_date: dueDate,
+      description: description,
+      completed: false,
+      priority: priority,
+      scheduled_time_start: scheduledTimeStart,
+      scheduled_time_end: scheduledTimeEnd,
+    };
+
+    // Add a new task
+    await admin.firestore().collection('Users').doc(request.decodedClaims.uid).collection('tasks').set(data);
+  } else {
+    response.redirect("/");
+  }
+});
+
 async function addUser(uid, email, displayName){
     const data = {
         uid: uid,
