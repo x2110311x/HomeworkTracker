@@ -1,9 +1,9 @@
-const functions     = require("firebase-functions");
-const express       = require('express');
-const path          = require('path');
-const cors          = require('cors');
-const engines       = require('consolidate');
-const cookieParser  = require('cookie-parser');
+const functions       = require("firebase-functions");
+const express         = require('express');
+const path            = require('path');
+const cors            = require('cors');
+const engines         = require('consolidate');
+const cookieParser    = require('cookie-parser');
 const admin           = require('firebase-admin');
 const bodyParser      = require('body-parser');
 const firebase        = require("firebase/app");
@@ -42,8 +42,6 @@ app.use(cors({ origin: true }));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(cookieParser());
-
-var auth = firebase.auth();
 
 function checkCookieMiddleware(req, res, next) {
     const sessionCookie = req.cookies.__session || '';
@@ -163,7 +161,6 @@ app.get('/reset', checkCookieMiddleware, (request, response) => {
     }
 });
 
-
 app.post("/addTask", checkCookieMiddleware, (request, response) => {
     if (request.signedin) {
         var name = request.body.name;
@@ -187,9 +184,9 @@ app.post("/addTask", checkCookieMiddleware, (request, response) => {
         
         // Add a new task
         const writeResult = admin.firestore().collection('Users')
-        .doc(request.decodedClaims.uid).collection('tasks').set(data)
+        .doc(request.decodedClaims.uid).collection('tasks').add(data)
         .then(() => {
-            response.send(200).send("Task successfully added");
+            response.status(200).send("Task successfully added");
             console.log("Task has been added,", writeResult.id);
         }).catch((error) => {
             console.error("Error writing document: ", error);
