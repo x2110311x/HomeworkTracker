@@ -225,6 +225,39 @@ async function addUser(uid, email, displayName){
     console.log("User has been added,", writeResult.id);
 }
 
+async function deleteCollection(db, collectionPath, batchSize) {
+    const collectionRef = db.collection(collectionPath);
+    const query = collectionRef.orderBy('__name__').limit(batchSize);
+  
+    return new Promise((resolve, reject) => {
+      deleteQueryBatch(db, query, resolve).catch(reject);
+    });
+}
+
+async function deleteQueryBatch(db, query, resolve) {
+    const snapshot = await query.get();
+  
+    const batchSize = snapshot.size;
+    if (batchSize === 0) {
+      // When there are no documents left, we are done
+      resolve();
+      return;
+    }
+  
+    // Delete documents in a batch
+    const batch = db.batch();
+    snapshot.docs.forEach((doc) => {
+      batch.delete(doc.ref);
+    });
+    await batch.commit();
+  
+    // Recurse on the next process tick, to avoid
+    // exploding the stack.
+    process.nextTick(() => {
+      deleteQueryBatch(db, query, resolve);
+    });
+} // from https://firebase.google.com/docs/firestore/manage-data/delete-data?authuser=0#collections
+
 exports.addUser = functions.auth.user().onCreate((user) => {
     if (user.name == null){
         var uname = user.displayName
@@ -233,4 +266,23 @@ exports.addUser = functions.auth.user().onCreate((user) => {
     }
     return addUser(user.uid, user.email, uname);
 });
-exports.auth = functions.https.onRequest(app);
+exports.webapp = functions.https.onRequest(app);
+exports.deleteUser = functions.auth.user().onDelete((user) => {
+    console.log("Deleting user ${user}");
+    const db = admin.firestore();
+    var taskCol = '/Users/${user.uid}/tasks';
+    var tagCol = '/Users/${user.uid}/tags';
+    var coursesCol = '/Users/${user.uid}/courses';
+    var freetimeCol = '/Users/${user.uid}/freetime';
+
+    deleteCollection(db, taskCol, 5000);
+    console.log('tasks deleted');
+    deleteCollection(db, tagCol, 500);
+    console.log('tags deleted');
+    deleteCollection(db, coursesCol, 50);
+    console.log('course tags deleted');
+    deleteCollection(db, freetimeCol, 5000);
+    console.log('free time deleted');
+    db.collection('Users').doc(user.uid).delete();
+    console.log('User ${user} deleted');
+});
