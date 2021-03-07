@@ -103,8 +103,15 @@ app.get('/delete-account', checkCookieMiddleware, (request, response) => {
 
 app.get('/', checkCookieMiddleware, (request, response) => {
     if (request.signedin) {
-        let user = request.decodedClaims;
-        response.render('loggedin', {name: user.name});
+        admin.auth().getUser(request.decodedClaims.uid).then((user) => {
+            console.log(user);
+            if (user.name == null){
+                var uname = user.displayName;
+            } else {
+                var uname = user.name;
+            }
+            response.render('loggedin', {name: uname});
+        });
     } else {
         response.render('loggedout');
     }
@@ -112,8 +119,14 @@ app.get('/', checkCookieMiddleware, (request, response) => {
 
 app.get('/account', checkCookieMiddleware, (request, response) => {
     if (request.signedin) {
-        let user = request.decodedClaims;
-        response.render('acctDetails', {name: user.name});
+        admin.auth().getUser(request.decodedClaims.uid).then((user) => {
+            if (user.name == null){
+                var uname = user.displayName;
+            } else{
+                var uname = user.name;
+            }
+            response.render('acctDetails', {name: uname});
+        });
     } else {
         response.redirect('/');
     }
@@ -122,7 +135,7 @@ app.get('/account', checkCookieMiddleware, (request, response) => {
 app.get('/addTask', checkCookieMiddleware, (request, response) => {
     if (request.signedin) {
         let user = request.decodedClaims;
-        response.render('addTask', {name: user.name});
+        response.render('addTask');
     } else {
         response.redirect('/');
     }
@@ -131,7 +144,7 @@ app.get('/addTask', checkCookieMiddleware, (request, response) => {
 app.get('/addTag', checkCookieMiddleware, (request, response) => {
     if (request.signedin) {
         let user = request.decodedClaims;
-        response.render('addTag', {name: user.name});
+        response.render('addTag');
     } else {
         response.redirect('/');
     }
@@ -213,6 +226,11 @@ async function addUser(uid, email, displayName){
 }
 
 exports.addUser = functions.auth.user().onCreate((user) => {
-    return addUser(user.uid, user.email, user.displayName);
+    if (user.name == null){
+        var uname = user.displayName
+    } else{
+        var uname = user.name
+    }
+    return addUser(user.uid, user.email, uname);
 });
 exports.auth = functions.https.onRequest(app);
