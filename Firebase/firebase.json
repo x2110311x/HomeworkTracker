@@ -11,7 +11,7 @@
     "public": "public",
     "rewrites": [{
       "source": "**",
-      "function": "auth"
+      "function": "webapp"
     }],
     "ignore": [
       "firebase.json",
