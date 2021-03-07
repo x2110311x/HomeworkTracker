@@ -88,7 +88,7 @@ app.get('/delete-account', checkCookieMiddleware, (request, response) => {
     if (request.signedin){
         let user = request.decodedClaims;
         admin.auth().deleteUser(user.uid).then(() => {
-            response.redirect('/');
+            response.redirect('/logout');
         }).catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
