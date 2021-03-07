@@ -5,10 +5,15 @@ from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import csv
 import re
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 
 class_list = []
 class_links = []
 course_titles = []
+course_dicts = []
+global fs_client
 
 
 def parse_class_list():
@@ -17,6 +22,8 @@ def parse_class_list():
     get_classes(page_soup)
 
     write_all_lists_to_file()
+
+    create_tag_documents()
 
 
 def get_html_soup():
@@ -82,6 +89,7 @@ def retrieve_course_names(title):
     course_title = title.text[course_codelen+6:credit_hoursindex]
 
     course_titles.append(f"{course_code},{course_title}")
+    course_dicts.append(Course_Info(course_title, course_code))
 
 
 def write_all_lists_to_file():
@@ -89,5 +97,28 @@ def write_all_lists_to_file():
     write_list_to_file(class_links, "class_links.csv")
     write_list_to_file(course_titles, "course_titles.csv")
     
+
+def initialize_firestore_Connection():
+    cred = credentials.Certificate("./ServiceAccountKey.json")
+    firebase_admin.initialize_app(cred)
+    return firebase_admin.firestore.client()
+
+
+def create_tag_documents():
+    fs_client = initialize_firestore_Connection()
+
+    for course in course_dicts:
+        fs_client.collection(u"courses").add(course.course)
+
+class Course_Info(object):
+    course = {
+        u"full_name": u"",
+        u"short_name": u"" 
+    }
+
+    def __init__(self, full_name, short_name):
+        self.course["full_name"] = full_name
+        self.course["short_name"] = short_name
+
 
 parse_class_list()
