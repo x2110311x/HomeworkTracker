@@ -108,17 +108,18 @@ def create_tag_documents():
     fs_client = initialize_firestore_Connection()
 
     for course in course_dicts:
-        fs_client.collection(u"courses").add(course.course)
+        fs_client.collection(u"Courses").add(course.course)
 
 class Course_Info(object):
-    course = {
-        u"full_name": u"",
-        u"short_name": u"" 
-    }
-
     def __init__(self, full_name, short_name):
-        self.course["full_name"] = full_name
-        self.course["short_name"] = short_name
+        self.full_name = full_name
+        self.short_name = short_name
+
+    def course(self):
+        return {
+            u'full_name': u"{0}".format(self.full_name),
+            u'short_name': u"{0}".format(self.short_name)
+        }
 
 
 parse_class_list()
