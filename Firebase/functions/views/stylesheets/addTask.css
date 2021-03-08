@@ -53,18 +53,3 @@
     width:40%;
     margin-right:5%;
 }
-
-@media screen and (max-width: 1000px) {
-    .centerContent{
-        width: 80%;
-        margin: 5% 10%;
-    }
-
-}
-@media screen and (max-width: 430px) {
-    .centerContent{
-        width: 98%;
-        margin: 5% 1%;
-    }
-
-}
