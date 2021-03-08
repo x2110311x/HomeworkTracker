@@ -88,7 +88,7 @@ app.get('/delete-account', checkCookieMiddleware, (request, response) => {
     if (request.signedin){
         let user = request.decodedClaims;
         admin.auth().deleteUser(user.uid).then(() => {
-            response.redirect('/');
+            response.redirect('/logout');
         }).catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -103,8 +103,15 @@ app.get('/delete-account', checkCookieMiddleware, (request, response) => {
 
 app.get('/', checkCookieMiddleware, (request, response) => {
     if (request.signedin) {
-        let user = request.decodedClaims;
-        response.render('loggedin', {name: user.name});
+        admin.auth().getUser(request.decodedClaims.uid).then((user) => {
+            console.log(user);
+            if (user.name == null){
+                var uname = user.displayName;
+            } else {
+                var uname = user.name;
+            }
+            response.render('loggedin', {name: uname});
+        });
     } else {
         response.render('loggedout');
     }
@@ -112,8 +119,14 @@ app.get('/', checkCookieMiddleware, (request, response) => {
 
 app.get('/account', checkCookieMiddleware, (request, response) => {
     if (request.signedin) {
-        let user = request.decodedClaims;
-        response.render('acctDetails', {name: user.name});
+        admin.auth().getUser(request.decodedClaims.uid).then((user) => {
+            if (user.name == null){
+                var uname = user.displayName;
+            } else{
+                var uname = user.name;
+            }
+            response.render('acctDetails', {name: uname});
+        });
     } else {
         response.redirect('/');
     }
@@ -122,7 +135,7 @@ app.get('/account', checkCookieMiddleware, (request, response) => {
 app.get('/addTask', checkCookieMiddleware, (request, response) => {
     if (request.signedin) {
         let user = request.decodedClaims;
-        response.render('addTask', {name: user.name});
+        response.render('addTask');
     } else {
         response.redirect('/');
     }
@@ -131,7 +144,7 @@ app.get('/addTask', checkCookieMiddleware, (request, response) => {
 app.get('/addTag', checkCookieMiddleware, (request, response) => {
     if (request.signedin) {
         let user = request.decodedClaims;
-        response.render('addTag', {name: user.name});
+        response.render('addTag');
     } else {
         response.redirect('/');
     }
@@ -212,7 +225,86 @@ async function addUser(uid, email, displayName){
     console.log("User has been added,", writeResult.id);
 }
 
+async function deleteCollection(db, collectionPath, batchSize) {
+    const collectionRef = db.collection(collectionPath);
+    const query = collectionRef.orderBy('__name__').limit(batchSize);
+  
+    return new Promise((resolve, reject) => {
+      deleteQueryBatch(db, query, resolve).catch(reject);
+    });
+}
+
+async function deleteQueryBatch(db, query, resolve) {
+    const snapshot = await query.get();
+  
+    const batchSize = snapshot.size;
+    if (batchSize === 0) {
+      // When there are no documents left, we are done
+      resolve();
+      return;
+    }
+  
+    // Delete documents in a batch
+    const batch = db.batch();
+    snapshot.docs.forEach((doc) => {
+      batch.delete(doc.ref);
+    });
+    await batch.commit();
+  
+    // Recurse on the next process tick, to avoid
+    // exploding the stack.
+    process.nextTick(() => {
+      deleteQueryBatch(db, query, resolve);
+    });
+} // from https://firebase.google.com/docs/firestore/manage-data/delete-data?authuser=0#collections
+
 exports.addUser = functions.auth.user().onCreate((user) => {
-    return addUser(user.uid, user.email, user.displayName);
+    if (user.name == null){
+        var uname = user.displayName
+    } else{
+        var uname = user.name
+    }
+    return addUser(user.uid, user.email, uname);
 });
-exports.auth = functions.https.onRequest(app);
+
+exports.webapp = functions.https.onRequest(app);
+
+exports.deleteUser = functions.auth.user().onDelete((user) => {
+    console.log('Deleting user ${user}');
+    const db = admin.firestore();
+    var taskCol = '/Users/${user.uid}/tasks';
+    var tagCol = '/Users/${user.uid}/tags';
+    var coursesCol = '/Users/${user.uid}/courses';
+    var freetimeCol = '/Users/${user.uid}/freetime';
+
+    deleteCollection(db, taskCol, 5000).then((result) => {
+        console.log(result);
+        console.log('tasks deleted');
+    }).catch((error) => {
+        console.log(error);
+    });
+
+    deleteCollection(db, tagCol, 500).then((result) => {
+        console.log(result);
+        console.log('tags deleted');
+    }).catch((error) => {
+        console.log(error);
+    });
+
+    deleteCollection(db, coursesCol, 50).then((result) => {
+        console.log(result);
+        console.log('course tags deleted');
+    }).catch((error) => {
+        console.log(error);
+    });
+
+    deleteCollection(db, freetimeCol, 5000).then((result) => {
+        console.log(result);
+        console.log('free time deleted');
+    }).catch((error) => {
+        console.log(error);
+    });
+
+    db.collection('Users').doc(user.uid).delete();
+    console.log('User ${user} deleted');
+});
