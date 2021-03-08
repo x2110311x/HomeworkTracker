@@ -237,97 +237,26 @@ app.get('*', (request, response) => {
     response.status(404).render('404');
 });
 
-async function addUser(uid, email, displayName){
-    const data = {
-        uid: uid,
-        email: email,
-        name: displayName,
-        creationDate: admin.firestore.Timestamp.now()
-    };
-    const writeResult = await admin.firestore().collection('Users').doc(uid).set(data);
-    console.log("User has been added,", writeResult.id);
-}
-
-async function deleteCollection(db, collectionPath, batchSize) {
-    const collectionRef = db.collection(collectionPath);
-    const query = collectionRef.orderBy('__name__').limit(batchSize);
-  
-    return new Promise((resolve, reject) => {
-      deleteQueryBatch(db, query, resolve).catch(reject);
-    });
-}
-
-async function deleteQueryBatch(db, query, resolve) {
-    const snapshot = await query.get();
-  
-    const batchSize = snapshot.size;
-    if (batchSize === 0) {
-      // When there are no documents left, we are done
-      resolve();
-      return;
-    }
-  
-    // Delete documents in a batch
-    const batch = db.batch();
-    snapshot.docs.forEach((doc) => {
-      batch.delete(doc.ref);
-    });
-    await batch.commit();
-  
-    // Recurse on the next process tick, to avoid
-    // exploding the stack.
-    process.nextTick(() => {
-      deleteQueryBatch(db, query, resolve);
-    });
-} // from https://firebase.google.com/docs/firestore/manage-data/delete-data?authuser=0#collections
-
 exports.addUser = functions.auth.user().onCreate((user) => {
-    if (user.name == null){
-        var uname = user.displayName
-    } else{
-        var uname = user.name
-    }
-    return addUser(user.uid, user.email, uname);
+    admin.auth().getUser(user.uid).then((user) => {
+        if (user.name == null){
+            var uname = user.displayName
+        } else{
+            var uname = user.name
+        }
+        const data = {
+            uid: user.uid,
+            email: user.email,
+            name: uname,
+            creationDate: admin.firestore.Timestamp.now()
+        };
+        const writeResult = admin.firestore().collection('Users').doc(uid).set(data).then(() => {
+            console.log("User added to DB");
+        });
+    }).catch((error) => {
+        console.log("Error recording user. Check name entry in DB");
+        console.log(error);
+    });
 });
 
-exports.webapp = functions.https.onRequest(app);
-
-exports.deleteUser = functions.auth.user().onDelete((user) => {
-    console.log('Deleting user ${user}');
-    const db = admin.firestore();
-    var taskCol = '/Users/${user.uid}/tasks';
-    var tagCol = '/Users/${user.uid}/tags';
-    var coursesCol = '/Users/${user.uid}/courses';
-    var freetimeCol = '/Users/${user.uid}/freetime';
-
-    deleteCollection(db, taskCol, 5000).then((result) => {
-        console.log(result);
-        console.log('tasks deleted');
-    }).catch((error) => {
-        console.log(error);
-    });
-
-    deleteCollection(db, tagCol, 500).then((result) => {
-        console.log(result);
-        console.log('tags deleted');
-    }).catch((error) => {
-        console.log(error);
-    });
-
-    deleteCollection(db, coursesCol, 50).then((result) => {
-        console.log(result);
-        console.log('course tags deleted');
-    }).catch((error) => {
-        console.log(error);
-    });
-
-    deleteCollection(db, freetimeCol, 5000).then((result) => {
-        console.log(result);
-        console.log('free time deleted');
-    }).catch((error) => {
-        console.log(error);
-    });
-
-    db.collection('Users').doc(user.uid).delete();
-    console.log('User ${user} deleted');
-});
+exports.auth = functions.https.onRequest(app);
