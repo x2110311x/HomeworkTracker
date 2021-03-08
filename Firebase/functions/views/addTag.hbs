@@ -9,33 +9,27 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
 
+    <!--NAV LINKS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="scripts/navToggle.js"></script>
   <link rel="stylesheet" href="stylesheets/nav.css">
+
   <link rel="stylesheet" href="stylesheets/addTag.css">
 </head>
 <body>
-    <div class="navBackground">
-        <div class="container">
-        <ul class=" nav">
-            <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">View Tasks</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/addTask">Add a Task</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/addTag">Add a Tag</a>
-            </li>
-            <li class="nav-item rightSide">
-                <a class="nav-link" href="/account">View Account Details</a>
-            </li>
-        </ul>
+<div class="topnav" id="myTopnav">
 
-
-        </div>
-    </div>
+    <a class="active" href="/">Home</a>
+    <!-- Navigation links (hidden by default) -->
+    <a href="/viewTasks">View Tasks</a>
+    <a href="/addTask">Add a Task</a>
+    <a href="/addTag">Add a Tag</a>
+    <a href="/account">View Account Details</a>
+    <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+    <a href="javascript:void(0);" class="icon" onclick="navToggle()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
     <div class="container">
         <div class="centerContent">
             <br>
@@ -71,7 +65,7 @@
                     
                     <div class="form-group">
                         <label for="tag_title">Tag Title:</label>
-                        <input type="text" class="form-control" id="tag_title" name="tag_title" placeholder="Enter Tag Title">
+                        <input type="text" class="form-control" id="tag_title" name="tag_title" placeholder="Enter Tag Title" required="required">
                     </div>
                     <div class="form-group">
                         <label for="nickname">Nickname (optional):</label>
@@ -79,7 +73,7 @@
                     </div>
                     <div class="form-group">
                         <label for="color">Color:</label>
-                        <input type="color" class="form-control" id="color" name="color">
+                        <input type="color" class="form-control" id="color" name="color" required="required">
                     </div>
                     <div class="form-group">
                         <label for="tag_color">Alternate Color Input Style</label>

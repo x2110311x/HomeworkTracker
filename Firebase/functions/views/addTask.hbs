@@ -9,34 +9,30 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-  <script src="scripts/tasks.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   <!--NAV LINKS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="scripts/navToggle.js"></script>
   <link rel="stylesheet" href="stylesheets/nav.css">
+
+  <script src="scripts/tasks.js"></script>
   <link rel="stylesheet" href="stylesheets/addTask.css">
 </head>
 <body>
-    <div class="navBackground">
-        <div class="container">
-        <ul class=" nav">
-            <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">View Tasks</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/addTask">Add a Task</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/addTag">Add a Tag</a>
-            </li>
-            <li class="nav-item rightSide">
-                <a class="nav-link" href="/account">View Account Details</a>
-            </li>
-        </ul>
+<div class="topnav" id="myTopnav">
 
-
-        </div>
-    </div>
+    <a class="active" href="/">Home</a>
+    <!-- Navigation links (hidden by default) -->
+    <a href="/viewTasks">View Tasks</a>
+    <a href="/addTask">Add a Task</a>
+    <a href="/addTag">Add a Tag</a>
+    <a href="/account">View Account Details</a>
+    <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+    <a href="javascript:void(0);" class="icon" onclick="navToggle()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
     <div class="container">
         <div class="centerContent">
             <h2>
@@ -44,7 +40,7 @@
             </h2>
             <div class="form-group">
                 <label for="name">Task Title:</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Task Title">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Task Title" required="required">
             </div>
             <div class="form-group">
                 <label for="description">Description:</label>
@@ -75,15 +71,15 @@
                 <input type="date" class="form-control" id="dueDate" name="dueDate">
             </div> 
             <div class="form-group">
-                <label for="priority">Priority Level:</label>
-                <input type="number" class="form-control" id="priority" name="priority" >
+                <label for="priority">Priority Level (1-10):</label>
+                <input type="number" class="form-control" id="priority" name="priority" min="1" max="10">
             </div> 
             <div class="form-group">
                 <label for="estTime">Estimated Time to Completion (minutes):</label>
-                <input type="number" class="form-control" id="estTime" name="estTime" >
+                <input type="number" class="form-control" id="estTime" name="estTime" min="1" max="10000">
             </div> 
-            <div id="alertbox" hidden class="alert" role="alert">  
-            </div>
+  
+            
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
@@ -98,8 +94,7 @@
                     </div> 
                 </div>
             </div>
-
-            <br>
+          <div id="alertbox" hidden class="alert" role="alert">  </div>
             <button onclick="addTask()" class="btn submit"> <!-- ADD TO DB-->
                 Add Task
             </button>

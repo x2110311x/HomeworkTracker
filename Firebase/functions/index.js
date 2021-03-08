@@ -150,6 +150,15 @@ app.get('/addTag', checkCookieMiddleware, (request, response) => {
     }
 });
 
+app.get('/viewTasks', checkCookieMiddleware, (request, response) => {
+    if (request.signedin) {
+        let user = request.decodedClaims;
+        response.render('viewTasks', {name: user.name});
+    } else {
+        response.redirect('/');
+    }
+});
+
 app.get('/login', checkCookieMiddleware, (request, response) => {
     if (request.signedin) {
         response.redirect('/');
