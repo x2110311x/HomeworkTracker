@@ -266,23 +266,45 @@ exports.addUser = functions.auth.user().onCreate((user) => {
     }
     return addUser(user.uid, user.email, uname);
 });
+
 exports.webapp = functions.https.onRequest(app);
+
 exports.deleteUser = functions.auth.user().onDelete((user) => {
-    console.log("Deleting user ${user}");
+    console.log('Deleting user ${user}');
     const db = admin.firestore();
     var taskCol = '/Users/${user.uid}/tasks';
     var tagCol = '/Users/${user.uid}/tags';
     var coursesCol = '/Users/${user.uid}/courses';
     var freetimeCol = '/Users/${user.uid}/freetime';
 
-    deleteCollection(db, taskCol, 5000);
-    console.log('tasks deleted');
-    deleteCollection(db, tagCol, 500);
-    console.log('tags deleted');
-    deleteCollection(db, coursesCol, 50);
-    console.log('course tags deleted');
-    deleteCollection(db, freetimeCol, 5000);
-    console.log('free time deleted');
+    deleteCollection(db, taskCol, 5000).then((result) => {
+        console.log(result);
+        console.log('tasks deleted');
+    }).catch((error) => {
+        console.log(error);
+    });
+
+    deleteCollection(db, tagCol, 500).then((result) => {
+        console.log(result);
+        console.log('tags deleted');
+    }).catch((error) => {
+        console.log(error);
+    });
+
+    deleteCollection(db, coursesCol, 50).then((result) => {
+        console.log(result);
+        console.log('course tags deleted');
+    }).catch((error) => {
+        console.log(error);
+    });
+
+    deleteCollection(db, freetimeCol, 5000).then((result) => {
+        console.log(result);
+        console.log('free time deleted');
+    }).catch((error) => {
+        console.log(error);
+    });
+
     db.collection('Users').doc(user.uid).delete();
     console.log('User ${user} deleted');
 });
