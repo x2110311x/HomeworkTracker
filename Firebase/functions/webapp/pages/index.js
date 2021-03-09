@@ -17,16 +17,16 @@ module.exports = function(app){
         }
     });
 
-    require("./account")(admin, app);
-    require("./addTag")(admin, app);
-    require("./addTask")(admin, app);
-    require("./login")(admin, app);
-    require("./logout")(admin, app);
-    require("./sessionLogin")(admin, app);
-    require("./delete-account")(admin, app);
-    require("./viewTasks")(admin, app);
-    require("./register")(admin, app);
-    require("./reset")(admin, app);
+    require("./account.js")(admin, app);
+    require("./addTag.js")(admin, app);
+    require("./addTask.js")(admin, app);
+    require("./login.js")(admin, app);
+    require("./logout.js")(admin, app);
+    require("./sessionLogin.js")(admin, app);
+    require("./delete-account.js")(admin, app);
+    require("./viewTasks.js")(admin, app);
+    require("./register.js")(admin, app);
+    require("./reset.js")(admin, app);
 
     // API METHODS THAT WILL NEED MOVED
     app.get('/tasks', (request, response) => {
