@@ -44,7 +44,9 @@ web.use(parseSessionCookie);
 
 // Handle routers
 const api = require("./api");
-const pages = require("./pages")(web);
+
 web.use("/api", api);
+
+const pages = require("./pages")(web);
 
 module.exports = web
