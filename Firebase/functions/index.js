@@ -1,7 +1,6 @@
 // This file stores the pure Firebase Cloud Functions that appears in the Firebase Console
 const functions = require('firebase-functions');
 
-const backtasks = require("./backtasks")
 const webapp = require("./webapp")
 
 // Webapp is the function that handles all web requests that aren't static files
@@ -9,11 +8,11 @@ exports.webapp = functions.https.onRequest(webapp);
 
 // deleteUser is the function called when a user account is deleted from Firebase Auth.
 // It deletes all data for that user in the database
-exports.deleteUser = backtasks.deleteUser;
+exports.deleteUser = require("./deleteUser.js");
 
 // AddUser adds a new user document in the database when an account is created in Firebase Auth
-exports.addUser = backtasks.addUser;
+exports.addUser = require("./addUser.js");
 
 // AddUserInfo gets called after the user document is created in Firestore
 // This grabs the user's profile displayname and stores it in the database
-exports.addUserInfo = backtasks.addUserInfo;
+exports.addUserInfo = require("./addUserInfo.js");

@@ -1,6 +1,13 @@
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
 
-module.exports = function (admin) {
+var serviceAccount = require("./config/serviceAccountKey.json");
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://homeworktracker-b9805-default-rtdb.firebaseio.com"
+}, "addUserInfo");
+
+module.exports = functions.firestore.document("Users/{uid}").onCreate((snap, context) => {
     functions.firestore.document("Users/{uid}").onCreate((snap, context) => {
     const db = admin.firestore();
     const userData = snap.data();
@@ -25,4 +32,4 @@ module.exports = function (admin) {
         console.log("Success");
     });
     })
-};
+});
