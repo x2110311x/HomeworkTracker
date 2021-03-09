@@ -3,11 +3,17 @@ const path            = require('path');
 const cors            = require('cors');
 const engines         = require('consolidate');
 const cookieParser    = require('cookie-parser');
+const admin           = require('firebase-admin');
 const bodyParser      = require('body-parser');
 
-const api = require("./api");
-const views = require("./views");
+var serviceAccount = require("../config/serviceAccountKey.json");
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://homeworktracker-b9805-default-rtdb.firebaseio.com"
+});
 
+// Setup Express
+const web = express();
 
 function parseSessionCookie(req, res, next) {
     const sessionCookie = req.cookies.__session || '';
@@ -23,8 +29,10 @@ function parseSessionCookie(req, res, next) {
 		});
 }
 
-// Setup Express
-const web = express();
+// Setup render engine
+web.engine('hbs', engines.handlebars);
+web.set('views', './webapp/pages/views');
+web.set('view engine', 'hbs');
 
 // Setup Middleware
 web.use(express.json());
@@ -33,3 +41,10 @@ web.use(bodyParser.json()); // support json encoded bodies
 web.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 web.use(cookieParser());
 web.use(parseSessionCookie);
+
+// Handle routers
+const api = require("./api");
+const pages = require("./pages")(web);
+web.use("/api", api);
+
+module.exports = web

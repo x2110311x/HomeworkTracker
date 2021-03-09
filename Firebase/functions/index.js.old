@@ -1,0 +1,67 @@
+const functions       = require("firebase-functions");
+const express         = require('express');
+const path            = require('path');
+const cors            = require('cors');
+const engines         = require('consolidate');
+const cookieParser    = require('cookie-parser');
+const admin           = require('firebase-admin');
+const bodyParser      = require('body-parser');
+const firebase        = require("firebase/app");
+
+require("firebase/auth");
+require("firebase/firestore");
+
+// Initialize Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyC2IAgV5O3rg7GtmsnM3oCEwKrhng0DFKI",
+    authDomain: "homeworktracker-b9805.firebaseapp.com",
+    databaseURL: "https://homeworktracker-b9805-default-rtdb.firebaseio.com",
+    projectId: "homeworktracker-b9805",
+    storageBucket: "homeworktracker-b9805.appspot.com",
+    messagingSenderId: "346231056217",
+    appId: "1:346231056217:web:bb8d74795e12b65eba0e48",
+    measurementId: "G-DDVP2Z4XL4"
+};
+firebase.initializeApp(firebaseConfig);
+
+var serviceAccount = require("./config/serviceAccountKey.json");
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://homeworktracker-b9805-default-rtdb.firebaseio.com"
+});
+
+// Setup Express
+const app = express();
+
+app.use(express.json());
+app.engine('hbs', engines.handlebars);
+app.set('views', './views');
+app.set('view engine', 'hbs');
+
+app.use(cors({ origin: true }));
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(cookieParser());
+
+function checkCookieMiddleware(req, res, next) {
+    const sessionCookie = req.cookies.__session || '';
+    admin.auth().verifySessionCookie(
+		sessionCookie, true).then((decodedClaims) => {
+			req.decodedClaims = decodedClaims;
+            req.signedin = true;
+			next();
+		})
+		.catch(error => {
+			req.signedin = false;
+            next();
+		});
+}
+
+
+
+app.get('*', (request, response) => {
+    response.status(404).render('404');
+});
+
+
+exports.webapp = functions.https.onRequest(app);

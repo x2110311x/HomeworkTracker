@@ -1,4 +1,5 @@
 // This file stores the pure Firebase Cloud Functions that appears in the Firebase Console
+const functions = require('firebase-functions');
 
 const backtasks = require("./backtasks")
 const webapp = require("./webapp")
