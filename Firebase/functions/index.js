@@ -404,7 +404,7 @@ exports.addUserInfo = functions.firestore.document("Users/{uid}").onCreate((snap
                 console.log('Name update succeeded!');
               });
         } else{
-            console.log("User name is null!!!!")
+            console.log("User name is null!!!!");
         }
     }).then(() => {
         console.log("Success");
