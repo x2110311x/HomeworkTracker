@@ -104,7 +104,6 @@ app.get('/delete-account', checkCookieMiddleware, (request, response) => {
 app.get('/', checkCookieMiddleware, (request, response) => {
     if (request.signedin) {
         admin.auth().getUser(request.decodedClaims.uid).then((user) => {
-            console.log(user);
             if (user.name == null){
                 var uname = user.displayName;
             } else {
