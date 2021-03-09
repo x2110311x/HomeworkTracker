@@ -283,4 +283,4 @@ exports.addUserInfo = functions.firestore.document("Users/{uid}").onCreate((snap
     });
 });
 
-exports.auth = functions.https.onRequest(app);
+exports.webapp = functions.https.onRequest(app);
