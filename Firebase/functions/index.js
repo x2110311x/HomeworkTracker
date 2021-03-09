@@ -152,7 +152,7 @@ app.get('/addTag', checkCookieMiddleware, (request, response) => {
 app.get('/viewTasks', checkCookieMiddleware, (request, response) => {
     if (request.signedin) {
         let user = request.decodedClaims;
-        response.render('viewTasks', {name: user.name});
+        response.render('viewTasks', {name: user.name, section: "Due Today", taskName:"Task1", tag:"MATH", description:"Homework1", date:"05/10/21", priority: "3", estTime:"900"});
     } else {
         response.redirect('/');
     }

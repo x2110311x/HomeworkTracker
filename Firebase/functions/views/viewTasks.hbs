@@ -49,63 +49,28 @@
     </div>
     <div class="row">
         <div class="col-md-12" style="background: rgba(140,41,41,0);">
-            <h1 style="color: rgb(255,255,255);margin: 33px;">{firstSection}</h1> <!-- LIKE "DUE TODAY" FOR EXAMPLE-->
+            <h1 style="color: rgb(255,255,255);margin: 33px;">{{section}}</h1> <!-- LIKE "DUE TODAY" FOR EXAMPLE-->
             <div class="progress" style="background: rgb(118,118,118);border-style: none;color: rgb(23,118,213);height: 15px;margin: 25px;">    <!-- WE CAN WORRY ABOUT PROGRESS BAR IMPLEMENTATION LATER. MAYBE WHEN WE FINISH THE DISPLAY MILESTONE -->
                 <div class="progress-bar bg-success progress-bar-info" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"><span class="sr-only">20%</span></div> <!--CHANGE WIDTH STYLING TO PORTRAY PROGRESS-->
             </div>
         </div>
     </div>
 
-<!--THIS IS PHP CODE THAT I USED TO DISPLAY IMAGES IN ANOTHER PROJECT. I THINK WE COULD ADOPT THE IDEA OF IT WITH JS FOR THESE CARD ROWS. IM NOT SURE HOW THE BACKEND DATA WILL LOOK THOUGH
-
-                    <?php
-                    $i = 0;
-                 
-                    while ($i < count($photoArray))
-                    {
-
-                    if ($i % 4 == 0)
-                    {
-                    echo '<div class="row">';
-                    }
-                        $link = $photoArray[$i][0];
-                        $path = $photoArray[$i][1];
-                        $alt = $photoArray[$i][2];
-                    ?>
-                        <div class="col-md-3">
-                        <div class="thumbnail">
-                            <a href="travel-image.php?id=<?php echo $link; ?>"> 
-                            <img src="travel-images\square-medium\<?php echo $path; ?>" alt="<?php echo $alt; ?>" >
-                            </a>
-                        </div>
-                        </div>
-                    <?php
-                        if ($i % 4 == 3)
-                        {
-                            echo '</div>';
-                        }
-                    $i=$i+1;
-                    }
-                    ?>
-
--->
 
 
-
-
-                 
+               
     <div class="row">
 
     
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body" style="background: #014d74;"><!--Grab Color From TASK-->
-                    <h4 class="card-title">{Task Name}</h4>
-                    <h6 class="text-muted card-subtitle mb-2">{Tag}</h6>
-                    <p class="card-text description">{Description}</p>
-                    <p class="card-text dueDate">Due Date:{Date}</p>
-                    <button class="btn rounded-circle priorityCircle" type="button">{P}</button> <!--PRIORITY GOES HERE -->
-                    <button class="btn rounded-circle estCircle" type="button">{E}</button> <!--ESTIMATED TIME TO COMPLETION GOES HERE -->
+                    <h4 class="card-title">{{taskName}}</h4>
+                    <h6 class="text-muted card-subtitle mb-2">{{tag}}</h6>
+                    <p class="card-text description">{{description}}</p>
+                    <p class="card-text dueDate">Due Date: {{date}}</p>
+                    <span class="badge badge-danger">{{priority}}</span>
+                    <span class="badge badge-light" style="margin-left: 10px;">{{estTime}}</span> <!--ESTIMATED TIME TO COMPLETION GOES HERE -->
                 </div>
             </div>
         </div>
@@ -113,12 +78,12 @@
        <div class="col-md-3">
             <div class="card">
                 <div class="card-body" style="background: #3389b5;"><!--Grab Color From TASK-->
-                    <h4 class="card-title">{Task Name}</h4>
-                    <h6 class="text-muted card-subtitle mb-2">{Tag}</h6>
-                    <p class="card-text description">{Description}</p>
-                    <p class="card-text dueDate">Due Date:{Date}</p>
-                    <button class="btn btn-primary rounded-circle priorityCircle" type="button">{P}</button> <!--PRIORITY GOES HERE -->
-                    <button class="btn btn-primary rounded-circle estCircle" type="button">{E}</button> <!--ESTIMATED TIME TO COMPLETION GOES HERE -->
+                    <h4 class="card-title">{{taskName}}</h4>
+                    <h6 class="text-muted card-subtitle mb-2">{{tag}}</h6>
+                    <p class="card-text description">{{description}}</p>
+                    <p class="card-text dueDate">Due Date: {{date}}</p>
+                    <span class="badge badge-danger">{{priority}}</span>
+                    <span class="badge badge-light" style="margin-left: 10px;">{{estTime}}</span> <!--ESTIMATED TIME TO COMPLETION GOES HERE -->
                 </div>
             </div>
         </div>
