@@ -104,7 +104,6 @@ app.get('/delete-account', checkCookieMiddleware, (request, response) => {
 app.get('/', checkCookieMiddleware, (request, response) => {
     if (request.signedin) {
         admin.auth().getUser(request.decodedClaims.uid).then((user) => {
-            console.log(user);
             if (user.name == null){
                 var uname = user.displayName;
             } else {
@@ -219,20 +218,61 @@ app.post("/addTask", checkCookieMiddleware, (request, response) => {
     }
 });
 
+app.get('/tasks', checkCookieMiddleware, (request, response) => {
+    (async () => {
+        if (request.signedin) {
+            try {
+                let responseData = [];
+                return admin.firestore().collection('Users').doc(request.decodedClaims.uid).collection('tasks').get()
+                .then(snapshot => {
+                    snapshot.forEach((item) => {
+                        responseData.push(item.data());
+                    });
+                    return response.send(responseData);
+                });
+            } catch (error) {
+                console.error("Error retrieving tasks: ", error);
+                response.send(500).send("Error retrieving tasks: ", error.message);
+            }
+        }
+        else{
+            response.status(403).send("Unauthorized");
+        }
+    })();
+});
+
+app.post("/addCustTag", checkCookieMiddleware, (request, response) => {
+    if (request.signedin) {
+        var full_name = request.body.full_name;
+        var short_name = request.body.short_name;
+        var color = request.body.color;
+        var date_created = admin.firestore.Timestamp.now();
+
+        const data = {
+            full_name: full_name,
+            short_name: short_name,
+            color: color,
+            date_created: date_created,
+        };
+
+        // Add a new tag
+        const writeResult = admin.firestore().collection('Users')
+            .doc(request.decodedClaims.uid).collection('tags').add(data)
+            .then(() => {
+                response.status(200).send("Tag successfully added");
+                console.log("Tag has been added,", writeResult.id);
+            }).catch((error) => {
+                console.error("Error writing document: ", error);
+                response.send(500).send("Error writing document: ", error.message);
+            });
+    } else {
+        response.status(403).send("Unauthorized");
+    }
+});
+
 app.get('*', (request, response) => {
     response.status(404).render('404');
 });
-
-async function addUser(uid, email, displayName){
-    const data = {
-        uid: uid,
-        email: email,
-        name: displayName,
-        creationDate: admin.firestore.Timestamp.now()
-    };
-    const writeResult = await admin.firestore().collection('Users').doc(uid).set(data);
-    console.log("User has been added,", writeResult.id);
-}
 
 async function deleteCollection(db, collectionPath, batchSize) {
     const collectionRef = db.collection(collectionPath);
@@ -267,16 +307,6 @@ async function deleteQueryBatch(db, query, resolve) {
     });
 } // from https://firebase.google.com/docs/firestore/manage-data/delete-data?authuser=0#collections
 
-exports.addUser = functions.auth.user().onCreate((user) => {
-    if (user.name == null){
-        var uname = user.displayName
-    } else{
-        var uname = user.name
-    }
-    return addUser(user.uid, user.email, uname);
-});
-
-exports.webapp = functions.https.onRequest(app);
 
 exports.deleteUser = functions.auth.user().onDelete((user) => {
     console.log('Deleting user ${user}');
@@ -317,3 +347,51 @@ exports.deleteUser = functions.auth.user().onDelete((user) => {
     db.collection('Users').doc(user.uid).delete();
     console.log('User ${user} deleted');
 });
+
+exports.addUser = functions.auth.user().onCreate((user) => {
+    var uname = user.providerData.displayName;
+    if (uname == null) {
+        var data = {
+            uid: user.uid,
+            email: user.email,
+            creationDate: admin.firestore.Timestamp.now()
+        };
+    } else {
+        var data = {
+            uid: user.uid,
+            email: user.email,
+            name: uname,
+            creationDate: admin.firestore.Timestamp.now()
+        };
+    }
+    return admin.firestore().collection('Users').doc(user.uid).set(data).then(() => {
+        console.log('User Add succeeded!');
+      });
+});
+
+exports.addUserInfo = functions.firestore.document("Users/{uid}").onCreate((snap, context) => {
+    const db = admin.firestore();
+    const userData = snap.data();
+    const userID = userData.uid;
+    const docPath = db.collection("Users").doc(userID);
+    return admin.auth().getUser(userID).then((user) => {
+        var userName = user.providerData.displayName;
+        if (userName == null){
+            userName = user.name;
+        }
+        if (userName == null){
+            userName = user.displayName;
+        }
+        if (userName != null){
+            docPath.update({name:userName}).then(() => {
+                console.log('Name update succeeded!');
+              });
+        } else{
+            console.log("User name is null!!!!")
+        }
+    }).then(() => {
+        console.log("Success");
+    });
+});
+
+exports.webapp = functions.https.onRequest(app);

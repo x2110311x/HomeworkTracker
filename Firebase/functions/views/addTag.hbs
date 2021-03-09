@@ -1,20 +1,24 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Home</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
 
-    <!--NAV LINKS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="scripts/navToggle.js"></script>
-  <link rel="stylesheet" href="stylesheets/nav.css">
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script src="scripts/custTags.js"></script>
 
-  <link rel="stylesheet" href="stylesheets/addTag.css">
+            <!--NAV LINKS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="scripts/navToggle.js"></script>
+    <link rel="stylesheet" href="stylesheets/nav.css">
+
+    <link rel="stylesheet" href="stylesheets/addTag.css">
+
 </head>
 <body>
 <div class="topnav" id="myTopnav">
@@ -62,7 +66,7 @@
                     <h4 class="tagHeader">
                         Custom Tag
                     </h4>
-                    
+
                     <div class="form-group">
                         <label for="tag_title">Tag Title:</label>
                         <input type="text" class="form-control" id="tag_title" name="tag_title" placeholder="Enter Tag Title" required="required">
@@ -82,14 +86,16 @@
                             <option value="Retrieved from DB">Green</option>
                             <option value="Retrieved from DB">Yellow</option>
                         </select>
-                        
-                    </div> 
-                    
+
+                    </div>
+
 
                     <br>
-                    <button class="btn submit"> <!-- ADD TO DB-->
-                        Add Custom Tag 
+                    <button onclick="addCustTag()" class="btn submit"> <!-- ADD TO DB-->
+                        Add Custom Tag
                     </button>
+                    <div id="alertbox" hidden class="alert" role="alert">
+                    </div>
                     <br>
                 </div>
 
