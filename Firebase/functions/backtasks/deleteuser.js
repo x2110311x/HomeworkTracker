@@ -1,12 +1,4 @@
-const functions       = require('firebase-functions');
-const admin           = require('firebase-admin');
-
-var serviceAccount = require("../config/serviceAccountKey.json");
-
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://homeworktracker-b9805-default-rtdb.firebaseio.com"
-});
+const functions = require('firebase-functions');
 
 async function deleteCollection(db, collectionPath, batchSize) {
     const collectionRef = db.collection(collectionPath);
@@ -42,7 +34,8 @@ async function deleteQueryBatch(db, query, resolve) {
 } // from https://firebase.google.com/docs/firestore/manage-data/delete-data?authuser=0#collections
 
 
-exports.deleteUser = functions.auth.user().onDelete((user) => {
+module.exports = function (admin) {
+    functions.auth.user().onDelete((user) => {
     console.log('Deleting user ${user}');
     const db = admin.firestore();
     var taskCol = '/Users/${user.uid}/tasks';
@@ -80,4 +73,5 @@ exports.deleteUser = functions.auth.user().onDelete((user) => {
 
     db.collection('Users').doc(user.uid).delete();
     console.log('User ${user} deleted');
-});
+    })
+};

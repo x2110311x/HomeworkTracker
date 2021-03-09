@@ -1,0 +1,28 @@
+const functions = require('firebase-functions');
+
+module.exports = function (admin) {
+    functions.firestore.document("Users/{uid}").onCreate((snap, context) => {
+    const db = admin.firestore();
+    const userData = snap.data();
+    const userID = userData.uid;
+    const docPath = db.collection("Users").doc(userID);
+    return admin.auth().getUser(userID).then((user) => {
+        var userName = user.providerData.displayName;
+        if (userName == null){
+            userName = user.name;
+        }
+        if (userName == null){
+            userName = user.displayName;
+        }
+        if (userName != null){
+            docPath.update({name:userName}).then(() => {
+                console.log('Name update succeeded!');
+              });
+        } else{
+            console.log("User name is null!!!!");
+        }
+    }).then(() => {
+        console.log("Success");
+    });
+    })
+};
