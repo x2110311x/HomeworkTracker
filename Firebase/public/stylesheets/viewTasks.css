@@ -1,0 +1,32 @@
+.card-title{
+    color: rgb(255,255,255);
+}
+
+.description{
+    color: rgb(255,255,255);
+    margin-bottom: 8px;
+}
+
+.dueDate{
+    color: rgb(255,255,255);
+    margin-bottom: 8px;
+}
+
+.priorityCircle{
+    background: rgb(57,57,57);
+    color: rgb(254,254,254);
+    border: 3px solid rgb(33,37,41);
+    margin: 0px;
+    width: 42px;
+    height: 42px;
+}
+
+.estCircle{
+    margin: 0px 10px;
+    background: rgb(1,77,116);
+    color: rgb(255,255,255);
+    height: 42px;
+    width: 42px;
+    border-width: 3px;
+    border-color: rgb(255,255,255);
+}
