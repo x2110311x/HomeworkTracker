@@ -9,7 +9,7 @@ function addCustTag() {
         short_name: document.getElementById("nickname").value,
     };
 
-    fetch('/addCustTag', {
+    fetch('/api/addCustTag', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
