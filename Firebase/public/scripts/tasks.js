@@ -14,7 +14,7 @@ function addTask(){
         scheduledTimeEnd: document.getElementById("scheduledTimeEnd").value
     };
 
-    fetch('/addTask', {
+    fetch('/api/addTask', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
