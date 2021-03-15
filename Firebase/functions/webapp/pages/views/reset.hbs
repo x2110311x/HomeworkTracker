@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Reset Password - Homework Tracker</title>
+  <title>Login</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
@@ -13,28 +13,31 @@
   <!--NAV LINKS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="scripts/navToggle.js"></script>
-  <link rel="stylesheet" href="stylesheets/nav.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
 
   <script src="scripts/auth.js"></script>
-  <link rel="stylesheet" href="stylesheets/login.css">
+
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
   <link rel="manifest" href="images/favicon/site.webmanifest">
 </head>
-<body>
 <div class="topnav" id="myTopnav">
 
-    <a class="active" href="/">Home</a>
+    <a class="active" id="HT" href="/"><img src="images\favicon\android-chrome-192x192.png" alt="HomeworkTracker" width="41.5"> Home</a>
     <!-- Navigation links (hidden by default) -->
-    <a href="login">Login</a>
+    <a href="/viewTasks">View Tasks</a>
+    <a href="/addTask">Add a Task</a>
+    <a href="/addTag">Add a Tag</a>
+    <a href="/account">View Account Details</a>
     <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
     <a href="javascript:void(0);" class="icon" onclick="navToggle()">
         <i class="fa fa-bars"></i>
     </a>
 </div>
+
 <div class="container">
-    <div class="centerContent">
+    <div class="acctContent">
 
     <h2>
         Reset: 
@@ -48,7 +51,7 @@
         <div id="successbox" hidden class="alert alert-success" role="alert">
           Password reset email sent.  
         </div>
-        <button onclick="SendPasswordReset()" class="btn login">
+        <button onclick="SendPasswordReset()" class="btn blueBtn">
             Send Link
         </button>
     </div>

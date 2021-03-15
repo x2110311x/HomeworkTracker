@@ -1,0 +1,132 @@
+﻿    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Edit Task - Homework Tracker</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+
+  <!--NAV LINKS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="scripts/navToggle.js"></script>
+  <link rel="stylesheet" href="stylesheets/style.css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="images/favicon/site.webmanifest">
+</head>
+ <body>
+    
+    <div class="topnav" id="myTopnav">
+
+    <a class="active" id="HT" href="/"><img src="images\favicon\android-chrome-192x192.png" alt="HomeworkTracker" width="41.5"> Home</a>
+    <!-- Navigation links (hidden by default) -->
+    <a href="/viewTasks">View Tasks</a>
+    <a href="/addTask">Add a Task</a>
+    <a href="/addTag">Add a Tag</a>
+    <a href="/account">View Account Details</a>
+    <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+    <a href="javascript:void(0);" class="icon" onclick="navToggle()">
+        <i class="fa fa-bars"></i>
+    </a>
+    </div>
+
+
+
+<div class="container">
+    <div class="card editCard">
+        <div class="card-body editCardBody">
+            <h1 class="text-center card-title">Task Name </h1>
+            <div class="row">
+                <div class="col">
+                    <p class="text-center">Tag: The Maths <button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#editTag"><i class="fa fa-edit" data-></i></button></p>
+                    <div id="editTag" class="collapse text-center editForm">
+                    <form>
+                    <label for="tag">Tag:</label>
+                        <select id="tag" class="form-control-sm">
+                            <option value="Retrieved from DB">Math Hell</option> <!-- Retrieve From DB-->
+                            <option value="Retrieved from DB">CS1</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary btn-sm">New Tag</button>
+                    </form>
+                    </div>
+                </div>
+                <div class="col offset-xl-0">
+                    <p class="text-center">Planned Working Days: 01/02/21-03/07/21 <button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#editPlan"><i class="fa fa-edit" data-></i></button></p>
+                    <div id="editPlan" class="collapse text-center editForm">
+                    <form>
+                                            <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="scheduledTimeStart">Begin Task By:</label>
+                                <input type="date" class="form-control" id="scheduledTimeStart" name="scheduledTimeStart">
+                            </div> 
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="scheduledTimeEnd">End Task By:</label>
+                                <input type="date" class="form-control" id="scheduledTimeEnd" name="scheduledTimeEnd">
+                            </div> 
+                        </div>
+                    </div>
+                        <button type="submit" class="btn btn-primary btn-sm">Submit New Dates</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="text-center">Description: All sorts of interesting descriptors here. Can't even tell you how awesome this assignment is. <button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#editDesc"><i class="fa fa-edit" data-></i></button></p>
+                    <div id="editDesc" class="collapse text-center editForm">
+                    <form>
+                        <textarea  class="form-control-sm" rows="5" id="description" name="description" placeholder="{Description}"></textarea>
+                        <button type="submit" class="btn btn-primary btn-sm">New Description</button>
+                    </form>
+                    </div>               
+                </div>
+                <div class="col offset-xl-0">
+                    <p class="text-center">Estimated time to Complete: 300 Minutes <button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#editTime"><i class="fa fa-edit" data-></i></button></p>
+                    <div id="editTime" class="collapse text-center editForm">
+                    <form>
+                        <input type="number" class="form-control-sm" id="estTime" name="estTime" min="1" max="10000" placeholder="{estTime}">
+                        <button type="submit" class="btn btn-primary btn-sm">New Estimate</button>
+                    </form>
+                    </div>  
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="text-center">Due Date: 04/06/21 <button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#editDueDate"><i class="fa fa-edit" data-></i></button></p>
+                    <div id="editDueDate" class="collapse text-center editForm">
+                    <form>
+                        <input type="date" class="form-control-sm" id="dueDate" name="dueDate">
+                        <button type="submit" class="btn btn-primary btn-sm">New Due Date</button>
+                    </form>
+                    </div>  
+                </div>
+                <div class="col offset-xl-0">
+                    <p class="text-center">Priority: 7 <button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#editPriority"><i class="fa fa-edit" data-></i></button></p>
+                    <div id="editPriority" class="collapse text-center editForm">
+                    <form>
+                        <input type="number" class="form-control-sm" id="priority" name="priority" min="1" max="10" placeholder="{priority}">
+                        <button type="submit" class="btn btn-primary btn-sm">New Priority</button>
+                    </form>
+                    </div>  
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"><button class="btn btn-primary text-center d-block editFormBottomButtons"  type="button" >Edit Task</button></div>
+                <div class="col offset-xl-0"><button class="btn btn-primary text-center d-block editFormBottomButtons" type="button">Mark Complete</button></div>
+            </div>
+    
+        </div>
+    </div>
+</div>
+
+
+</body>   

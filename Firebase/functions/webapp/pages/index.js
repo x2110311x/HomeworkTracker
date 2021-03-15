@@ -20,6 +20,7 @@ module.exports = function(app){
     require("./account.js")(admin, app);
     require("./addTag.js")(admin, app);
     require("./addTask.js")(admin, app);
+    require("./editTask.js")(admin, app);
     require("./login.js")(admin, app);
     require("./logout.js")(admin, app);
     require("./sessionLogin.js")(admin, app);
