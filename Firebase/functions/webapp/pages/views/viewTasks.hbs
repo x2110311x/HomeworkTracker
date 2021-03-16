@@ -39,6 +39,8 @@
             <h1 class="sectionHeader">Your Tasks</h1>
         </div>
     </div>
+
+{{#if section.[0]}}
     <div class="row">
         <div class="col-12 text-center"><span class="text-center sortingRow">Sorting By:</span>
             <div class="dropdown d-inline dropdownSpacing" ><a class="btn btn-outline-primary btn-lg dropdown-toggle d-inline" aria-expanded="false" data-toggle="dropdown" role="button" >Due Date</a>
@@ -50,8 +52,6 @@
             </div><button onclick="window.location.href='addTask'" class="btn btn-primary addTaskBtn" type="button" >Add Task<strong>+</strong></button>
         </div>
     </div>
-
-
 {{#each section}}
     <div class="row">
         <div class="col-md-12" style="background: rgba(140,41,41,0);">
@@ -82,7 +82,13 @@
 {{/each}}
     </div>
 {{/each}}
-
+{{else}}
+    <div class="row">
+        <div class="col-md-12" style="background: rgba(140,41,41,0);">
+            <h1 class="sectionHeader">You have no upcoming tasks!</h1>
+        </div>
+    </div>
+{{/if}}
 <br><br>
 </body>
 </html>
