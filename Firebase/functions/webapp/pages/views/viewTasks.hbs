@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Home</title>
+  <title>Your Tasks - Homework  Tracker</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
@@ -47,7 +47,7 @@
                     <a class="dropdown-item" href="#">Priority</a>
                     <a class="dropdown-item" href="#">Tag</a> <!--SORTING OPTIONS HERE-->
                 </div>
-            </div><button class="btn btn-primary addTaskBtn" type="button" >Add Task<strong>+</strong></button>
+            </div><button onclick="window.location.href='addTask'" class="btn btn-primary addTaskBtn" type="button" >Add Task<strong>+</strong></button>
         </div>
     </div>
 
@@ -55,48 +55,34 @@
 {{#each section}}
     <div class="row">
         <div class="col-md-12" style="background: rgba(140,41,41,0);">
-            <h1 class="sectionHeader">{{title}}</h1> <!-- LIKE "DUE TODAY" FOR EXAMPLE-->
+            <h1 class="sectionHeader">{{this.title}}</h1> <!-- LIKE "DUE TODAY" FOR EXAMPLE-->
             <div class="progress progressBarStyle">    <!-- WE CAN WORRY ABOUT PROGRESS BAR IMPLEMENTATION LATER. MAYBE WHEN WE FINISH THE DISPLAY MILESTONE -->
-                <div class="progress-bar bg-primary progress-bar-info" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: {{completionPercent}}%;"><span class="sr-only">{{completionPercent}}%</span></div> <!--CHANGE WIDTH STYLING TO PORTRAY PROGRESS-->
+                <div class="progress-bar bg-primary progress-bar-info" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: {{this.completionPercent}}%;"><span class="sr-only">{{this.completionPercent}}%</span></div> <!--CHANGE WIDTH STYLING TO PORTRAY PROGRESS-->
             </div>
         </div>
 
     </div>
 
     <div class="row">
-{{#each task}}  
+{{#each this.task}}  
         <div class="col-md-3">
             <div class="card">
-                <div class="card-body" style="background:{{color}};"><!--Grab Color From TASK-->
+                <div class="card-body" style="background:{{this.color}};"><!--Grab Color From TASK-->
                 <a href="/editTask">
-                    <h4 class="card-title">{{taskName}}</h4>
-                    <h6 class="text-muted card-subtitle mb-2">{{tag}}</h6>
-                    <p class="card-text description">{{description}}</p>
-                    <p class="card-text dueDate">Due Date: {{date}}</p>
-                    <span class="badge badge-danger">{{priority}}</span>
-                    <span class="badge badge-light timeBadge">{{estTime}}</span> <!--ESTIMATED TIME TO COMPLETION GOES HERE -->
+                    <h4 class="card-title">{{this.name}}</h4>
+                    <h6 class="text-muted card-subtitle mb-2">{{this.tag}}</h6>
+                    <p class="card-text description">{{this.description}}</p>
+                    <p class="card-text dueDate">Due Date: {{this.due_date}}</p>
+                    <span class="badge badge-danger">{{this.priority}}</span>
+                    <span class="badge badge-light timeBadge">{{this.est_time}}</span> <!--ESTIMATED TIME TO COMPLETION GOES HERE -->
                 </a>
                 </div>
             </div>
         </div>
 {{/each}}
-
-
     </div>
-
-
-
-
-
-   
 {{/each}}
 
-
-
-
- 
 <br><br>
-
-
 </body>
 </html>
