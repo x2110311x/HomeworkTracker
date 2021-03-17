@@ -1,2 +1,6 @@
 node_modules
 .vs/*
+Firebase/.firebase/hosting.cHVibGlj.cache
+Firebase/.firebaserc
+Firebase/firebase-debug.log
+Firebase/ui-debug.log
