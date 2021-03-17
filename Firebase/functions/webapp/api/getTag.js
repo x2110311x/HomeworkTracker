@@ -1,15 +1,12 @@
 module.exports = function (admin, router) {
-    router.get('/getTags', (request, response) => {
+    router.get('/getTag', (request, response) => {
         (async () => {
             if (request.signedin) {
                 try {
-                    let responseData = [];
-                    return admin.firestore().collection('Users').doc(request.decodedClaims.uid).collection('tags').get()
+                    var tagid = request.query.tagid;
+                    return admin.firestore().collection('Users').doc(request.decodedClaims.uid).collection('tags').doc(tagid).get()
                     .then(snapshot => {
-                        snapshot.forEach((item) => {
-                            responseData.push(item.data());
-                        });
-                        return response.send(responseData);
+                        return response.send(snapshot.data());
                     });
                 } catch (error) {
                     console.error("Error retrieving tags: ", error);
