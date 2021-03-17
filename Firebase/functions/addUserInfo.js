@@ -8,7 +8,6 @@ admin.initializeApp({
 }, "addUserInfo");
 
 module.exports = functions.firestore.document("Users/{uid}").onCreate((snap, context) => {
-    functions.firestore.document("Users/{uid}").onCreate((snap, context) => {
     const db = admin.firestore();
     const userData = snap.data();
     const userID = userData.uid;
@@ -31,5 +30,4 @@ module.exports = functions.firestore.document("Users/{uid}").onCreate((snap, con
     }).then(() => {
         console.log("Success");
     });
-    })
 });
