@@ -4,20 +4,23 @@ module.exports = function (admin, router) {
     router.get('/getTag', (request, response) => {
         if (request.signedin) {
             var tagid = request.query.tagid;
-            fetch(`https://${request.hostname}/api/getTagRef?full_name=${full_name}`,{
+            //var url = `https://${request.hostname}`;
+            var url = `http://localhost:5000`;
+            fetch(`${url}/api/getTagRef?full_name=${tagid}`, {
                 method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'cookie': req.cookies.__session
+                    'cookie': `__session=${request.cookies.__session}`
                 }
-            }).then((tagid) => {
-                admin.firestore().collection('Users').doc(request.decodedClaims.uid).collection('tags').doc(tagid).get()
-                .then(snapshot => {
-                    return response.send(snapshot.data());
+            }).then((tagpath) => {
+                tagpath.text().then((path) => {
+                    console.log(path);
+                    admin.firestore().doc(path).get().then(snapshot => {
+                        response.send(snapshot.data());
+                    })
                 })
             }).catch((error) => {
                 console.error("Error retrieving tags: ", error);
-                response.send(500).send("Error retrieving tags: ", error.message);
+                response.status(500).send("Error retrieving tags: ", error.message);
             });
         }
         else{
