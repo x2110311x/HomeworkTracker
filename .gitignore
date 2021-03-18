@@ -2,3 +2,4 @@ node_modules
 .vs/HomeworkTracker/v16/.suo
 .vs/slnx.sqlite
 .vs/VSWorkspaceState.json
+ServiceAccountKey.json
