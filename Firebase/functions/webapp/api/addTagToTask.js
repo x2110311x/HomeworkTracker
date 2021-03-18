@@ -1,38 +1,36 @@
+const fetch = require('node-fetch');
+
 module.exports = function (admin, router) {
-    router.get('/addTagToTask', (request, response) => {
-        (async () => {
-            if (request.signedin) {
-                try {
-                    var tagname = request.query.tag_name;
-                    var taskname = request.query.task_name;
-
-                    var tagref = ''
-                    try {
-                        request.get('/getTagRef', function (error, response, body) {
-                            if (!error && response.statusCode == 200) {
-                                tagref = body;
-                            }
-                        });
-                    } catch (error) {
-                        console.error("Error retrieving courses: ", error);
-                        response.send(500).send("Error retrieving courses: ", error.message);
-                    }
-
-                    const data = {
-                        tag: tagref
-                    }
-
-                    return admin.firestore().collection('Users')
-                    .doc(request.decodedClaims.uid).collection('tasks')
-                        .where('name', '==', taskname).set(data, { merge: true })
-                } catch (error) {
-                    console.error("Error retrieving courses: ", error);
-                    response.send(500).send("Error retrieving courses: ", error.message);
+    router.post('/addTagToTask', (request, response) => {
+        if (request.signedin) {
+            var tagname = request.body.tag_name;
+            var taskname = request.body.task_name;
+            //var url = `https://${request.hostname}`;
+            var url = `http://localhost:5000`;
+            fetch(`${url}/api/getTagRef?full_name=${tagname}`, {
+                method: 'GET',
+                headers: {
+                    'cookie': `__session=${request.cookies.__session}`
                 }
-            }
-            else{
-                response.status(403).send("Unauthorized");
-            }
-        })();
+            }).then((resp) => {
+                resp.text().then((tagref) => {
+                    admin.firestore().collection('Users')
+                        .doc(request.decodedClaims.uid).collection('tasks')
+                        .where('name', '==', taskname).limit(1).get().then((snap) => {
+                            snap.docs[0].ref.update({ tag: tagref }).then(() => {
+                                response.send("Tag added successfully");
+                            });
+                        }).catch(error => {
+                            console.error(`Error retrieving task: ${error}`);
+                            response.send(500).send(`Error retrieving task: ${error}`);
+                        });
+                })
+            }).catch(error => {
+                console.error(`Error retrieving tag: ${error}`);
+                response.send(500).send(`Error retrieving tag: ${error}`);
+            });
+        } else {
+            response.status(403).send("Unauthorized");
+        }
     });
 }
