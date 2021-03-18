@@ -1,5 +1,5 @@
 module.exports = function (admin, router) {
-    router.get('/getCourses', (request, response) => {
+    router.get('/getCategories', (request, response) => {
         (async () => {
             if (request.signedin) {
                 try {
