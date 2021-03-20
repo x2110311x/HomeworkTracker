@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Home</title>
+    <title>Add a Tag - Homework Tracker</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
@@ -16,11 +16,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="scripts/navToggle.js"></script>
     <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="scripts/showPopup.js"></script>
+    <script src="scripts/enableCourses.js"></script>
+    <script src="scripts/autocomplete.js"></script>
 
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
   <link rel="manifest" href="images/favicon/site.webmanifest">
+
 
 </head>
 <body>
@@ -48,8 +52,31 @@
                         Tag From KSU
                     </h4>
                     <div class="form-group">
-                        <label for="course_search">Course Name:</label>
-                        <input type="search" class="form-control" id="course_search" name="course_search">
+                        <!--Add TASK Popup - ADOPTED FROM https://www.w3schools.com/howto/howto_js_popup.asp-->
+                        <label for="categories">Course Category: <span class="fa fa-info-circle popup"  onclick="showPopup()"></span></label>
+                        <div class="popup" onclick="myFunction()">
+                            <span class="popuptext" id="myPopup">Select Course Category first to narrow your options</span>
+                        </div> 
+                        <select id="categories" class="form-control" onchange="enableCourses()">
+                            <option value="test">test</option>
+                            <option value="test2">test2</option>
+                            {{#each category}}
+                                    <option value="{{this.name}}">{{this.name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="courses_in_category">Select Course:</label>
+                        <select id="courses_in_category" class="form-control" disabled>
+                            <option value="test">test</option>   
+                            {{#each course}}
+                                    <option value="{{this.name}}">{{this.name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group autocomplete">
+                        <label for="search_category">Search Courses:</label>
+                        <input type="text" class="form-control" id="search_category" name="search_category" disabled>
                     </div> 
                     <div class="form-group">
                         <label for="KSU_color">Color:</label>
@@ -102,9 +129,6 @@
                 </div>
 
 
-
-
-
             </div>
 
 
@@ -116,3 +140,12 @@
 
 </body>
 </html>
+
+<script>
+
+// REPLACE COUNTRIES WITH THE LIST FROM THE DB. 
+var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+
+autocomplete(document.getElementById("search_category"), countries);
+
+</script>
