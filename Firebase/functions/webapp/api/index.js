@@ -11,6 +11,7 @@ require("./getTag.js")(admin, router);
 require("./getCourseByName.js")(admin, router);
 require("./getCategories.js")(admin, router);
 require("./getTagRef.js")(admin, router);
+require("./getCoursesByCategory")(admin, router);
 
 router.get('*', function (req, res) {
     res.send("Unknown request");
