@@ -13,10 +13,17 @@ module.exports = function (admin, router) {
                 }
             }).then((tagpath) => {
                 tagpath.text().then((path) => {
-                    console.log(path);
-                    admin.firestore().doc(path).get().then(snapshot => {
-                        response.send(snapshot.data());
-                    })
+                    if (path == "No matching tags"){
+                        response.status(404).send(path);
+                    } else {
+                        console.log(path);
+                        admin.firestore().doc(path).get().then(snapshot => {
+                            response.send(snapshot.data());
+                        }).catch((error) => {
+                            console.error("Error retrieving tags: ", error);
+                            response.status(500).send("Error retrieving tags: ", error.message);
+                        });
+                    }
                 })
             }).catch((error) => {
                 console.error("Error retrieving tags: ", error);
