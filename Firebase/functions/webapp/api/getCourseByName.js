@@ -4,7 +4,8 @@ module.exports = function (admin, router) {
             if (request.signedin) {
                 try {
                     var coursename = request.query.full_name;
-                    return admin.firestore().collection('Courses')
+                    var category = request.query.category;
+                    return admin.firestore().collection('Courses').doc(category).collection('courses')
                     .where('full_name', '==', coursename).get()
                     .then((snapshot) => {
                         if(snapshot.empty){
