@@ -8,14 +8,14 @@ module.exports = function (admin, router) {
                     .where('full_name', '==', tag_name).get()
                         .then((snapshot) => {
                         if (snapshot.empty) {
-                            return response.send('No matching documents');
+                            return response.send('No matching tags');
                         } else {
-                            return response.send(snapshot.docs[0].ref.path);
+                            return response.send(`/${snapshot.docs[0].ref.path}`);
                         }
                     });
                 } catch (error) {
-                    console.error("Error retrieving courses: ", error);
-                    response.send(500).send("Error retrieving courses: ", error.message);
+                    console.error("Error retrieving tags: ", error);
+                    response.send(500).send("Error retrieving tags: ", error.message);
                 }
             }
             else{
