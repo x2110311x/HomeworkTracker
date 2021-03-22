@@ -1,8 +1,8 @@
 function enableCourses() {
     document.getElementById("search_category").disabled = false;   
     document.getElementById("search_category").placeholder = "Search courses";   
-
-    fetch('/api/getCategoryCourses', {
+    var category = document.getElementById('categories').value;
+    fetch(`/api/getCoursesByCategory?shortName=${category}`, {
         method: "GET",
     }).then(response => response.text().then((text) => {
         const courseArray = JSON.parse(text);
