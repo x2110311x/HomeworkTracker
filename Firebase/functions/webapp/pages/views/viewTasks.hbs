@@ -68,9 +68,9 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body" style="background:{{this.color}};"><!--Grab Color From TASK-->
-                <a href="/editTask">
+                <a href="{{this.editLink}}">
                     <h4 class="card-title">{{this.name}}</h4>
-                    <h6 class="text-muted card-subtitle mb-2">{{this.tag}}</h6>
+                    <h6 class="text-muted card-subtitle mb-2">{{this.tagName}}</h6>
                     <p class="card-text description">{{this.description}}</p>
                     <p class="card-text dueDate">Due Date: {{this.due_date}}</p>
                     <span class="badge badge-danger">{{this.priority}}</span>
