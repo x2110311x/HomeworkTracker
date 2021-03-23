@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Tag - Homework Tracker</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script src="scripts/custTags.js"></script>
+
+            <!--NAV LINKS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="scripts/navToggle.js"></script>
+    <link rel="stylesheet" href="stylesheets/nav.css">
+    <link rel="stylesheet" href="stylesheets/addTag.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+
+    <a class="active" href="/">Home</a>
+    <!-- Navigation links (hidden by default) -->
+    <a href="/viewTasks">View Tasks</a>
+    <a href="/addTask">Add a Task</a>
+    <a href="/addTag">Add a Tag</a>
+    <a href="/account">View Account Details</a>
+    <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+    <a href="javascript:void(0);" class="icon" onclick="navToggle()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+    <div class="container">
+        <div class="centerContent">
+            <br>
+            <h2>
+                Add a Tag: 
+            </h2>
+            <div class="row">
+                <div class="col-sm-5">
+                    <h4 class="tagHeader">
+                        Tag From KSU
+                    </h4>
+                    <div class="form-group">
+                        <label for="course_search">Course Name:</label>
+                        <input type="search" class="form-control" id="course_search" name="course_search">
+                    </div> 
+                    <div class="form-group">
+                        <label for="KSU_color">Color:</label>
+                        <input type="color" class="form-control" id="KSU_color" name="KSU_color">
+                    </div>
+
+                    <br>
+                    <button class="btn submit">
+                        Add Tag From KSU <!-- ADD TO DB-->
+                    </button>
+                    <br>
+
+                </div>
+         
+                <div class="col-sm-5 offset-sm-2">
+                    <h4 class="tagHeader">
+                        Custom Tag
+                    </h4>
+
+                    <div class="form-group">
+                        <label for="tag_title">Tag Title:</label>
+                        <input type="text" class="form-control" id="tag_title" name="tag_title" placeholder="Enter Tag Title" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="nickname">Nickname (optional):</label>
+                        <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Enter Nickname">
+                    </div>
+                    <div class="form-group">
+                        <label for="color">Color:</label>
+                        <input type="color" class="form-control" id="color" name="color" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="tag_color">Alternate Color Input Style</label>
+                        <select id="tag_color" class="form-control">
+                            <option value="Retrieved from DB">Blue</option> <!-- Retrieve from DB?-->
+                            <option value="Retrieved from DB">Green</option>
+                            <option value="Retrieved from DB">Yellow</option>
+                        </select>
+
+                    </div>
+
+
+                    <br>
+                    <button onclick="addCustTag()" class="btn submit"> <!-- ADD TO DB-->
+                        Add Custom Tag
+                    </button>
+                    <div id="alertbox" hidden class="alert" role="alert">
+                    </div>
+                    <br>
+                </div>
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Account Details - Homework Tracker</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+
+  <!--NAV LINKS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="scripts/navToggle.js"></script>
+  <link rel="stylesheet" href="stylesheets/nav.css">
+
+  <link rel="stylesheet" href="stylesheets/acctDetails.css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="images/favicon/site.webmanifest">
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+
+    <a class="active" href="/">Home</a>
+    <!-- Navigation links (hidden by default) -->
+    <a href="/viewTasks">View Tasks</a>
+    <a href="/addTask">Add a Task</a>
+    <a href="/addTag">Add a Tag</a>
+    <a href="/account">View Account Details</a>
+    <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+    <a href="javascript:void(0);" class="icon" onclick="navToggle()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+<div class="container">
+    <div class="centerContent">
+    <h2>
+        Account Details
+    </h2>
+    <h4>
+        Welcome, {{name}}
+    </h4>
+    <br>
+            <button class="btn signOut"  onclick="window.location.href='logout'">
+                Sign Out
+            </button>
+
+            <hr class="dotted">
+
+            <button class="btn delete"  onclick="window.location.href='delete-account'">
+                Delete Your Account
+            </button>
+
+            <hr class="dotted">  
+
+            <button class="btn passReset"  onclick="window.location.href='reset'">
+                Reset Password
+            </button>
+    </div>
+</div>
+
+
+</body>
+</html>

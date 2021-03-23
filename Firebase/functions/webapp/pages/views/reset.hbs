@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Reset Password - Homework Tracker</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+
+  <!--NAV LINKS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="scripts/navToggle.js"></script>
+  <link rel="stylesheet" href="stylesheets/nav.css">
+
+  <script src="scripts/auth.js"></script>
+  <link rel="stylesheet" href="stylesheets/login.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="images/favicon/site.webmanifest">
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+
+    <a class="active" href="/">Home</a>
+    <!-- Navigation links (hidden by default) -->
+    <a href="login">Login</a>
+    <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+    <a href="javascript:void(0);" class="icon" onclick="navToggle()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+<div class="container">
+    <div class="centerContent">
+
+    <h2>
+        Reset: 
+    </h2>
+        <div class="form-group">
+            <label for="usr">Recovery email:</label>
+            <input type="text" class="form-control" id="usr">
+        </div>
+        <div id="alertbox" hidden class="alert alert-danger" role="alert">  
+        </div>
+        <div id="successbox" hidden class="alert alert-success" role="alert">
+          Password reset email sent.  
+        </div>
+        <button onclick="SendPasswordReset()" class="btn login">
+            Send Link
+        </button>
+    </div>
+</div>
+</body>
+</html>

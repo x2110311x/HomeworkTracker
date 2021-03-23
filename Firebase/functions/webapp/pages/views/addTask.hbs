@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add Task - Homework Tracker</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   <!--NAV LINKS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="scripts/navToggle.js"></script>
+  <link rel="stylesheet" href="stylesheets/nav.css">
+
+  <script src="scripts/tasks.js"></script>
+  <link rel="stylesheet" href="stylesheets/addTask.css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="images/favicon/site.webmanifest">
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+
+    <a class="active" href="/">Home</a>
+    <!-- Navigation links (hidden by default) -->
+    <a href="/viewTasks">View Tasks</a>
+    <a href="/addTask">Add a Task</a>
+    <a href="/addTag">Add a Tag</a>
+    <a href="/account">View Account Details</a>
+    <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+    <a href="javascript:void(0);" class="icon" onclick="navToggle()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+    <div class="container">
+        <div class="centerContent">
+            <h2>
+                Add a Task: 
+            </h2>
+            <div class="form-group">
+                <label for="name">Task Title:</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Task Title" required="required">
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea  class="form-control" rows="5" id="description" name="description" placeholder="Task Description"></textarea>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="tag">Tag:</label>
+                        <select id="tag" class="form-control">
+                            <option value="Retrieved from DB">Math Hell</option> <!-- Retrieve From DB-->
+                            <option value="Retrieved from DB">CS1</option>
+                        </select>
+                        
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="tag">Add Custom Tag:</label>
+                        <button class="btn add" data-toggle="modal" data-target="#add_tag"> 
+                            Add Custom Tag
+                        </button>
+                    </div> 
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="dueDate">Due Date:</label>
+                <input type="date" class="form-control" id="dueDate" name="dueDate">
+            </div> 
+            <div class="form-group">
+                <label for="priority">Priority Level (1-10):</label>
+                <input type="number" class="form-control" id="priority" name="priority" min="1" max="10">
+            </div> 
+            <div class="form-group">
+                <label for="estTime">Estimated Time to Completion (minutes):</label>
+                <input type="number" class="form-control" id="estTime" name="estTime" min="1" max="10000">
+            </div> 
+  
+            
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="scheduledTimeStart">Begin Task By:</label>
+                        <input type="date" class="form-control" id="scheduledTimeStart" name="scheduledTimeStart">
+                    </div> 
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="scheduledTimeEnd">End Task By:</label>
+                        <input type="date" class="form-control" id="scheduledTimeEnd" name="scheduledTimeEnd">
+                    </div> 
+                </div>
+            </div>
+          <div id="alertbox" hidden class="alert" role="alert">  </div>
+            <button onclick="addTask()" class="btn submit"> <!-- ADD TO DB-->
+                Add Task
+            </button>
+            <br>
+
+        </div>
+
+    </div>
+
+<!-- Modal -->
+<div id="add_tag" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content tagContent">
+        <div class="modal-header tagHeader">
+            <h4 class="modal-title">Add Custom Tag</h4>
+          <button type="button" class="close tagClose" data-dismiss="modal">&times;</button>
+          
+        </div>
+        <div class="modal-body tagBody">
+            <div class="form-group">
+                <label for="tag_title">Tag Title:</label>
+                <input type="text" class="form-control" id="tag_title" name="tag_title" placeholder="Enter Tag Title">
+            </div>
+            <div class="form-group">
+                <label for="nickname">Nickname (optional):</label>
+                <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Enter Nickname">
+            </div>
+            <div class="form-group">
+                <label for="color">Color:</label>
+                <input type="color" class="form-control" id="color" name="color">
+            </div>
+            <div class="form-group">
+                <label for="tag_color">Alternate Color Input Style</label>
+                <select id="tag_color" class="form-control">
+                    <option value="Retrieved from DB">Blue</option> <!-- Retrieve From DB-->
+                    <option value="Retrieved from DB">Green</option>
+                    <option value="Retrieved from DB">Yellow</option>
+                </select>
+                
+            </div> 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn closeModal" data-dismiss="modal">Close</button> 
+            <button type="button" class="btn addTag" data-dismiss="modal">Add Tag</button> <!-- ADD TO DB-->
+          </div>
+      </div>
+  
+    </div>
+  </div>
+
+
+</body>
+</html>
