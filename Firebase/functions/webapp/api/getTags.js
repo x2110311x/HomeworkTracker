@@ -1,10 +1,10 @@
 module.exports = function (admin, router) {
-    router.get('/getTasks', (request, response) => {
+    router.get('/getTags', (request, response) => {
         (async () => {
             if (request.signedin) {
                 try {
                     let responseData = [];
-                    return admin.firestore().collection('Users').doc(request.decodedClaims.uid).collection('tasks').get()
+                    return admin.firestore().collection('Users').doc(request.decodedClaims.uid).collection('tags').get()
                     .then(snapshot => {
                         snapshot.forEach((item) => {
                             responseData.push(item.data());
@@ -12,8 +12,8 @@ module.exports = function (admin, router) {
                         return response.status(200).send(responseData);
                     });
                 } catch (error) {
-                    console.error("Error retrieving tasks: ", error);
-                    response.status(500).send("Error retrieving tasks: ", error.message);
+                    console.error("Error retrieving tags: ", error);
+                    response.status(500).send("Error retrieving tags: ", error.message);
                 }
             }
             else{

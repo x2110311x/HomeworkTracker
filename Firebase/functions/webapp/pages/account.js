@@ -7,7 +7,7 @@ module.exports = function (admin, app) {
                 } else{
                     var uname = user.name;
                 }
-                response.render('acctDetails', {name: uname});
+                response.status(200).render('acctDetails', {name: uname});
             });
         } else {
             response.redirect('/');
