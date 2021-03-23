@@ -17,7 +17,7 @@ function addKentTag() {
         if (text == 'No matching documents'){
             document.getElementById("alertbox").hidden = false;
             document.getElementById("alertbox").classList.add("alert-danger");
-            document.getElementById("alertbox").innerHTML = 'Invalid Course'; 
+            document.getElementById("alertbox").innerHTML = document.getElementById("alertbox").innerHTML + 'Invalid Course'; 
         } else {
             var courseData = JSON.parse(text);
             data.short_name = courseData.short_name;
@@ -31,11 +31,11 @@ function addKentTag() {
             }).then(response => response.text().then((text) => {
                 document.getElementById("alertbox").hidden = false;
                 document.getElementById("alertbox").classList.add("alert-success");
-                document.getElementById("alertbox").innerHTML = text;
+                document.getElementById("alertbox").innerHTML = document.getElementById("alertbox").innerHTML + text;
             })).catch((error) => {
                 document.getElementById("alertbox").hidden = false;
                 document.getElementById("alertbox").classList.add("alert-danger");
-                document.getElementById("alertbox").innerHTML = error.message;
+                document.getElementById("alertbox").innerHTML = document.getElementById("alertbox").innerHTML + error.message;
             });
         }
     }));

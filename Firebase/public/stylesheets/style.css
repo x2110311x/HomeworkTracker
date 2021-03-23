@@ -431,4 +431,10 @@ body{
 
 }
 
+#alertbox{
+  margin: 1em auto auto auto;
+  width: 100%;
+  text-align: center;
+}
+
 /* END */
