@@ -4,7 +4,7 @@ module.exports = function (admin, router) {
     router.get('/getTag', (request, response) => {
         if (request.signedin) {
             var tagid = request.query.tagid;
-            var url = `https://${request.hostname}`;
+            var url = "https://homeworktracker-b9805.web.app";
             //var url = `http://localhost:5000`;
             fetch(`${url}/api/getTagRef?full_name=${tagid}`, {
                 method: 'GET',
@@ -18,7 +18,7 @@ module.exports = function (admin, router) {
                     } else {
                         console.log(path);
                         admin.firestore().doc(path).get().then(snapshot => {
-                            response.send(snapshot.data());
+                            response.status(200).send(snapshot.data());
                         }).catch((error) => {
                             console.error("Error retrieving tags: ", error);
                             response.status(500).send("Error retrieving tags: ", error.message);

@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 module.exports = function (admin, app) {
     app.get('/addTag', (request, response) => {
         if (request.signedin) {
-            var url = `https://${request.hostname}`;
+            var url = "https://homeworktracker-b9805.web.app";
             //var url = `http://localhost:5000`;
             fetch(`${url}/api/getCategories`, {
                 method: 'GET',
@@ -13,7 +13,7 @@ module.exports = function (admin, app) {
             }).then((categoriesResp) => {
                 categoriesResp.text().then((rawjson) => {
                     var categories = JSON.parse(rawjson);
-                    response.render('addTag', {category: categories});
+                    response.status(200).render('addTag', {category: categories});
                 })
             }).catch((error) => {
                 console.error(`Error retrieving categories: ${error}`);

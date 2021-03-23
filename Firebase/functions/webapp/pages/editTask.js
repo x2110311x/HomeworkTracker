@@ -19,7 +19,7 @@ module.exports = function (admin, app) {
                 admin.firestore().doc(data.tag).get().then(snapshot2 => {
                     let tagData = snapshot2.data();
                     task.tag = tagData.full_name;
-                    response.render('editTask', {task, task});
+                    response.status(200).render('editTask', {task, task});
                 });
             })
         } else {

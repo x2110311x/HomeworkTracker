@@ -3,7 +3,7 @@ module.exports = function (admin, app) {
         if (request.signedin) {
             response.redirect('/');
         } else {
-            response.render('login');
+            response.status(200).render('login');
         }
     });
 }

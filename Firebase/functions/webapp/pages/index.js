@@ -10,10 +10,10 @@ module.exports = function(app){
                 } else {
                     var uname = user.name;
                 }
-                response.render('loggedin', {name: uname});
+                response.status(200).render('loggedin', {name: uname});
             });
         } else {
-            response.render('loggedout');
+            response.status(200).render('loggedout');
         }
     });
 

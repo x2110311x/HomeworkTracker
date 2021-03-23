@@ -8,15 +8,15 @@ module.exports = function (admin, router) {
                     .where('name', '==', task_name).get()
                         .then((snapshot) => {
                         if (snapshot.empty) {
-                            return response.send('No matching tasks');
+                            return response.status(404).send('No matching tasks');
                         } else {
                             var path = snapshot.docs[0].ref.path.split("/");
-                            return response.send(path[3]);
+                            return response.status(200).send(path[3]);
                         }
                     });
                 } catch (error) {
                     console.error(`Error retrieving task: ${error}`);
-                    response.send(500).send(`Error retrieving task: ${error}`);
+                    response.status(500).send(`Error retrieving task: ${error}`);
                 }
             }
             else{

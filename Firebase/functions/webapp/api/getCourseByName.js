@@ -9,14 +9,14 @@ module.exports = function (admin, router) {
                     .where('full_name', '==', coursename).get()
                     .then((snapshot) => {
                         if(snapshot.empty){
-                            return response.send('No matching documents');
+                            return response.status(404).send('No matching documents');
                         } else {
-                            return response.send(snapshot.docs[0].data());
+                            return response.status(200).send(snapshot.docs[0].data());
                         }
                     });
                 } catch (error) {
                     console.error("Error retrieving courses: ", error);
-                    response.send(500).send("Error retrieving courses: ", error.message);
+                    response.status(500).send("Error retrieving courses: ", error.message);
                 }
             }
             else{

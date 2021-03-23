@@ -94,7 +94,7 @@ module.exports = function (admin, app) {
                         let section = {title: "Upcoming Tasks", completionPercent: 20, task: laterTasks};
                         sections.push(section);
                     }
-                    response.render('viewTasks', {section:sections});
+                    response.status(200).render('viewTasks', {section:sections});
                 })
         } else {
             response.redirect('/');
