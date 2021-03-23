@@ -5,49 +5,38 @@ function addKentTag() {
 
     var data = {
         color: document.getElementById("KSU_color").value,
-        full_name: document.getElementById("course_name").value,
-        short_name: "",
+        category: document.getElementById("categories").value,
+        full_name: document.getElementById("search_category").value,
     };
-
-
-
-
+    console.log(data);
 
     // Questionable portion
-    fetch('getCourseNamed', {
-        method: "GET",
-        headers: {
-            'full_name': data.full_name,
+    fetch(`/api/getCourseByName?full_name=${data.full_name}&category=${data.category}`, {
+        method: "GET"
+    }).then(response => response.text().then((text) => {
+        if (text == 'No matching documents'){
+            document.getElementById("alertbox").hidden = false;
+            document.getElementById("alertbox").classList.add("alert-danger");
+            document.getElementById("alertbox").innerHTML = document.getElementById("alertbox").innerHTML + 'Invalid Course'; 
+        } else {
+            var courseData = JSON.parse(text);
+            data.short_name = courseData.short_name;
+            console.log(data);
+            fetch('/api/addCustTag', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            }).then(response => response.text().then((text) => {
+                document.getElementById("alertbox").hidden = false;
+                document.getElementById("alertbox").classList.add("alert-success");
+                document.getElementById("alertbox").innerHTML = document.getElementById("alertbox").innerHTML + text;
+            })).catch((error) => {
+                document.getElementById("alertbox").hidden = false;
+                document.getElementById("alertbox").classList.add("alert-danger");
+                document.getElementById("alertbox").innerHTML = document.getElementById("alertbox").innerHTML + error.message;
+            });
         }
-    }).then(response => response.text().then((text) => {
-        data.short_name = response.short_name;
-        document.getElementById("alertbox").hidden = false;
-        document.getElementById("alertbox").classList.add("alert-success");
-        document.getElementById("alertbox").innerHTML = text;
-    })).catch((error) => {
-        document.getElementById("alertbox").hidden = false;
-        document.getElementById("alertbox").classList.add("alert-danger");
-        document.getElementById("alertbox").innerHTML = error.message;
-    });
-
-
-
-
-
-
-    fetch('/api/addCustTag', {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    }).then(response => response.text().then((text) => {
-        document.getElementById("alertbox").hidden = false;
-        document.getElementById("alertbox").classList.add("alert-success");
-        document.getElementById("alertbox").innerHTML = text;
-    })).catch((error) => {
-        document.getElementById("alertbox").hidden = false;
-        document.getElementById("alertbox").classList.add("alert-danger");
-        document.getElementById("alertbox").innerHTML = error.message;
-    });
+    }));
 }

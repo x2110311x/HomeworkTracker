@@ -21,7 +21,7 @@ module.exports = function (admin, router) {
                     console.log("Tag has been added,", writeResult.id);
                 }).catch((error) => {
                     console.error("Error writing document: ", error);
-                    response.send(500).send("Error writing document: ", error.message);
+                    response.status(500).send("Error writing document: ", error.message);
                 });
         } else {
             response.status(403).send("Unauthorized");

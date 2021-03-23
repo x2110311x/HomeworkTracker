@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Add Tag - Homework Tracker</title>
+    <title>Add a Tag - Homework Tracker</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
@@ -11,23 +11,25 @@
 
     <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
     <script src="scripts/custTags.js"></script>
+    <script src="scripts/kentTags.js"></script>
 
             <!--NAV LINKS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="scripts/navToggle.js"></script>
-    <link rel="stylesheet" href="stylesheets/nav.css">
-    <link rel="stylesheet" href="stylesheets/addTag.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="scripts/showPopup.js"></script>
+    <script src="scripts/enableCourses.js"></script>
+    <script src="scripts/autocomplete.js"></script>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="images/favicon/site.webmanifest">
-
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="images/favicon/site.webmanifest">
 </head>
 <body>
 <div class="topnav" id="myTopnav">
 
-    <a class="active" href="/">Home</a>
+    <a class="active" id="HT" href="/"><img src="images\favicon\android-chrome-192x192.png" alt="HomeworkTracker" width="41.5"> Home</a>
     <!-- Navigation links (hidden by default) -->
     <a href="/viewTasks">View Tasks</a>
     <a href="/addTask">Add a Task</a>
@@ -39,19 +41,32 @@
     </a>
 </div>
     <div class="container">
-        <div class="centerContent">
-            <br>
+        <div class="addTaskContent">
             <h2>
                 Add a Tag: 
             </h2>
             <div class="row">
+                
                 <div class="col-sm-5">
                     <h4 class="tagHeader">
                         Tag From KSU
                     </h4>
                     <div class="form-group">
-                        <label for="course_search">Course Name:</label>
-                        <input type="search" class="form-control" id="course_search" name="course_search">
+                        <!--Add TASK Popup - ADOPTED FROM https://www.w3schools.com/howto/howto_js_popup.asp-->
+                        <label for="categories">Course Category: <span class="fa fa-info-circle popup"  onclick="showPopup()"></span></label>
+                        <div class="popup" onclick="myFunction()">
+                            <span class="popuptext" id="myPopup">Select Course Category first to narrow your options</span>
+                        </div> 
+                        <select id="categories" class="form-control" onchange="enableCourses()">
+                            <option disabled selected value> -- select an option -- </option>
+                            {{#each category}}
+                                    <option value="{{this.short_name}}">{{this.full_name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group autocomplete">
+                        <label for="search_category">Search Courses:</label>
+                        <input type="text" class="form-control" id="search_category" name="search_category" placeholder="Select a category first" disabled>
                     </div> 
                     <div class="form-group">
                         <label for="KSU_color">Color:</label>
@@ -59,7 +74,9 @@
                     </div>
 
                     <br>
-                    <button onclick="addKentTag()" class="btn submit">
+
+
+                    <button onclick="addKentTag()" class="btn blueBtn">
                         Add Tag From KSU <!-- ADD TO DB-->
                     </button>
                     <br>
@@ -95,26 +112,18 @@
 
 
                     <br>
-                    <button onclick="addCustTag()" class="btn submit"> <!-- ADD TO DB-->
+                    <button onclick="addCustTag()" class="btn blueBtn"> <!-- ADD TO DB-->
                         Add Custom Tag
                     </button>
-                    <div id="alertbox" hidden class="alert" role="alert">
-                    </div>
                     <br>
                 </div>
-
-
-
-
-
+                    <div id="alertbox" hidden class="alert fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
             </div>
-
-
-
         </div>
-
     </div>
-
-
 </body>
 </html>

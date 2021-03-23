@@ -13,10 +13,9 @@
     <!--NAV LINKS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="scripts/navToggle.js"></script>
-  <link rel="stylesheet" href="stylesheets/nav.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
   
   <script src="scripts/auth.js"></script>
-  <link rel="stylesheet" href="stylesheets/register.css">
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
@@ -25,7 +24,7 @@
 <body>
 <div class="topnav" id="myTopnav">
 
-    <a class="active" href="/">Home</a>
+    <a class="active" id="HT" href="/"><img src="images\favicon\android-chrome-192x192.png" alt="HomeworkTracker" width="41.5"> Home</a>
     <!-- Navigation links (hidden by default) -->
     <a href="login">Login</a>
     <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
@@ -34,7 +33,7 @@
     </a>
 </div>
 <div class="container">
-    <div class="centerContent">
+    <div class="acctContent">
     <h2>
         Register: 
     </h2>
@@ -51,11 +50,15 @@
         <label for="pwd">Password:</label>
         <input type="password" class="form-control" id="pwd" name="password" placeholder="Password">
     </div>
-    <div id="alertbox" class="alert alert-danger" hidden role="alert">
+    <div id="alertbox" hidden class="alert fade show" role="alert">
+        
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     <p>Already Have an account? <a href="login" class="linkStyle">Click here to log in</a> </p>
 
-    <button onclick="signUpWithEmailPassword()" class="btn register">
+    <button onclick="signUpWithEmailPassword()" class="btn greenBtn">
         Register
     </button>
 

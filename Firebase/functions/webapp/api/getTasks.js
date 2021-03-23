@@ -9,11 +9,11 @@ module.exports = function (admin, router) {
                         snapshot.forEach((item) => {
                             responseData.push(item.data());
                         });
-                        return response.send(responseData);
+                        return response.status(200).send(responseData);
                     });
                 } catch (error) {
                     console.error("Error retrieving tasks: ", error);
-                    response.send(500).send("Error retrieving tasks: ", error.message);
+                    response.status(500).send("Error retrieving tasks: ", error.message);
                 }
             }
             else{

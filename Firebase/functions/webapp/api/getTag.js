@@ -4,8 +4,8 @@ module.exports = function (admin, router) {
     router.get('/getTag', (request, response) => {
         if (request.signedin) {
             var tagid = request.query.tagid;
-            //var url = `https://${request.hostname}`;
-            var url = `http://localhost:5000`;
+            var url = "https://homeworktracker-b9805.web.app";
+            //var url = `http://localhost:5000`;
             fetch(`${url}/api/getTagRef?full_name=${tagid}`, {
                 method: 'GET',
                 headers: {
@@ -13,10 +13,17 @@ module.exports = function (admin, router) {
                 }
             }).then((tagpath) => {
                 tagpath.text().then((path) => {
-                    console.log(path);
-                    admin.firestore().doc(path).get().then(snapshot => {
-                        response.send(snapshot.data());
-                    })
+                    if (path == "No matching tags"){
+                        response.status(404).send(path);
+                    } else {
+                        console.log(path);
+                        admin.firestore().doc(path).get().then(snapshot => {
+                            response.status(200).send(snapshot.data());
+                        }).catch((error) => {
+                            console.error("Error retrieving tags: ", error);
+                            response.status(500).send("Error retrieving tags: ", error.message);
+                        });
+                    }
                 })
             }).catch((error) => {
                 console.error("Error retrieving tags: ", error);
