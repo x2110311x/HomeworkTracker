@@ -8,6 +8,7 @@ module.exports = function (admin, router) {
             var priority = request.body.priority;
             var scheduledTimeStart = request.body.scheduledTimeStart;
             var scheduledTimeEnd = request.body.scheduledTimeEnd;
+            var tag = request.body.tag;
             
             const data = {
                 name: name,
@@ -18,6 +19,7 @@ module.exports = function (admin, router) {
                 priority: priority,
                 scheduled_time_start: scheduledTimeStart,
                 scheduled_time_end: scheduledTimeEnd,
+                tag: tag
             };
             
             // Add a new task
@@ -28,7 +30,7 @@ module.exports = function (admin, router) {
                 console.log("Task has been added,", writeResult.id);
             }).catch((error) => {
                 console.error("Error writing document: ", error);
-                response.send(500).send("Error writing document: ", error.message);
+                response.status(500).send("Error writing document: ", error.message);
             });
         } else {
             response.status(403).send("Unauthorized");

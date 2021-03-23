@@ -26,7 +26,7 @@ function signInWithEmailAndPassword() {
       }).catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        document.getElementById("alertbox").innerHTML = errorMessage;
+        document.getElementById("alertbox").innerHTML = document.getElementById("alertbox").innerHTML + errorMessage;
         document.getElementById("alertbox").hidden = false;
       });
 }
@@ -50,7 +50,7 @@ function signUpWithEmailPassword() {
     .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        document.getElementById("alertbox").innerHTML = errorMessage;
+        document.getElementById("alertbox").innerHTML = document.getElementById("alertbox").innerHTML + errorMessage;
         document.getElementById("alertbox").hidden = false;
     });
 }
@@ -71,7 +71,7 @@ function signInWithGoogle(){
   }).catch((error) => {
     var errorCode = error.code;
     var errorMessage = error.message;
-    document.getElementById("alertbox").innerHTML = errorMessage;
+    document.getElementById("alertbox").innerHTML = document.getElementById("alertbox").innerHTML + errorMessage;
     document.getElementById("alertbox").hidden = false;
   });
 }
@@ -83,7 +83,7 @@ function SendPasswordReset(){
   firebase.auth().sendPasswordResetEmail(email).then(()=>{
     document.getElementById("successbox").hidden = false;
   }).catch((error) => {
-    document.getElementById("alertbox").innerHTML = error.message;
+    document.getElementById("alertbox").innerHTML = document.getElementById("alertbox").innerHTML + error.message;
     document.getElementById("alertbox").hidden = false;
   });
 }
