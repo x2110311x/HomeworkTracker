@@ -5,8 +5,8 @@ module.exports = function (admin, router) {
         if (request.signedin) {
             var tagname = request.body.tag_name;
             var taskname = request.body.task_name;
-            //var url = `https://${request.hostname}`;
-            var url = `http://localhost:5000`;
+            var url = `https://${request.hostname}`;
+            //var url = `http://localhost:5000`;
             fetch(`${url}/api/getTagRef?full_name=${tagname}`, {
                 method: 'GET',
                 headers: {
