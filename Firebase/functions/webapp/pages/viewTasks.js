@@ -15,7 +15,7 @@ async function getEditLink(admin, name, uid){
         setTimeout(() => {
             console.log(retvar);
             resolve(retvar);
-        }, 500);
+        }, 750);
       });
 }
 
