@@ -4,8 +4,8 @@ module.exports = function (admin, router) {
     router.get('/getTag', (request, response) => {
         if (request.signedin) {
             var tagid = request.query.tagid;
-            //var url = `https://${request.hostname}`;
-            var url = `http://localhost:5000`;
+            var url = `https://${request.hostname}`;
+            //var url = `http://localhost:5000`;
             fetch(`${url}/api/getTagRef?full_name=${tagid}`, {
                 method: 'GET',
                 headers: {

@@ -3,8 +3,8 @@ const fetch = require('node-fetch');
 module.exports = function (admin, app) {
     app.get('/addTask', (request, response) => {
         if (request.signedin) {
-            //var url = `https://${request.hostname}`;
-            var url = `http://localhost:5000`;
+            var url = `https://${request.hostname}`;
+            //var url = `http://localhost:5000`;
             fetch(`${url}/api/getTags`, {
                 method: 'GET',
                 headers: {
