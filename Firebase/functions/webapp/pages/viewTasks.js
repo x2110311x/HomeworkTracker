@@ -13,7 +13,6 @@ async function getEditLink(admin, name, uid){
     });
     return new Promise(resolve => {
         setTimeout(() => {
-            console.log(retvar);
             resolve(retvar);
         }, 750);
       });
@@ -56,7 +55,6 @@ async function getTaskSections(admin, uid){
                         task.color = tagData.color;
                         task.tagName = tagData.full_name;
                     }).then(() => {
-                        console.log(task);
                         if (data.due_date == today){
                             todayTasks.push(task);
                         } else if (upcomingDays.includes(task.due_date)) {
@@ -82,20 +80,26 @@ module.exports = function (admin, app) {
     app.get('/viewTasks', (request, response) => {
         if (request.signedin) {
             let user = request.decodedClaims;
-                var sections = [];
-                getTaskSections(admin, user.uid, request).then((data) => {
-                    var todayTasks = data[0];
-                    var laterTasks = data[1];
-                    if(todayTasks.length > 0){
-                        let section = {title: "Due Today", completionPercent: 20, task: todayTasks};
-                        sections.push(section);
-                    }
-                    if (laterTasks.length > 0 ){
-                        let section = {title: "Upcoming Tasks", completionPercent: 20, task: laterTasks};
-                        sections.push(section);
-                    }
-                    response.status(200).render('viewTasks', {section:sections});
-                })
+            var chosenSort = request.query.sort;
+            if (chosenSort == undefined){
+                chosenSort = 'Due Date';
+            } else if (chosenSort != "Due Date" && chosenSort != "Priority" && chosenSort != "Tag") {
+                chosenSort = 'Due Date';
+            }
+            var sections = [];
+            getTaskSections(admin, user.uid, request).then((data) => {
+                var todayTasks = data[0];
+                var laterTasks = data[1];
+                if(todayTasks.length > 0){
+                    let section = {title: "Due Today", completionPercent: 20, task: todayTasks};
+                    sections.push(section);
+                }
+                if (laterTasks.length > 0 ){
+                    let section = {title: "Upcoming Tasks", completionPercent: 20, task: laterTasks};
+                    sections.push(section);
+                }
+                response.status(200).render('viewTasks', {section:sections, sort: chosenSort});
+            })
         } else {
             response.redirect('/');
         }

@@ -43,11 +43,11 @@
 {{#if section.[0]}}
     <div class="row">
         <div class="col-12 text-center"><span class="text-center sortingRow">Sorting By:</span>
-            <div class="dropdown d-inline dropdownSpacing" ><a class="btn btn-outline-primary btn-lg dropdown-toggle d-inline" aria-expanded="false" data-toggle="dropdown" role="button" >Due Date</a>
+            <div class="dropdown d-inline dropdownSpacing" ><a class="btn btn-outline-primary btn-lg dropdown-toggle d-inline" aria-expanded="false" data-toggle="dropdown" role="button">{{sort}}</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Due Date</a>
-                    <a class="dropdown-item" href="#">Priority</a>
-                    <a class="dropdown-item" href="#">Tag</a> <!--SORTING OPTIONS HERE-->
+                    <a class="dropdown-item" href="/viewTasks?sort=Due%20Date">Due Date</a>
+                    <a class="dropdown-item" href="/viewTasks?sort=Priority">Priority</a>
+                    <a class="dropdown-item" href="/viewTasks?sort=Tag">Tag</a> <!--SORTING OPTIONS HERE-->
                 </div>
             </div><button onclick="window.location.href='addTask'" class="btn btn-primary addTaskBtn" type="button" >Add Task<strong>+</strong></button>
         </div>
