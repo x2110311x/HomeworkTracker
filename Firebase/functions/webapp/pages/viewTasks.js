@@ -18,7 +18,7 @@ async function getEditLink(admin, name, uid){
       });
 }
 
-async function getTaskSections(admin, uid){
+async function getTaskByDueDate(admin, uid){
     var curDay = new Date();
     var day = String(curDay.getDate()).padStart(2, '0');
     var month = String(curDay.getMonth() + 1).padStart(2, '0');
@@ -81,25 +81,33 @@ module.exports = function (admin, app) {
         if (request.signedin) {
             let user = request.decodedClaims;
             var chosenSort = request.query.sort;
+
             if (chosenSort == undefined){
                 chosenSort = 'Due Date';
             } else if (chosenSort != "Due Date" && chosenSort != "Priority" && chosenSort != "Tag") {
                 chosenSort = 'Due Date';
             }
-            var sections = [];
-            getTaskSections(admin, user.uid, request).then((data) => {
-                var todayTasks = data[0];
-                var laterTasks = data[1];
-                if(todayTasks.length > 0){
-                    let section = {title: "Due Today", completionPercent: 20, task: todayTasks};
-                    sections.push(section);
-                }
-                if (laterTasks.length > 0 ){
-                    let section = {title: "Upcoming Tasks", completionPercent: 20, task: laterTasks};
-                    sections.push(section);
-                }
-                response.status(200).render('viewTasks', {section:sections, sort: chosenSort});
-            })
+            
+            if (chosenSort == 'Due Date') {
+                var sections = [];
+                getTaskByDueDate(admin, user.uid, request).then((data) => {
+                    var todayTasks = data[0];
+                    var laterTasks = data[1];
+                    if(todayTasks.length > 0){
+                        let section = {title: "Due Today", completionPercent: 20, task: todayTasks};
+                        sections.push(section);
+                    }
+                    if (laterTasks.length > 0 ){
+                        let section = {title: "Upcoming Tasks", completionPercent: 20, task: laterTasks};
+                        sections.push(section);
+                    }
+                    response.status(200).render('viewTasks', {section:sections, sort: chosenSort});
+                });
+            } else if (chosenSort == 'Priority') {
+                response.status(200).send("NOT IMPLEMENTED");
+            } else if (chosenSort == 'Tag'){
+                response.status(200).send("NOT IMPLEMENTED");
+            }
         } else {
             response.redirect('/');
         }
