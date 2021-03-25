@@ -4,7 +4,7 @@ module.exports = function (admin, router) {
             if (request.signedin) {
                 try {
                     let responseData = [];
-                    return admin.firestore().collection('Courses').get()
+                    return admin.firestore().collection('Courses').orderBy('full_name').get()
                     .then((snapshot) => {
                         snapshot.forEach((item) => {
                             responseData.push(item.data());
