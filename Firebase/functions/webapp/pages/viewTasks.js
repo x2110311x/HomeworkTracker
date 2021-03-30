@@ -18,8 +18,30 @@ async function getEditLink(admin, name, uid){
       });
 }
 
+function getTagList(tasks, currentTags) {
+    for (i = 0; i < tasks.length; i++)
+    {
+        if (tasks[i].tagName === undefined)
+            tasks[i].tagName = "Tag Not Found";
+        if (!currentTags.hasOwnProperty(tasks[i].tagName))
+            currentTags[tasks[i].tagName] = [tasks[i]];
+        else
+            currentTags[tasks[i].tagName].push(tasks[i]);
+    }
 
-// I think we can condense getTasks by Due Date into Generic
+    return currentTags
+}
+
+function getPriorityList(tasks, currentTags) {
+    for (i = 0; i < tasks.length; i++)
+        if (!currentTags.hasOwnProperty(tasks[i].tagName))
+            currentTags[tasks[i].priority] = [tasks[i]];
+        else
+            currentTags[tasks[i].priority].push(tasks[i]);
+
+    return currentTags
+}
+
 function retrieveTasks(admin, uid, sortColumn) {
     if (sortColumn == "tag") {
         return admin.firestore().collection('Users').doc(uid).collection('tasks').get()
@@ -105,36 +127,59 @@ module.exports = function (admin, app) {
                 getTaskByGeneric(admin, user.uid, chosenSort, request).then((data) => {
                     var todayTasks = data[0];
                     var laterTasks = data[1];
+                    var tags = {};
+
+
+                    if (todayTasks.length > 0)
+                        getTagList(todayTasks, tags);
+                    if (laterTasks.length > 0)
+                        getTagList(laterTasks, tags);
+
+                    if (Object.keys(tags).length !== 0)
+                        for (var tag in tags) {
+                            let section = { title: tag, completionPercent: 20, task: tags[tag] };
+                            sections.push(section);
+                        }
+
+                    response.status(200).render('viewTasks', { section: sections, sort: chosenSort });
+                });
+            } else if (chosenSort == "Due Date") {
+                var sections = [];
+                getTaskByGeneric(admin, user.uid, chosenSort, request).then((data) => {
+                    var todayTasks = data[0];
+                    var laterTasks = data[1];
                     if (todayTasks.length > 0) {
-                        todayTasks = todayTasks(function (first, second) {
-                            return first.tagName - second.tagName;
-                        });
                         let section = { title: "Due Today", completionPercent: 20, task: todayTasks };
                         sections.push(section);
                     }
                     if (laterTasks.length > 0) {
-                        laterTasks = laterTasks(function (first, second) {
-                            return first.tagName - second.tagName;
-                        });
                         let section = { title: "Upcoming Tasks", completionPercent: 20, task: laterTasks };
                         sections.push(section);
                     }
                     response.status(200).render('viewTasks', { section: sections, sort: chosenSort });
                 });
-            } else {
+            } else if (chosenSort == "Priority") {
                 var sections = [];
                 getTaskByGeneric(admin, user.uid, chosenSort, request).then((data) => {
                     var todayTasks = data[0];
                     var laterTasks = data[1];
-                    if(todayTasks.length > 0){
-                        let section = {title: "Due Today", completionPercent: 20, task: todayTasks};
-                        sections.push(section);
+                    var priorities = {}
+                    if (todayTasks.length > 0) {
+                        getPriorityList(todayTasks, priorities);
                     }
-                    if (laterTasks.length > 0 ){
-                        let section = {title: "Upcoming Tasks", completionPercent: 20, task: laterTasks};
-                        sections.push(section);
+                    if (laterTasks.length > 0) {
+                        getPriorityList(laterTasks, priorities);
                     }
-                    response.status(200).render('viewTasks', {section:sections, sort: chosenSort});
+
+
+                    if (Object.keys(priorities).length !== 0)
+                        for (var priority in priorities) {
+                            let section = { title: priority, completionPercent: 20, task: priorities[priority] };
+                            sections.push(section);
+                        }
+
+
+                    response.status(200).render('viewTasks', { section: sections, sort: chosenSort });
                 });
             }
         } else {
