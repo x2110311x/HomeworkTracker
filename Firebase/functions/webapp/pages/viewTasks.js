@@ -18,63 +18,75 @@ async function getEditLink(admin, name, uid){
       });
 }
 
-async function getTaskByDueDate(admin, uid){
+
+// I think we can condense getTasks by Due Date into Generic
+function retrieveTasks(admin, uid, sortColumn) {
+    if (sortColumn == "tag") {
+        return admin.firestore().collection('Users').doc(uid).collection('tasks').get()
+    }
+    return admin.firestore().collection('Users').doc(uid).collection('tasks').orderBy(sortColumn).get()
+}
+
+async function getTaskByGeneric(admin, uid, sortColumn) {
     var curDay = new Date();
     var day = String(curDay.getDate()).padStart(2, '0');
     var month = String(curDay.getMonth() + 1).padStart(2, '0');
     var year = curDay.getFullYear();
+    sortColumn = sortColumn.toLowerCase();
+    sortColumn = sortColumn.replace(" ", "_");
 
     var today = year + '-' + month + '-' + day;
     var upcomingDays = [];
-    for(i = 0; i < 7; i++){
+    for (i = 0; i < 7; i++) {
         let newDay = year + '-' + month + '-' + String(curDay.getDate() + i).padStart(2, '0');
         upcomingDays.push(newDay);
     }
     let todayTasks = [];
     let laterTasks = [];
-    admin.firestore().collection('Users').doc(uid).collection('tasks').get()
-    .then(snapshot => {
-        snapshot.forEach((item) => {
-            const data = item.data();
-            var task = {
-                description: data.description,
-                due_date: data.due_date,
-                est_time: data.est_time,
-                name: data.name,
-                priority: data.priority,
-                completed: data.completed
-            }
-            getEditLink(admin, task.name, uid).then((editLink) =>{
-                task.editLink = editLink;
-                if(data.tag === undefined){
-                    task.color = "#014d74";
-                    task.tagName = "No Tag";
-                } else {
-                    admin.firestore().doc(data.tag).get().then(snapshot2 => {
-                        let tagData = snapshot2.data();
-                        task.color = tagData.color;
-                        task.tagName = tagData.full_name;
-                    }).then(() => {
-                        if (data.due_date == today){
-                            todayTasks.push(task);
-                        } else if (upcomingDays.includes(task.due_date)) {
-                            laterTasks.push(task);
-                        }
-                    }).catch((error) => {
-                        console.log("Can't find tag");
+    retrieveTasks(admin, uid, sortColumn)
+        .then(snapshot => {
+            snapshot.forEach((item) => {
+                const data = item.data();
+                var task = {
+                    description: data.description,
+                    due_date: data.due_date,
+                    est_time: data.est_time,
+                    name: data.name,
+                    priority: data.priority,
+                    completed: data.completed
+                }
+                getEditLink(admin, task.name, uid).then((editLink) => {
+                    task.editLink = editLink;
+                    if (data.tag === undefined) {
                         task.color = "#014d74";
                         task.tagName = "No Tag";
-                    });
-                }
-            })
+                    } else {
+                        admin.firestore().doc(data.tag).get().then(snapshot2 => {
+                            let tagData = snapshot2.data();
+                            task.color = tagData.color;
+                            task.tagName = tagData.full_name;
+                        }).then(() => {
+                            if (data.due_date == today) {
+                                todayTasks.push(task);
+                            } else if (upcomingDays.includes(task.due_date)) {
+                                laterTasks.push(task);
+                            }
+                        }).catch((error) => {
+                            console.log("Can't find tag");
+                            task.color = "#014d74";
+                            task.tagName = "No Tag";
+                        });
+                    }
+                })
+            });
         });
-    });
     return new Promise(resolve => {
         setTimeout(() => {
-          resolve([todayTasks, laterTasks]);
+            resolve([todayTasks, laterTasks]);
         }, 2000);
-      });
+    });
 }
+
 
 module.exports = function (admin, app) {
     app.get('/viewTasks', (request, response) => {
@@ -88,9 +100,30 @@ module.exports = function (admin, app) {
                 chosenSort = 'Due Date';
             }
             
-            if (chosenSort == 'Due Date') {
+            if (chosenSort == 'Tag') {
                 var sections = [];
-                getTaskByDueDate(admin, user.uid, request).then((data) => {
+                getTaskByGeneric(admin, user.uid, chosenSort, request).then((data) => {
+                    var todayTasks = data[0];
+                    var laterTasks = data[1];
+                    if (todayTasks.length > 0) {
+                        todayTasks = todayTasks(function (first, second) {
+                            return first.tagName - second.tagName;
+                        });
+                        let section = { title: "Due Today", completionPercent: 20, task: todayTasks };
+                        sections.push(section);
+                    }
+                    if (laterTasks.length > 0) {
+                        laterTasks = laterTasks(function (first, second) {
+                            return first.tagName - second.tagName;
+                        });
+                        let section = { title: "Upcoming Tasks", completionPercent: 20, task: laterTasks };
+                        sections.push(section);
+                    }
+                    response.status(200).render('viewTasks', { section: sections, sort: chosenSort });
+                });
+            } else {
+                var sections = [];
+                getTaskByGeneric(admin, user.uid, chosenSort, request).then((data) => {
                     var todayTasks = data[0];
                     var laterTasks = data[1];
                     if(todayTasks.length > 0){
@@ -103,10 +136,6 @@ module.exports = function (admin, app) {
                     }
                     response.status(200).render('viewTasks', {section:sections, sort: chosenSort});
                 });
-            } else if (chosenSort == 'Priority') {
-                response.status(200).send("NOT IMPLEMENTED");
-            } else if (chosenSort == 'Tag'){
-                response.status(200).send("NOT IMPLEMENTED");
             }
         } else {
             response.redirect('/');
