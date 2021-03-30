@@ -42,7 +42,7 @@
 <div class="container">
     <div class="card editCard">
         <div class="card-body editCardBody">
-            <h1 class="text-center card-title">Task Name </h1>
+            <h1 class="text-center card-title">{{task.name}} </h1>
             <div class="row">
                 <div class="col">
                     <p class="text-center">Tag: {{task.tag}} <button class="btn btn-primary btn-sm" data-toggle="collapse" onclick="fetchTags()" data-target="#editTag"><i class="fa fa-edit" data-></i></button></p>
@@ -109,10 +109,19 @@
             </div>
             <div class="row">
                 <div class="col"><button class="btn btn-primary text-center d-block editFormBottomButtons" onclick="editAll()" type="button" >Save All</button></div>
+                {{#if task.completed}}
+                <div class="col offset-xl-0"><button class="btn btn-primary text-center d-block editFormBottomButtons" onclick="markIncomplete()" type="button">Mark Incomplete</button></div>
+                {{else}}
                 <div class="col offset-xl-0"><button class="btn btn-primary text-center d-block editFormBottomButtons" onclick="markComplete()" type="button">Mark Complete</button></div>
+                {{/if}}
             </div>
     
         </div>
+    </div>
+    <div id="alertbox" hidden class="alert fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 </div>
 
