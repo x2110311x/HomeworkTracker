@@ -106,14 +106,14 @@ module.exports = function (admin, app) {
                     var todayTasks = data[0];
                     var laterTasks = data[1];
                     if (todayTasks.length > 0) {
-                        todayTasks = todayTasks(function (first, second) {
+                        todayTasks = todayTasks.sort(function (first, second) {
                             return first.tagName - second.tagName;
                         });
                         let section = { title: "Due Today", completionPercent: 20, task: todayTasks };
                         sections.push(section);
                     }
                     if (laterTasks.length > 0) {
-                        laterTasks = laterTasks(function (first, second) {
+                        laterTasks = laterTasks.sort(function (first, second) {
                             return first.tagName - second.tagName;
                         });
                         let section = { title: "Upcoming Tasks", completionPercent: 20, task: laterTasks };
