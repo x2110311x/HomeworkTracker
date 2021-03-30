@@ -26,6 +26,8 @@ module.exports = function(app){
     require("./sessionLogin.js")(admin, app);
     require("./delete-account.js")(admin, app);
     require("./viewTasks.js")(admin, app);
+    require("./pickWeek.js")(admin, app);
+    require("./freetime.js")(admin, app);
     require("./register.js")(admin, app);
     require("./reset.js")(admin, app);
 
