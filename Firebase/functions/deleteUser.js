@@ -42,13 +42,11 @@ async function deleteQueryBatch(db, query, resolve) {
 
 
 module.exports = functions.auth.user().onDelete((user) => {
-    functions.auth.user().onDelete((user) => {
     console.log('Deleting user ${user}');
     const db = admin.firestore();
-    var taskCol = '/Users/${user.uid}/tasks';
-    var tagCol = '/Users/${user.uid}/tags';
-    var coursesCol = '/Users/${user.uid}/courses';
-    var freetimeCol = '/Users/${user.uid}/freetime';
+    var taskCol = `/Users/${user.uid}/tasks`;
+    var tagCol = `/Users/${user.uid}/tags`;
+    var freetimeCol = `/Users/${user.uid}/freetime`;
 
     deleteCollection(db, taskCol, 5000).then((result) => {
         console.log(result);
@@ -64,13 +62,6 @@ module.exports = functions.auth.user().onDelete((user) => {
         console.log(error);
     });
 
-    deleteCollection(db, coursesCol, 50).then((result) => {
-        console.log(result);
-        console.log('course tags deleted');
-    }).catch((error) => {
-        console.log(error);
-    });
-
     deleteCollection(db, freetimeCol, 5000).then((result) => {
         console.log(result);
         console.log('free time deleted');
@@ -79,6 +70,5 @@ module.exports = functions.auth.user().onDelete((user) => {
     });
 
     db.collection('Users').doc(user.uid).delete();
-    console.log('User ${user} deleted');
-    })
+    console.log(`User ${user} deleted`);
 });

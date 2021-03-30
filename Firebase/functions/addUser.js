@@ -8,7 +8,6 @@ admin.initializeApp({
 }, "addUser");
 
 module.exports = functions.auth.user().onCreate((user) => {
-    functions.auth.user().onCreate((user) => {
     var uname = user.providerData.displayName;
     if (uname == null) {
         var data = {
@@ -27,5 +26,4 @@ module.exports = functions.auth.user().onCreate((user) => {
     return admin.firestore().collection('Users').doc(user.uid).set(data).then(() => {
         console.log('User Add succeeded!');
       });
-    })
 });
