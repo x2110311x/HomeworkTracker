@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Account Details - Homework Tracker</title>
+  <title>Pick a Week - Homework Tracker</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
@@ -35,29 +35,23 @@
     </a>
 </div>
 <div class="container">
-    <div class="acctContent">
-    <h2>
-        Account Details
-    </h2>
-    <h4>
-        Welcome, {{name}}
-    </h4>
-    <br>
-            <button class="btn signOutBtn"  onclick="window.location.href='logout'">
-                Sign Out
-            </button>
-
-            <hr class="dotted">
-
-            <button class="btn deleteBtn"  onclick="window.location.href='delete-account'">
-                Delete Your Account
-            </button>
-
-            <hr class="dotted">  
-
-            <button class="btn passResetBtn"  onclick="window.location.href='reset'">
-                Reset Password
-            </button>
+    <div class="addTaskContent">
+  
+        <div class="row">
+            <div class="col">
+                <h4 style="text-align: center;">View/Edit Created Weeks</h4>
+            </div>
+            <div class="col">
+                <h4 style="text-align: center;">Add A New Week</h4>
+                <form>
+                    <div class="form-group"><label>Pick a Week:</label><input class="form-control" type="date"></div>
+                         <button class="btn blueBtn">
+                        Add Week <!-- ADD TO DB-->
+                        </button>
+                </form>
+            </div>
+        </div>
+ 
     </div>
 </div>
 

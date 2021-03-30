@@ -26,7 +26,7 @@
 <body>
 <div class="topnav" id="myTopnav">
 
-    <a class="active" id="HT" href="/"><img src="images\favicon\android-chrome-192x192.png" alt="HomeworkTracker" width="41.5"> Home</a>
+    <a class="active" id="HT" href="/"><img src="images\favicon\android-chrome-192x192.png" alt="HomeworkTracker" width="41"> Home</a>
     <!-- Navigation links (hidden by default) -->
     <a href="/viewTasks">View Tasks</a>
     <a href="/addTask">Add a Task</a>
@@ -50,19 +50,14 @@
                 <label for="description">Description:</label>
                 <textarea  class="form-control" rows="5" id="description" name="description" placeholder="Task Description"></textarea>
             </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="tagSelect">Tag:</label>
-                        <select id="tagSelect" class="form-control">
-                            <option disabled selected value> -- select an option -- </option>
-                            {{#each tag}}
-                            <option value="{{this.full_name}}">{{this.full_name}}</option>
-                            {{/each}}
-                        </select>
-                        
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="tagSelect">Tag:</label>
+                <select id="tagSelect" class="form-control">
+                    <option disabled selected value> -- select an option -- </option>
+                    {{#each tag}}
+                    <option value="{{this.full_name}}">{{this.full_name}}</option>
+                    {{/each}}
+                </select>
             </div>
             <div class="form-group">
                 <label for="dueDate">Due Date:</label>
@@ -107,48 +102,7 @@
 
     </div>
 
-<!-- Modal -->
-<div id="add_tag" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-  
-      <!-- Modal content-->
-      <div class="modal-content tagContent">
-        <div class="modal-header tagHeader">
-            <h4 class="modal-title">Add Custom Tag</h4>
-          <button type="button" class="close tagClose" data-dismiss="modal">&times;</button>
-          
-        </div>
-        <div class="modal-body tagBody">
-            <div class="form-group">
-                <label for="tag_title">Tag Title:</label>
-                <input type="text" class="form-control" id="tag_title" name="tag_title" placeholder="Enter Tag Title">
-            </div>
-            <div class="form-group">
-                <label for="nickname">Nickname (optional):</label>
-                <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Enter Nickname">
-            </div>
-            <div class="form-group">
-                <label for="color">Color:</label>
-                <input type="color" class="form-control" id="color" name="color">
-            </div>
-            <div class="form-group">
-                <label for="tag_color">Alternate Color Input Style</label>
-                <select id="tag_color" class="form-control">
-                    <option value="Retrieved from DB">Blue</option> <!-- Retrieve From DB-->
-                    <option value="Retrieved from DB">Green</option>
-                    <option value="Retrieved from DB">Yellow</option>
-                </select>
-                
-            </div> 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn closeModal" data-dismiss="modal">Close</button> 
-            <button type="button" class="btn addTag" data-dismiss="modal">Add Tag</button> <!-- ADD TO DB-->
-          </div>
-      </div>
-  
-    </div>
-  </div>
+
 
 
 </body>
