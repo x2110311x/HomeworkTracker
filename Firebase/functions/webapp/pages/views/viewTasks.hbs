@@ -43,25 +43,21 @@
 {{#if section.[0]}}
     <div class="row">
         <div class="col-12 text-center"><span class="text-center sortingRow">Sorting By:</span>
-            <div class="dropdown d-inline dropdownSpacing" ><a class="btn btn-outline-primary btn-lg dropdown-toggle d-inline" aria-expanded="false" data-toggle="dropdown" role="button">{{sort}}</a>
+            <div class="dropdown d-inline dropdownSpacing" ><a class="btn sortingBtn btn-lg dropdown-toggle d-inline" aria-expanded="false" data-toggle="dropdown" role="button">{{sort}}</a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="/viewTasks?sort=Due%20Date">Due Date</a>
                     <a class="dropdown-item" href="/viewTasks?sort=Priority">Priority</a>
                     <a class="dropdown-item" href="/viewTasks?sort=Tag">Tag</a> <!--SORTING OPTIONS HERE-->
                 </div>
-            </div><button onclick="window.location.href='addTask'" class="btn btn-primary addTaskBtn" type="button" >Add Task<strong>+</strong></button>
+            </div><button onclick="window.location.href='addTask'" class="btn addTaskBtn" type="button" >Add Task<strong>+</strong></button>
         </div>
     </div>
 {{#each section}}
-    <div class="row">
-        <div class="col-md-12" style="background: rgba(140,41,41,0);">
-            <h1 class="sectionHeader">{{this.title}}</h1> <!-- LIKE "DUE TODAY" FOR EXAMPLE-->
-            <div class="progress progressBarStyle">    <!-- WE CAN WORRY ABOUT PROGRESS BAR IMPLEMENTATION LATER. MAYBE WHEN WE FINISH THE DISPLAY MILESTONE -->
-                <div class="progress-bar bg-primary progress-bar-info" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: {{this.completionPercent}}%;"><span class="sr-only">{{this.completionPercent}}%</span></div> <!--CHANGE WIDTH STYLING TO PORTRAY PROGRESS-->
-            </div>
-        </div>
 
-    </div>
+            <h1 class="sectionHeader">{{this.title}}</h1> <!-- LIKE "DUE TODAY" FOR EXAMPLE-->
+            <div class="progress progressBarBackground">    <!-- WE CAN WORRY ABOUT PROGRESS BAR IMPLEMENTATION LATER. MAYBE WHEN WE FINISH THE DISPLAY MILESTONE -->
+                <div class="progress-bar progressBarColor" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: {{this.completionPercent}}%;"><span class="sr-only">{{this.completionPercent}}%</span></div> <!--CHANGE WIDTH STYLING TO PORTRAY PROGRESS-->
+            </div>
 
     <div class="row">
 {{#each this.task}}  

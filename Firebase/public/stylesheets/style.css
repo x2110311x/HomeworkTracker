@@ -279,19 +279,36 @@ body{
   margin: 10px;
 }
 
+.sortingBtn{
+  background: #33467200;
+  border: #334672 3px solid;
+  color: #334672;
+}
+
+.sortingBtn:hover{
+  background: #33467260;
+}
+
 .addTaskBtn{
+  background: #334672;
+  color:white;
   margin: 10px;
   font-size: 20px;
 }
 
-.progressBarStyle{
+.addTaskBtn:hover{
+  background: #445fa0;
+}
+
+.progressBarBackground{
   background: rgb(118,118,118);
   border-style: none;
-  color: #334672;
   height: 15px;
   margin: 25px;
 }
-
+.progressBarColor{
+  background: #334672;
+}
 .timeBadge{
   margin-left: 10px;
 }
