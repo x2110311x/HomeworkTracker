@@ -32,7 +32,6 @@ body{
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-  
   }
   
   .topnav a:hover {
@@ -136,6 +135,10 @@ body{
 
 /* View Tasks */
 .card-title{
+    color: rgb(255,255,255);
+} 
+
+.card-subtitle{
     color: rgb(255,255,255);
 }
 
@@ -387,6 +390,57 @@ body{
   /*when navigating through the items using the arrow keys:*/
   color: #ffffff;
   background-color: #9e9e9e !important;
+}
+
+/* END */
+
+/* Datepicker */
+
+.datepicker-days table tr:hover td.day{
+  background: #596583;
+  color: #fff;
+}
+
+.datepicker-days table tr td.active.active{
+      background: #334672;
+}
+
+/* END */
+
+/* PickWeek Page */
+
+.weekCard{
+  background: #565555;
+  margin-bottom: 8px;
+}
+
+.weekCard h4{
+  margin-bottom: 12px;
+  font-size: 25px;
+}
+
+.weekCard button{
+    background: #2f4068;
+    color:white;
+}
+
+.weekCard button:hover{
+  background: #445fa0;
+}
+
+/* END */
+
+/* Freetime */
+
+.freeTimeContent h1{
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom:20px;
+}
+
+.freeTimeContent button{
+  width:40%;
+  margin: 5% 30%;
 }
 
 /* END */
