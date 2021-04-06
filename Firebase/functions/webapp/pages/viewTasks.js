@@ -60,7 +60,9 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
     var today = year + '-' + month + '-' + day;
     var upcomingDays = [];
     for (i = 0; i < 7; i++) {
-        let newDay = year + '-' + month + '-' + String(curDay.getDate() + i).padStart(2, '0');
+        var newDay = new Date(curDay);
+        newDay.setDate(newDay.getDate() + i)
+        let newDayStr =  newDay.getFullYear() + '-' + String(newDay.getMonth() + 1).padStart(2, '0') + '-' + String(newDay.getDate()).padStart(2, '0');
         upcomingDays.push(newDay);
     }
     let todayTasks = [];
