@@ -5,6 +5,7 @@ module.exports = function (admin, router) {
             var short_name = request.body.short_name;
             var color = request.body.color;
             var date_created = admin.firestore.Timestamp.now();
+            var tagId = request.tagId;
 
             const data = {
                 full_name: full_name,
@@ -15,7 +16,7 @@ module.exports = function (admin, router) {
 
             // Update a tag
             const writeResult = admin.firestore().collection('Users')
-                .doc(request.decodedClaims.uid).collection('tags').where("full_name", "==", full_name).set(data)
+                .doc(request.decodedClaims.uid).collection('tags').where(tagId).set(data)
                 .then(() => {
                     response.status(200).send("Tag successfully updated");
                     console.log("Tag has been added,", writeResult.id);
