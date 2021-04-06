@@ -7,7 +7,7 @@ function startOfWeek() {
 
     var diff = today.getDate() - today.getDay() + (today.getDay() === 0 ? -6 : 1)
 
-    var startOfWeek = new Date(date.setDate(diff));
+    var startOfWeek = new Date(date.setDate(diff + 1));
     var day = String(startOfWeek.getDate()).padStart(2, '0');
     var month = String(today.getMonth() + 1).padStart(2, '0');
     var year = String(today.getFullYear());
