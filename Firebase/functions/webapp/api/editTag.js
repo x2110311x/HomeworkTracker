@@ -1,5 +1,5 @@
 module.exports = function (admin, router) {
-    router.post("/editTag", (request, response) => {
+    router.post("/addCustTag", (request, response) => {
         if (request.signedin) {
             var full_name = request.body.full_name;
             var short_name = request.body.short_name;
@@ -13,11 +13,11 @@ module.exports = function (admin, router) {
                 date_created: date_created,
             };
 
-            // Update a tag
+            // Add a new tag
             const writeResult = admin.firestore().collection('Users')
-                .doc(request.decodedClaims.uid).collection('tags').where("full_name", "==", full_name).set(data)
+                .doc(request.decodedClaims.uid).collection('tags').add(data)
                 .then(() => {
-                    response.status(200).send("Tag successfully updated");
+                    response.status(200).send("Tag successfully added");
                     console.log("Tag has been added,", writeResult.id);
                 }).catch((error) => {
                     console.error("Error writing document: ", error);
