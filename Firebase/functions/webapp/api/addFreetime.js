@@ -1,6 +1,3 @@
-
-
-require("./addFreetime.js")(admin, router);
 // Start of week function received from the following source: https://www.w3resource.com/javascript-exercises/javascript-date-exercise-50.php
 function startOfWeek() {
     var today = new Date();
