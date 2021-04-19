@@ -21,6 +21,7 @@ module.exports = function(app){
     require("./addTag.js")(admin, app);
     require("./addTask.js")(admin, app);
     require("./editTask.js")(admin, app);
+    require("./editTag.js")(admin, app);
     require("./login.js")(admin, app);
     require("./logout.js")(admin, app);
     require("./sessionLogin.js")(admin, app);
