@@ -95,7 +95,7 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
                                 todayTasks.push(task);
                             } else if (upcomingDays.includes(task.due_date)) {
                                 laterTasks.push(task);
-                            } else if (task.due_date < today) {
+                            } else if (task.due_date < today && task.completed == false) {
                                 overDueTasks.push(task);
                             }
                         }).catch((error) => {
