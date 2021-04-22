@@ -32,7 +32,6 @@ body{
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-  
   }
   
   .topnav a:hover {
@@ -136,6 +135,10 @@ body{
 
 /* View Tasks */
 .card-title{
+    color: rgb(255,255,255);
+} 
+
+.card-subtitle{
     color: rgb(255,255,255);
 }
 
@@ -276,19 +279,36 @@ body{
   margin: 10px;
 }
 
+.sortingBtn{
+  background: #33467200;
+  border: #334672 3px solid;
+  color: #334672;
+}
+
+.sortingBtn:hover{
+  background: #33467260;
+}
+
 .addTaskBtn{
+  background: #334672;
+  color:white;
   margin: 10px;
   font-size: 20px;
 }
 
-.progressBarStyle{
+.addTaskBtn:hover{
+  background: #445fa0;
+}
+
+.progressBarBackground{
   background: rgb(118,118,118);
   border-style: none;
-  color: #334672;
   height: 15px;
   margin: 25px;
 }
-
+.progressBarColor{
+  background: #334672;
+}
 .timeBadge{
   margin-left: 10px;
 }
@@ -389,6 +409,72 @@ body{
   background-color: #9e9e9e !important;
 }
 
+/* END */
+
+/* Datepicker */
+
+.datepicker-days table tr:hover td.day{
+  background: #596583;
+  color: #fff;
+}
+
+.datepicker-days table tr td.active.active{
+      background: #334672;
+}
+
+/* END */
+
+/* PickWeek Page */
+
+.weekCard{
+  background: #565555;
+  margin-bottom: 8px;
+}
+
+.weekCard h4{
+  margin-bottom: 12px;
+  font-size: 25px;
+}
+
+.weekCard button{
+    background: #2f4068;
+    color:white;
+}
+
+.weekCard button:hover{
+  background: #445fa0;
+}
+
+/* END */
+
+/* Freetime */
+
+.freeTimeContent h1{
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom:20px;
+}
+
+.setFreeTimeBtn{
+  width:40%;
+  margin: 5% 30%;
+  background-color: #334672;
+  color:white;
+}
+
+.addedTime{
+  background: #1a6d23;
+  padding: 5px;
+  border-radius: 4px; 
+  text-align:center;
+}
+
+.addSlotBtn{
+  margin: 5% 0;
+  width:100%; 
+  background-color: #334672;
+  color:white;
+}
 /* END */
 
 /* Responsive */
