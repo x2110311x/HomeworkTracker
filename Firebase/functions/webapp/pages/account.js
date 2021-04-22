@@ -1,7 +1,7 @@
 module.exports = 
 /**
  * @description Renders the account page. If the user is signed in, it'll render the page. Otherwise, it'll redirect to the homepage
-  * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {firebase-admin} admin - Firebase admin instance 
  * @param {express} app - Our instance of Express.js
  */
 function account(admin, app) {

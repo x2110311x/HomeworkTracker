@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 module.exports = 
 /**
  * @description Retrieves the User's tags and renders the page for a user to add a task. If not signed in, redirects to the homepage.
-  * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {firebase-admin} admin - Firebase admin instance 
  * @param {express} app - Our instance of Express.js
  */
 function addTask(admin, app) {

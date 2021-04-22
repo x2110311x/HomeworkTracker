@@ -2,7 +2,7 @@ module.exports =
 /**
  * @alias delete-account
  * @description Deletes a user's account If not signed in, redirects to the homepage.
-  * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {firebase-admin} admin - Firebase admin instance 
  * @param {express} app - Our instance of Express.js
  */
 function deleteaccount(admin, app) {

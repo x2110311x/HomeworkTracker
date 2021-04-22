@@ -1,7 +1,7 @@
 module.exports = 
 /**
  * @description Retrieves the data for a task and renders the page for a user to edit a task. If task ID is not specified in the query, redirects to the view tasks page. If they're not signed in, redirects to the homepage
-  * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {firebase-admin} admin - Firebase admin instance 
  * @param {express} app - Our instance of Express.js
  */
 function editTask(admin, app) {

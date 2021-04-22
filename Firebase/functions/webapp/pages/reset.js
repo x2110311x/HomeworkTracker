@@ -1,7 +1,7 @@
 module.exports = 
 /**
  * @description Renders the password reset page
-  * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {firebase-admin} admin - Firebase admin instance 
  * @param {express} app - Our instance of Express.js
  */
 function reset(admin, app) {

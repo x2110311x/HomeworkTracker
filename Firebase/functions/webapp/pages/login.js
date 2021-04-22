@@ -1,7 +1,7 @@
 module.exports = 
 /**
  * @description Renders the login page If they're signed in, redirects to the homepage
-  * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {firebase-admin} admin - Firebase admin instance 
  * @param {express} app - Our instance of Express.js
  */
 function login(admin, app) {
