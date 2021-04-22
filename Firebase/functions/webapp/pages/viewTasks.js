@@ -65,6 +65,7 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
         let newDayStr =  newDay.getFullYear() + '-' + String(newDay.getMonth() + 1).padStart(2, '0') + '-' + String(newDay.getDate()).padStart(2, '0');
         upcomingDays.push(newDay);
     }
+    let overDueTasks = [];
     let todayTasks = [];
     let laterTasks = [];
     retrieveTasks(admin, uid, sortColumn)
@@ -90,10 +91,12 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
                             task.color = tagData.color;
                             task.tagName = tagData.full_name;
                         }).then(() => {
-                            if (data.due_date == today) {
+                            if (task.due_date == today) {
                                 todayTasks.push(task);
                             } else if (upcomingDays.includes(task.due_date)) {
                                 laterTasks.push(task);
+                            } else if (task.due_date < today && task.completed == false) {
+                                overDueTasks.push(task);
                             }
                         }).catch((error) => {
                             console.log("Can't find tag");
@@ -106,7 +109,7 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
         });
     return new Promise(resolve => {
         setTimeout(() => {
-            resolve([todayTasks, laterTasks]);
+            resolve([todayTasks, laterTasks, overDueTasks]);
         }, 2000);
     });
 }
@@ -129,6 +132,7 @@ module.exports = function (admin, app) {
                 getTaskByGeneric(admin, user.uid, chosenSort, request).then((data) => {
                     var todayTasks = data[0];
                     var laterTasks = data[1];
+                    var overDueTasks = data[2];
                     var tags = {};
 
 
@@ -136,6 +140,8 @@ module.exports = function (admin, app) {
                         getTagList(todayTasks, tags);
                     if (laterTasks.length > 0)
                         getTagList(laterTasks, tags);
+                    if (overDueTasks.length > 0)
+                        getTagList(overDueTasks, tags);
 
                     if (Object.keys(tags).length !== 0)
                         for (var tag in tags) {
@@ -150,6 +156,11 @@ module.exports = function (admin, app) {
                 getTaskByGeneric(admin, user.uid, chosenSort, request).then((data) => {
                     var todayTasks = data[0];
                     var laterTasks = data[1];
+                    var overDueTasks = data[2];
+                    if (overDueTasks.length > 0) {
+                        let section = { title: "Overdue Tasks", completionPercent: 20, task: overDueTasks };
+                        sections.push(section);
+                    }
                     if (todayTasks.length > 0) {
                         let section = { title: "Due Today", completionPercent: 20, task: todayTasks };
                         sections.push(section);
