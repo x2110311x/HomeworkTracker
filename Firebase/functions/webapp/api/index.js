@@ -4,8 +4,10 @@ const admin = require('firebase-admin');
 
 require("./addCustTag.js")(admin, router);
 require("./addTask.js")(admin, router);
+require("./addFreetime.js")(admin, router);
 require("./modifyTask.js")(admin, router);
 require("./addTagToTask.js")(admin, router);
+require("./editTag.js")(admin, router);
 require("./getTasks.js")(admin, router);
 require("./getTags.js")(admin, router);
 require("./getTag.js")(admin, router);
