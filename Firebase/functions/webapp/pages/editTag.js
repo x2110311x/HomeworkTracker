@@ -1,4 +1,10 @@
-module.exports = function (admin, app) {
+module.exports = 
+/**
+ * @description Retrieves data and renders page to edit a tag. If not signed in, redirects to the homepage.
+ * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {express} app - Our instance of Express.js
+ */
+function editTag(admin, app) {
     app.get('/editTag', (request, response) => {
         if (request.signedin) {
           //  let user = request.decodedClaims;
