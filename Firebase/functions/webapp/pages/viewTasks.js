@@ -1,4 +1,11 @@
 const fetch = require('node-fetch');
+/**
+ * @description Retrieves the edit link for a task based on its name
+ * @param {firebase-admin} admin - Firebase admin instance
+ * @param {string} name - name of the Task
+ * @param {string} uid - The user's ID
+ * @returns 
+ */
 async function getEditLink(admin, name, uid){
     var retvar = "#";
     admin.firestore().collection('Users').doc(uid).collection('tasks')
@@ -18,6 +25,12 @@ async function getEditLink(admin, name, uid){
       });
 }
 
+/**
+ * @description Sorts the tasks into arrays based on tag name
+ * @param {*} tasks 
+ * @param {*} currentTags 
+ * @returns 
+ */
 function getTagList(tasks, currentTags) {
     for (i = 0; i < tasks.length; i++)
     {
@@ -32,6 +45,12 @@ function getTagList(tasks, currentTags) {
     return currentTags
 }
 
+/**
+ * @description Sorts the tasks into arrays based on priority
+ * @param {*} tasks 
+ * @param {*} currentTags 
+ * @returns 
+ */
 function getPriorityList(tasks, currentTags) {
     for (i = 0; i < tasks.length; i++)
         if (!currentTags.hasOwnProperty(tasks[i].tagName))
@@ -42,6 +61,13 @@ function getPriorityList(tasks, currentTags) {
     return currentTags
 }
 
+/**
+ * @description Retreives the user's tasks from Firestore Cloud Database
+ * @param {firebase-admin} admin - Firebase admin instance
+ * @param {*} uid 
+ * @param {*} sortColumn 
+ * @returns 
+ */
 function retrieveTasks(admin, uid, sortColumn) {
     if (sortColumn == "tag") {
         return admin.firestore().collection('Users').doc(uid).collection('tasks').get()
@@ -49,6 +75,13 @@ function retrieveTasks(admin, uid, sortColumn) {
     return admin.firestore().collection('Users').doc(uid).collection('tasks').orderBy(sortColumn).get()
 }
 
+/**
+ * @description Retrieves tasks and sorts by due date
+ * @param {firebase-admin} admin - Firebase admin instance
+ * @param {*} uid 
+ * @param {*} sortColumn 
+ * @returns 
+ */
 async function getTaskByGeneric(admin, uid, sortColumn) {
     var curDay = new Date();
     var day = String(curDay.getDate()).padStart(2, '0');
@@ -115,7 +148,14 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
 }
 
 
-module.exports = function (admin, app) {
+module.exports = 
+
+/**
+ * @description Renders the view tasks page. Query parameter specifies the sort type. If they're not signed in, redirects to the homepage
+ * @param {firebase-admin} admin 
+ * @param {express} app - Our instance of Express.js
+ */
+function viewTasks(admin, app) {
     app.get('/viewTasks', (request, response) => {
         if (request.signedin) {
             let user = request.decodedClaims;

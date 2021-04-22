@@ -1,4 +1,10 @@
-module.exports = function (admin, app) {
+module.exports = 
+/**
+ * @description Completes the sign-in after Firebase auth grants a login token
+  * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {express} app - Our instance of Express.js
+ */
+function sessionLogin(admin, app) {
     app.get('/sessionLogin', (req, res) => {
         idToken = req.query.idToken
         // Set session expiration to 5 days.
