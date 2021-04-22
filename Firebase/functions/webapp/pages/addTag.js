@@ -1,6 +1,12 @@
 const fetch = require('node-fetch');
 
-module.exports = function (admin, app) {
+module.exports =
+/**
+ * @description Retrieves the course categories and renders the page for a user to add a tag. If not signed in, redirects to the homepage.
+  * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {express} app - Our instance of Express.js
+ */
+ function addTag(admin, app) {
     app.get('/addTag', (request, response) => {
         if (request.signedin) {
             var url = "https://homeworktracker-b9805.web.app";
