@@ -10,6 +10,7 @@ function freetime(admin, app) {
         if (request.signedin) {
             try {
             let user = request.decodedClaims;
+            var week = request.query.week;
             /*
             var searchWeek = request.week_info.text;
             searchWeek = searchWeek.split('{')[1];
@@ -52,7 +53,7 @@ function freetime(admin, app) {
 
                     });
                     */
-                    response.status(200).render('freetime', { days: day });
+                    response.status(200).render('freetime', { week: week, days: day });
                 })
             } catch (error) {
                 console.error(`Error retrieving freetime`);
