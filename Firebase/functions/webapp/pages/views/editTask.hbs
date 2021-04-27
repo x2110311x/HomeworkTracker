@@ -45,7 +45,7 @@
         <div class="card-body editCardBody">
             <h1 class="text-center card-title">{{task.name}} </h1>
             <div class="row">
-                <div class="col">
+                <div class="col-md">
                     <p class="text-center">Tag: {{task.tag}} <button class="btn btn-primary btn-sm" data-toggle="collapse" onclick="fetchTags()" data-target="#editTag"><i class="fa fa-edit" data-></i></button></p>
                     <div id="editTag" class="collapse text-center editForm">
                     <label for="tag">Tag:</label>
@@ -77,14 +77,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-md">
                     <p class="text-center">Description: {{task.description}} <button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#editDesc"><i class="fa fa-edit" data-></i></button></p>
                     <div id="editDesc" class="collapse text-center editForm">
                         <textarea  class="form-control-sm" rows="5" id="description" name="description" placeholder="Description"></textarea>
                         <button onclick="editDescription()" class="btn btn-primary btn-sm">Save Description</button>
                     </div>               
                 </div>
-                <div class="col offset-xl-0">
+                <div class="col-md offset-xl-0">
                     <p class="text-center">Estimated time to Complete: {{task.estTime}} Minutes <button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#editTime"><i class="fa fa-edit" data-></i></button></p>
                     <div id="editTime" class="collapse text-center editForm">
                         <input type="number" class="form-control-sm" id="estTime" name="estTime" min="1" max="10000" placeholder="Estimated Time">
@@ -93,14 +93,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-md">
                     <p class="text-center">Due Date: {{task.dueDate}} <button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#editDueDate"><i class="fa fa-edit" data-></i></button></p>
                     <div id="editDueDate" class="collapse text-center editForm">
                         <input type="date" class="form-control-sm" id="dueDate" name="dueDate">
                         <button onclick="editDueDate()" class="btn btn-primary btn-sm">Save Due Date</button>
                     </div>  
                 </div>
-                <div class="col offset-xl-0">
+                <div class="col-md offset-xl-0">
                     <p class="text-center">Priority: {{task.priority}} <button class="btn btn-primary btn-sm" data-toggle="collapse" data-target="#editPriority"><i class="fa fa-edit" data-></i></button></p>
                     <div id="editPriority" class="collapse text-center editForm">
                         <input type="number" class="form-control-sm" id="priority" name="priority" min="1" max="10" placeholder="priority">

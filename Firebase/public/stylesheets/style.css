@@ -57,7 +57,7 @@ body{
 
  
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 900px) {
     .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
       float: right;
@@ -65,7 +65,7 @@ body{
     }
   }
   
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 900px) {
     .topnav.responsive {position: relative;}
     .topnav.responsive .icon {
       position: absolute;
@@ -485,6 +485,13 @@ body{
       margin: 20% 25%;
   }
 
+
+
+
+.dueDate{
+    color: rgb(255,255,255);
+    margin-bottom: 8px;
+}
 }
 
 @media screen and (max-width: 1000px) {
@@ -505,6 +512,20 @@ body{
     margin: 5% 0;
   }
 
+  .card{
+    margin-bottom: 5%;
+  }
+  
+  .editCard{
+    width: 95%;
+    margin: 5% 2.5%;
+  }
+
+  .editFormBottomButtons{
+    width: 95%;
+    margin: 5% 2.5%;
+  }
+
 }
 
 @media screen and (max-width: 520px) {
@@ -516,6 +537,23 @@ body{
   .addTaskContent{
     width: 90%;
     margin: 5% 5%;
+  }
+
+  .sectionHeader{
+    font-size: 26px;
+  }
+
+
+  .headingRow a{
+    font-size: small;
+  }
+
+  .headingRow span{
+    font-size: normal;
+  }
+  
+  .headingRow button{
+    font-size: small;
   }
 
 
