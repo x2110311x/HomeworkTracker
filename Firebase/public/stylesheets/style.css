@@ -310,6 +310,7 @@ body{
 
 .addTaskBtn{
   background: #334672;
+  border: #334672 3px solid;
   color:white;
   margin: 10px;
   font-size: 20px;
