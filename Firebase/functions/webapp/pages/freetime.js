@@ -22,36 +22,11 @@ function freetime(admin, app) {
             searchString += "2021";
             */
             var dateTmp = "04-05-2021"
-            var day = {
-                Monday:
-                    [
-                        { start: "9:00", end: "10:00" },
-                        { start: "12:00", end: "1:00" },
-                        { start: "3:00", end: "4:00" },
-                        { start: "4:00", end: "5:00" },
-                        { start: "6:00", end: "7:00" },
-                        { start: "9:00", end: "10:00" }
-                    ],
-                Tuesday:
-                    [
-                        { start: "9:00", end: "10:00" }
-                    ],
-                Thursday:
-                    [
-                        { start: "6:00", end: "7:00" },
-                        { start: "9:00", end: "10:00" }
-                    ]
-                };
 
-            return admin.firestore().collection('Users').doc(user.uid).collection('freetime').doc(dateTmp).get()
-                .then(snapshot => {
-                    /*
-                     foreach((item) => {
-                        const data = item.data();
-                        day = data;
-
-                    });
-                    */
+            admin.firestore().collection('Users').doc(user.uid).collection('freetime').doc(dateTmp).get()
+                .then((snapshot) => {
+                    var day = snapshot.data();
+                    console.log(day);
                     response.status(200).render('freetime', { days: day });
                 })
             } catch (error) {
