@@ -111,5 +111,5 @@ Other resources used in the making of this project.
 [stars-url]: https://github.com/x2110311x/HomeworkTracker/stargazers
 [issues-shield]: https://img.shields.io/github/issues/x2110311x/HomeworkTracker.svg?style=for-the-badge
 [issues-url]: https://github.com/x2110311x/HomeworkTracker/issues
-[license-shield]: https://img.shields.io/github/license/x2110311x/HomeworkTracker.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/x2110311x/HomeworkTracker?style=for-the-badge
 [license-url]: https://github.com/x2110311x/HomeworkTracker/blob/main/LICENSE.txt
