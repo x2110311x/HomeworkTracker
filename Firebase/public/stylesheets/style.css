@@ -109,7 +109,7 @@ body{
 .acctContent{
     width: 30%;
     margin-left: 35%;
-    margin-top: 20%;
+    margin-top: 10%;
 }
 
 .acctContent h2{
@@ -195,6 +195,15 @@ body{
 }
 
 .addTaskContent h2{
+  text-align:center;
+}
+
+.editTagContent{
+  width: 60%;
+  margin: 5% 20%;
+}
+
+.editTagContent h2{
   text-align:center;
 }
 
@@ -509,7 +518,10 @@ body{
       width: 80%;
       margin: 5% 10%;
   }
-
+  .editTagContent{
+    width: 80%;
+    margin: 5% 10%;
+}
 }
 
 @media screen and (max-width: 776px) {
@@ -518,6 +530,11 @@ body{
       margin: 20% 20%;
   }
   .addTaskContent{
+    width: 100%;
+    margin: 5% 0;
+  }
+  
+  .editTagContent{
     width: 100%;
     margin: 5% 0;
   }
@@ -545,6 +562,11 @@ body{
   }
 
   .addTaskContent{
+    width: 90%;
+    margin: 5% 5%;
+  }
+
+  .editTagContent{
     width: 90%;
     margin: 5% 5%;
   }

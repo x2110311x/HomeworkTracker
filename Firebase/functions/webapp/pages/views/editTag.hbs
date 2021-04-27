@@ -20,10 +20,10 @@
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
   <link rel="manifest" href="images/favicon/site.webmanifest">
 
-  <script src="scripts/editTasks.js"></script>
+  <script src="scripts/editTags.js"></script>
 </head>
  <body>
-    <p id="taskID" hidden>{{task.id}}</p>
+    <p id="tagID" hidden>{{tag.id}}</p>
     <div class="topnav" id="myTopnav">
 
     <a class="active" id="HT" href="/"><img src="images\favicon\android-chrome-192x192.png" alt="HomeworkTracker" width="41"> Home</a>
@@ -41,6 +41,7 @@
 
 
 <div class="container">
+    {{#if tag}}
     <div class="card editCard">
         <div class="card-body editCardBody">
                     <p class="text-center">Title: {{tag.full_name}} <button class="btn btn-primary btn-sm" data-toggle="collapse" onclick="fetchTags()" data-target="#editFullName"><i class="fa fa-edit" data-></i></button></p>
@@ -77,6 +78,21 @@
 
         </div>
     </div>
+    {{/if}}
+    {{#if tags}}
+    <div class="editTagContent">
+        <h2> Edit a Tag:</h2>
+        <div class="form-group">
+            <label for="tagSelect">Tag:</label>
+            <select id="tagSelect" class="form-control" onchange="loadTagEdit()">
+                <option disabled selected value> -- select an option -- </option>
+                {{#each tags}}
+                <option value="{{this.full_name}}">{{this.full_name}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+    {{/if}}
     <div id="alertbox" hidden class="alert fade show" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
