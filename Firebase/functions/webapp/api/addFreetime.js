@@ -46,11 +46,11 @@ module.exports = function (admin, router) {
             const writeResult = admin.firestore().collection('Users')
                 .doc(request.decodedClaims.uid).collection('freetime').doc(weekStart).set(data)
             .then(() => {
-                response.status(200).send("Task successfully added");
-                console.log("Task has been added,", writeResult.id);
+                response.status(200).send("FreeTime successfully added");
+                console.log("FreeTime has been added,", writeResult.id);
             }).catch((error) => {
-                console.error("Error writing document: ", error);
-                response.status(500).send("Error writing document: ", error.message);
+                console.error(`Error adding FreeTime: ${error}`);
+                response.status(500).send(`Error adding FreeTime: ${error}`);
             });
         } else {
             response.status(403).send("Unauthorized");
