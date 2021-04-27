@@ -7,7 +7,7 @@ module.exports =
 function pickWeek(admin, app) {
     app.get('/pickWeek', (request, response) => {
         if (request.signedin) {     
-                    response.status(200).render('pickWeek');
+            response.status(200).render('pickWeek');
         } else {
             response.redirect('/');
         }

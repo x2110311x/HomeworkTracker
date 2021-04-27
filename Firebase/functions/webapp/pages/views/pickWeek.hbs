@@ -61,23 +61,17 @@
                         </button>    
                     </form>  
                 </div>
+
                 <div class="col-sm-5 offset-sm-2">
-                        <h4 class="tagHeader">View/Edit Created Weeks</h4>
+                <h4 class="tagHeader">View/Edit Created Weeks</h4>
+                {{#each week}}
                     <div class="card weekCard">
                         <div class="card-body">
-                            <h4 class="card-title">March 29 - April 4</h4><button class="btn btn-sm" type="button" onclick="window.location.href='/freetime'">Edit/View</button>
+                            <h4 class="card-title">{{this.daterange}}</h4>
+                            <button class="btn btn-sm" type="button" onclick="window.location.href='/freetime?week={{this.weekstart}}'">Edit/View</button>
                         </div>
                     </div>
-                    <div class="card weekCard">
-                        <div class="card-body">
-                            <h4 class="card-title">April 5- April 11</h4><button class="btn btn-sm" type="button" onclick="window.location.href='/freetime'">Edit/View</button>
-                        </div>
-                    </div>
-                    <div class="card weekCard">
-                        <div class="card-body">
-                            <h4 class="card-title">April 12- April 18</h4><button class="btn btn-sm" type="button" onclick="window.location.href='/freetime'">Edit/View</button>
-                        </div>
-                    </div>                   
+                {{/each}}                 
                 </div>
             </div> 
  
