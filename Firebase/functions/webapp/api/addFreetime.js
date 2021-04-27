@@ -28,6 +28,8 @@ module.exports = function (admin, router) {
             var saturday = [];
             var sunday = [];
 
+            //foreach(time in request.id.MON_times)
+
 
             const data = {
                 monday: monday,
