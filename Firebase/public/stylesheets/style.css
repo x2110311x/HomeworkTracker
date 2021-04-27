@@ -233,6 +233,16 @@ body{
   width:80%;
   margin-left: 10%;
 }
+.editTagBtn{
+  background-color: #9e9226;
+  color:white;
+  width:80%;
+  margin-left: 10%;
+}
+
+.editTagBtn:hover{
+  color: rgb(192, 192, 192);
+}
 
 /* END */
 
@@ -259,7 +269,7 @@ body{
 
 .editFormBottomButtons{
   width: 50%;
-  margin: 5% 25%;
+  margin: 0 25%;
 }
 
 
