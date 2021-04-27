@@ -1,0 +1,21 @@
+.login{
+    background-color: #334672;
+    color:white;
+    width:80%;
+    margin-left: 10%;
+}
+
+.loginContent{
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 20%;
+}
+
+.loginContent h2{
+    text-align:center;
+}
+
+.linkStyle{
+    color:#334672;
+}
+

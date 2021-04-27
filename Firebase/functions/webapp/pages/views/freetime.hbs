@@ -1,0 +1,459 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> FreeTime - Homework Tracker</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+
+  <!--NAV LINKS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="scripts/navToggle.js"></script>
+  <link rel="stylesheet" href="stylesheets/style.css">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="images/favicon/site.webmanifest">
+
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+
+    <a class="active" id="HT" href="/"><img src="images\favicon\android-chrome-192x192.png" alt="HomeworkTracker" width="41"> Home</a>
+    <!-- Navigation links (hidden by default) -->
+    <a href="/viewTasks">View Tasks</a>
+    <a href="/addTask">Add a Task</a>
+    <a href="/addTag">Add a Tag</a>
+    <a href="/pickWeek">FreeTime</a>
+    <a href="/account">View Account Details</a>
+    <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+    <a href="javascript:void(0);" class="icon" onclick="navToggle()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+<div class="container">
+    <div class="freeTimeContent">
+        <h1>Week of: <strong>{{week}}</strong></h1>
+        <p style="text-align: center;">Let's add in some <strong>FreeTime</strong> slots for you to work on your tasks</p>
+        <div class="row">
+            <div class="col-lg" style="text-align: center;">
+                <p>Monday</p>
+                {{#if days.Monday}}
+                {{#each days.Monday}}
+                <p class="addedTime" id="MON_times">{{this.start}}-{{this.end}}</p>
+                {{/each}}
+                {{/if}}
+                <label for="MON_start_time">Start Time</label>
+                <select class="form-control form-control-sm" id="MON_start_time" style="margin-bottom: 5px;">
+                    <option value="6a">6:00 AM</option>
+                    <option value="7a">7:00 AM</option>
+                    <option value="8a" selected="">8:00 AM</option>
+                    <option value="9a">9:00 AM</option>
+                    <option value="10a">10:00 AM</option>
+                    <option value="11a">11:00 AM</option>
+                    <option value="12p">12:00 PM</option>
+                    <option value="1p">1:00 PM</option>
+                    <option value="2p">2:00 PM</option>
+                    <option value="3p">3:00 PM</option>
+                    <option value="4p">4:00 PM</option>
+                    <option value="5p">5:00 PM</option>
+                    <option value="6p">6:00 PM</option>
+                    <option value="7p">7:00 PM</option>
+                    <option value="8p">8:00 PM</option>
+                    <option value="9p">9:00 PM</option>
+                    <option value="10p">10:00 PM</option>
+                    <option value="11p">11:00 PM</option>
+                    <option value="12a">12:00 PM</option>
+                </select>
+
+                <label for="MON_end_time">End Time</label>
+                <select class="form-control form-control-sm" id="MON_end_time" style="margin-bottom: 8px;">
+                    <option value="6a">6:00 AM</option>
+                    <option value="7a">7:00 AM</option>
+                    <option value="8a" selected="">8:00 AM</option>
+                    <option value="9a">9:00 AM</option>
+                    <option value="10a">10:00 AM</option>
+                    <option value="11a">11:00 AM</option>
+                    <option value="12p">12:00 PM</option>
+                    <option value="1p">1:00 PM</option>
+                    <option value="2p">2:00 PM</option>
+                    <option value="3p">3:00 PM</option>
+                    <option value="4p">4:00 PM</option>
+                    <option value="5p">5:00 PM</option>
+                    <option value="6p">6:00 PM</option>
+                    <option value="7p">7:00 PM</option>
+                    <option value="8p">8:00 PM</option>
+                    <option value="9p">9:00 PM</option>
+                    <option value="10p">10:00 PM</option>
+                    <option value="11p">11:00 PM</option>
+                    <option value="12a">12:00 PM</option>
+                </select>
+
+
+                <button class="btn btn-sm addSlotBtn" type="button">Add Slot</button>
+            </div>
+            <div class="col-lg" style="text-align: center;">
+                <p>Tuesday</p>
+
+                {{#if days.Tuesday}}
+                {{#each days.Tuesday}}
+                <p class="addedTime" id="MON_times">{{this.start}}-{{this.end}}</p>
+                {{/each}}
+                {{/if}}
+
+                <label for="TUE_start_time">Start Time</label>
+                <select class="form-control form-control-sm" id="MON_start_time" style="margin-bottom: 5px;">
+                    <option value="6a">6:00 AM</option>
+                    <option value="7a">7:00 AM</option>
+                    <option value="8a" selected="">8:00 AM</option>
+                    <option value="9a">9:00 AM</option>
+                    <option value="10a">10:00 AM</option>
+                    <option value="11a">11:00 AM</option>
+                    <option value="12p">12:00 PM</option>
+                    <option value="1p">1:00 PM</option>
+                    <option value="2p">2:00 PM</option>
+                    <option value="3p">3:00 PM</option>
+                    <option value="4p">4:00 PM</option>
+                    <option value="5p">5:00 PM</option>
+                    <option value="6p">6:00 PM</option>
+                    <option value="7p">7:00 PM</option>
+                    <option value="8p">8:00 PM</option>
+                    <option value="9p">9:00 PM</option>
+                    <option value="10p">10:00 PM</option>
+                    <option value="11p">11:00 PM</option>
+                    <option value="12a">12:00 PM</option>
+                </select>
+
+                <label for="TUE_end_time">End Time</label>
+                <select class="form-control form-control-sm" id="MON_end_time" style="margin-bottom: 8px;">
+                    <option value="6a">6:00 AM</option>
+                    <option value="7a">7:00 AM</option>
+                    <option value="8a" selected="">8:00 AM</option>
+                    <option value="9a">9:00 AM</option>
+                    <option value="10a">10:00 AM</option>
+                    <option value="11a">11:00 AM</option>
+                    <option value="12p">12:00 PM</option>
+                    <option value="1p">1:00 PM</option>
+                    <option value="2p">2:00 PM</option>
+                    <option value="3p">3:00 PM</option>
+                    <option value="4p">4:00 PM</option>
+                    <option value="5p">5:00 PM</option>
+                    <option value="6p">6:00 PM</option>
+                    <option value="7p">7:00 PM</option>
+                    <option value="8p">8:00 PM</option>
+                    <option value="9p">9:00 PM</option>
+                    <option value="10p">10:00 PM</option>
+                    <option value="11p">11:00 PM</option>
+                    <option value="12a">12:00 PM</option>
+                </select>
+
+
+                <button class="btn btn-sm addSlotBtn" type="button">Add Slot</button>
+            </div>
+            <div class="col-lg" style="text-align: center;">
+                <p>Wednesday</p>
+
+                {{#if days.Wednesday}}
+                {{#each days.Wednesday}}
+                <p class="addedTime" id="MON_times">{{this.start}}-{{this.end}}</p>
+                {{/each}}
+                {{/if}}
+
+                <label for="WED_start_time">Start Time</label>
+                <select class="form-control form-control-sm" id="MON_start_time" style="margin-bottom: 5px;">
+                    <option value="6a">6:00 AM</option>
+                    <option value="7a">7:00 AM</option>
+                    <option value="8a" selected="">8:00 AM</option>
+                    <option value="9a">9:00 AM</option>
+                    <option value="10a">10:00 AM</option>
+                    <option value="11a">11:00 AM</option>
+                    <option value="12p">12:00 PM</option>
+                    <option value="1p">1:00 PM</option>
+                    <option value="2p">2:00 PM</option>
+                    <option value="3p">3:00 PM</option>
+                    <option value="4p">4:00 PM</option>
+                    <option value="5p">5:00 PM</option>
+                    <option value="6p">6:00 PM</option>
+                    <option value="7p">7:00 PM</option>
+                    <option value="8p">8:00 PM</option>
+                    <option value="9p">9:00 PM</option>
+                    <option value="10p">10:00 PM</option>
+                    <option value="11p">11:00 PM</option>
+                    <option value="12a">12:00 PM</option>
+                </select>
+
+                <label for="WED_end_time">End Time</label>
+                <select class="form-control form-control-sm" id="MON_end_time" style="margin-bottom: 8px;">
+                    <option value="6a">6:00 AM</option>
+                    <option value="7a">7:00 AM</option>
+                    <option value="8a" selected="">8:00 AM</option>
+                    <option value="9a">9:00 AM</option>
+                    <option value="10a">10:00 AM</option>
+                    <option value="11a">11:00 AM</option>
+                    <option value="12p">12:00 PM</option>
+                    <option value="1p">1:00 PM</option>
+                    <option value="2p">2:00 PM</option>
+                    <option value="3p">3:00 PM</option>
+                    <option value="4p">4:00 PM</option>
+                    <option value="5p">5:00 PM</option>
+                    <option value="6p">6:00 PM</option>
+                    <option value="7p">7:00 PM</option>
+                    <option value="8p">8:00 PM</option>
+                    <option value="9p">9:00 PM</option>
+                    <option value="10p">10:00 PM</option>
+                    <option value="11p">11:00 PM</option>
+                    <option value="12a">12:00 PM</option>
+                </select>
+
+
+                <button class="btn btn-sm addSlotBtn" type="button">Add Slot</button>
+            </div>
+            <div class="col-lg" style="text-align: center;">
+                <p>Thursday</p>
+                {{#if days.Thursday}}
+                {{#each days.Thursday}}
+                <p class="addedTime" id="MON_times">{{this.start}}-{{this.end}}</p>
+                {{/each}}
+                {{/if}}
+
+                <label for="THUR_start_time">Start Time</label>
+                <select class="form-control form-control-sm" id="MON_start_time" style="margin-bottom: 5px;">
+                    <option value="6a">6:00 AM</option>
+                    <option value="7a">7:00 AM</option>
+                    <option value="8a" selected="">8:00 AM</option>
+                    <option value="9a">9:00 AM</option>
+                    <option value="10a">10:00 AM</option>
+                    <option value="11a">11:00 AM</option>
+                    <option value="12p">12:00 PM</option>
+                    <option value="1p">1:00 PM</option>
+                    <option value="2p">2:00 PM</option>
+                    <option value="3p">3:00 PM</option>
+                    <option value="4p">4:00 PM</option>
+                    <option value="5p">5:00 PM</option>
+                    <option value="6p">6:00 PM</option>
+                    <option value="7p">7:00 PM</option>
+                    <option value="8p">8:00 PM</option>
+                    <option value="9p">9:00 PM</option>
+                    <option value="10p">10:00 PM</option>
+                    <option value="11p">11:00 PM</option>
+                    <option value="12a">12:00 PM</option>
+                </select>
+
+                <label for="THUR_end_time">End Time</label>
+                <select class="form-control form-control-sm" id="MON_end_time" style="margin-bottom: 8px;">
+                    <option value="6a">6:00 AM</option>
+                    <option value="7a">7:00 AM</option>
+                    <option value="8a" selected="">8:00 AM</option>
+                    <option value="9a">9:00 AM</option>
+                    <option value="10a">10:00 AM</option>
+                    <option value="11a">11:00 AM</option>
+                    <option value="12p">12:00 PM</option>
+                    <option value="1p">1:00 PM</option>
+                    <option value="2p">2:00 PM</option>
+                    <option value="3p">3:00 PM</option>
+                    <option value="4p">4:00 PM</option>
+                    <option value="5p">5:00 PM</option>
+                    <option value="6p">6:00 PM</option>
+                    <option value="7p">7:00 PM</option>
+                    <option value="8p">8:00 PM</option>
+                    <option value="9p">9:00 PM</option>
+                    <option value="10p">10:00 PM</option>
+                    <option value="11p">11:00 PM</option>
+                    <option value="12a">12:00 PM</option>
+                </select>
+
+
+                <button class="btn btn-sm addSlotBtn" type="button">Add Slot</button>
+            </div>
+            <div class="col-lg" style="text-align: center;">
+                <p>Friday</p>
+                {{#if days.Friday}}
+                {{#each days.Friday}}
+                <p class="addedTime" id="MON_times">{{this.start}}-{{this.end}}</p>
+                {{/each}}
+                {{/if}}
+
+                <label for="FRI_start_time">Start Time</label>
+                <select class="form-control form-control-sm" id="MON_start_time" style="margin-bottom: 5px;">
+                    <option value="6a">6:00 AM</option>
+                    <option value="7a">7:00 AM</option>
+                    <option value="8a" selected="">8:00 AM</option>
+                    <option value="9a">9:00 AM</option>
+                    <option value="10a">10:00 AM</option>
+                    <option value="11a">11:00 AM</option>
+                    <option value="12p">12:00 PM</option>
+                    <option value="1p">1:00 PM</option>
+                    <option value="2p">2:00 PM</option>
+                    <option value="3p">3:00 PM</option>
+                    <option value="4p">4:00 PM</option>
+                    <option value="5p">5:00 PM</option>
+                    <option value="6p">6:00 PM</option>
+                    <option value="7p">7:00 PM</option>
+                    <option value="8p">8:00 PM</option>
+                    <option value="9p">9:00 PM</option>
+                    <option value="10p">10:00 PM</option>
+                    <option value="11p">11:00 PM</option>
+                    <option value="12a">12:00 PM</option>
+                </select>
+
+                <label for="FRI_end_time">End Time</label>
+                <select class="form-control form-control-sm" id="MON_end_time" style="margin-bottom: 8px;">
+                    <option value="6a">6:00 AM</option>
+                    <option value="7a">7:00 AM</option>
+                    <option value="8a" selected="">8:00 AM</option>
+                    <option value="9a">9:00 AM</option>
+                    <option value="10a">10:00 AM</option>
+                    <option value="11a">11:00 AM</option>
+                    <option value="12p">12:00 PM</option>
+                    <option value="1p">1:00 PM</option>
+                    <option value="2p">2:00 PM</option>
+                    <option value="3p">3:00 PM</option>
+                    <option value="4p">4:00 PM</option>
+                    <option value="5p">5:00 PM</option>
+                    <option value="6p">6:00 PM</option>
+                    <option value="7p">7:00 PM</option>
+                    <option value="8p">8:00 PM</option>
+                    <option value="9p">9:00 PM</option>
+                    <option value="10p">10:00 PM</option>
+                    <option value="11p">11:00 PM</option>
+                    <option value="12a">12:00 PM</option>
+                </select>
+
+
+                <button class="btn btn-sm addSlotBtn" type="button">Add Slot</button>
+            </div>
+            <div class="col-lg" style="text-align: center;">
+                <p>Saturday</p>
+                {{#if days.Saturday}}
+                {{#each days.Satday}}
+                <p class="addedTime" id="MON_times">{{this.start}}-{{this.end}}</p>
+                {{/each}}
+                {{/if}}
+
+                <label for="SAT_start_time">Start Time</label>
+                <select class="form-control form-control-sm" id="MON_start_time" style="margin-bottom: 5px;">
+                    <option value="6a">6:00 AM</option>
+                    <option value="7a">7:00 AM</option>
+                    <option value="8a" selected="">8:00 AM</option>
+                    <option value="9a">9:00 AM</option>
+                    <option value="10a">10:00 AM</option>
+                    <option value="11a">11:00 AM</option>
+                    <option value="12p">12:00 PM</option>
+                    <option value="1p">1:00 PM</option>
+                    <option value="2p">2:00 PM</option>
+                    <option value="3p">3:00 PM</option>
+                    <option value="4p">4:00 PM</option>
+                    <option value="5p">5:00 PM</option>
+                    <option value="6p">6:00 PM</option>
+                    <option value="7p">7:00 PM</option>
+                    <option value="8p">8:00 PM</option>
+                    <option value="9p">9:00 PM</option>
+                    <option value="10p">10:00 PM</option>
+                    <option value="11p">11:00 PM</option>
+                    <option value="12a">12:00 PM</option>
+                </select>
+
+                <label for="SAT_end_time">End Time</label>
+                <select class="form-control form-control-sm" id="MON_end_time" style="margin-bottom: 8px;">
+                    <option value="6a">6:00 AM</option>
+                    <option value="7a">7:00 AM</option>
+                    <option value="8a" selected="">8:00 AM</option>
+                    <option value="9a">9:00 AM</option>
+                    <option value="10a">10:00 AM</option>
+                    <option value="11a">11:00 AM</option>
+                    <option value="12p">12:00 PM</option>
+                    <option value="1p">1:00 PM</option>
+                    <option value="2p">2:00 PM</option>
+                    <option value="3p">3:00 PM</option>
+                    <option value="4p">4:00 PM</option>
+                    <option value="5p">5:00 PM</option>
+                    <option value="6p">6:00 PM</option>
+                    <option value="7p">7:00 PM</option>
+                    <option value="8p">8:00 PM</option>
+                    <option value="9p">9:00 PM</option>
+                    <option value="10p">10:00 PM</option>
+                    <option value="11p">11:00 PM</option>
+                    <option value="12a">12:00 PM</option>
+                </select>
+
+
+                <button class="btn btn-sm addSlotBtn" type="button">Add Slot</button>
+            </div>
+            <div class="col-lg" style="text-align: center;">
+                <p>Sunday</p>
+                {{#if days.Sunday}}
+                {{#each days.Sunday}}
+                <p class="addedTime" id="MON_times">{{this.start}}-{{this.end}}</p>
+                {{/each}}
+                {{/if}}
+
+                <label for="SUN_start_time">Start Time</label>
+                <select class="form-control form-control-sm" id="MON_start_time" style="margin-bottom: 5px;">
+                    <option value="6a">6:00 AM</option>
+                    <option value="7a">7:00 AM</option>
+                    <option value="8a" selected="">8:00 AM</option>
+                    <option value="9a">9:00 AM</option>
+                    <option value="10a">10:00 AM</option>
+                    <option value="11a">11:00 AM</option>
+                    <option value="12p">12:00 PM</option>
+                    <option value="1p">1:00 PM</option>
+                    <option value="2p">2:00 PM</option>
+                    <option value="3p">3:00 PM</option>
+                    <option value="4p">4:00 PM</option>
+                    <option value="5p">5:00 PM</option>
+                    <option value="6p">6:00 PM</option>
+                    <option value="7p">7:00 PM</option>
+                    <option value="8p">8:00 PM</option>
+                    <option value="9p">9:00 PM</option>
+                    <option value="10p">10:00 PM</option>
+                    <option value="11p">11:00 PM</option>
+                    <option value="12a">12:00 PM</option>
+                </select>
+
+                <label for="SUN_end_time">End Time</label>
+                <select class="form-control form-control-sm" id="MON_end_time" style="margin-bottom: 8px;">
+                    <option value="6a">6:00 AM</option>
+                    <option value="7a">7:00 AM</option>
+                    <option value="8a" selected="">8:00 AM</option>
+                    <option value="9a">9:00 AM</option>
+                    <option value="10a">10:00 AM</option>
+                    <option value="11a">11:00 AM</option>
+                    <option value="12p">12:00 PM</option>
+                    <option value="1p">1:00 PM</option>
+                    <option value="2p">2:00 PM</option>
+                    <option value="3p">3:00 PM</option>
+                    <option value="4p">4:00 PM</option>
+                    <option value="5p">5:00 PM</option>
+                    <option value="6p">6:00 PM</option>
+                    <option value="7p">7:00 PM</option>
+                    <option value="8p">8:00 PM</option>
+                    <option value="9p">9:00 PM</option>
+                    <option value="10p">10:00 PM</option>
+                    <option value="11p">11:00 PM</option>
+                    <option value="12a">12:00 PM</option>
+                </select>
+
+
+                <button class="btn btn-sm addSlotBtn" type="button">Add Slot</button>
+            </div>
+        </div>
+
+ 
+
+        <button class="btn setFreeTimeBtn">Set Freetime</button>
+    </div> <!--END FREETIME CONTENT DIV-->
+</div> <!--END CONTAINER -->
+
+
+</body>
+</html>
+
+
+
+       
+   
+    

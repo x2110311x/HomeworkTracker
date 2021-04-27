@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add a Task - Homework Tracker</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   <!--NAV LINKS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="scripts/navToggle.js"></script>
+  <link rel="stylesheet" href="stylesheets/style.css">
+
+  <script src="scripts/tasks.js"></script>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="images/favicon/site.webmanifest">
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+
+    <a class="active" id="HT" href="/"><img src="images\favicon\android-chrome-192x192.png" alt="HomeworkTracker" width="41"> Home</a>
+    <!-- Navigation links (hidden by default) -->
+    <a href="/viewTasks">View Tasks</a>
+    <a href="/addTask">Add a Task</a>
+    <a href="/addTag">Add a Tag</a>
+    <a href="/pickWeek">FreeTime</a>
+    <a href="/account">View Account Details</a>
+    <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+    <a href="javascript:void(0);" class="icon" onclick="navToggle()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+    <div class="container">
+        <div class="addTaskContent">
+            <h2>
+                Add a Task: 
+            </h2>
+            <div class="form-group">
+                <label for="name">Task Title:</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Task Title" required="required">
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea  class="form-control" rows="5" id="description" name="description" placeholder="Task Description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="tagSelect">Tag:</label>
+                <select id="tagSelect" class="form-control">
+                    <option disabled selected value> -- select an option -- </option>
+                    {{#each tag}}
+                    <option value="{{this.full_name}}">{{this.full_name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dueDate">Due Date:</label>
+                <input type="date" class="form-control" id="dueDate" name="dueDate">
+            </div> 
+            <div class="form-group">
+                <label for="priority">Priority Level (1-10):</label>
+                <input type="number" class="form-control" id="priority" name="priority" min="1" max="10">
+            </div> 
+            <div class="form-group">
+                <label for="estTime">Estimated Time to Completion (minutes):</label>
+                <input type="number" class="form-control" id="estTime" name="estTime" min="1" max="10000">
+            </div> 
+  
+            
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="scheduledTimeStart">Begin Task By:</label>
+                        <input type="date" class="form-control" id="scheduledTimeStart" name="scheduledTimeStart">
+                    </div> 
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="scheduledTimeEnd">End Task By:</label>
+                        <input type="date" class="form-control" id="scheduledTimeEnd" name="scheduledTimeEnd">
+                    </div> 
+                </div>
+            </div>
+                <div id="alertbox" hidden class="alert fade show" role="alert">
+                    
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <button onclick="addTask()" class="btn blueBtn"> <!-- ADD TO DB-->
+                Add Task
+            </button>
+            <br>
+
+        </div>
+
+    </div>
+
+
+
+
+</body>
+</html>

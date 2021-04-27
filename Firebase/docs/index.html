@@ -1,0 +1,3794 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset='utf-8'>
+  <title>Homework Tracker  | Documentation</title>
+  <meta name='description' content='Web app that allows users to visualize all their upcoming tasks with each due date as well as a personally made priority listing'>
+  <meta name='viewport' content='width=device-width,initial-scale=1'>
+  <link href='assets/bass.css' rel='stylesheet'>
+  <link href='assets/style.css' rel='stylesheet'>
+  <link href='assets/github.css' rel='stylesheet'>
+  <link href='assets/split.css' rel='stylesheet'>
+</head>
+<body class='documentation m0'>
+    <div class='flex'>
+      <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
+        <div class='py1 px2'>
+          <h3 class='mb0 no-anchor'>Homework Tracker</h3>
+          <div class='mb1'><code></code></div>
+          <input
+            placeholder='Filter'
+            id='filter-input'
+            class='col12 block input'
+            spellcheck='false'
+            autocapitalize='off'
+            autocorrect='off'
+            type='text' />
+          <div id='toc'>
+            <ul class='list-reset h5 py1-ul'>
+              
+                
+                <li><a
+                  href='#pages'
+                  class="h5 bold black caps toggle-sibling">
+                  Pages
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  <ul class='list-reset py1-ul pl1'>
+                    <li class='h5'><span>Static members</span></li>
+                    
+                      <li><a
+                        href='#account'
+                        class='regular pre-open'>
+                        .account
+                      </a></li>
+                    
+                      <li><a
+                        href='#addtag'
+                        class='regular pre-open'>
+                        .addTag
+                      </a></li>
+                    
+                      <li><a
+                        href='#addtask'
+                        class='regular pre-open'>
+                        .addTask
+                      </a></li>
+                    
+                      <li><a
+                        href='#delete-account'
+                        class='regular pre-open'>
+                        .delete-account
+                      </a></li>
+                    
+                      <li><a
+                        href='#edittag'
+                        class='regular pre-open'>
+                        .editTag
+                      </a></li>
+                    
+                      <li><a
+                        href='#edittask'
+                        class='regular pre-open'>
+                        .editTask
+                      </a></li>
+                    
+                      <li><a
+                        href='#freetime'
+                        class='regular pre-open'>
+                        .freetime
+                      </a></li>
+                    
+                      <li><a
+                        href='#expressapp'
+                        class='regular pre-open'>
+                        .expressapp
+                      </a></li>
+                    
+                      <li><a
+                        href='#login'
+                        class='regular pre-open'>
+                        .login
+                      </a></li>
+                    
+                      <li><a
+                        href='#logout'
+                        class='regular pre-open'>
+                        .logout
+                      </a></li>
+                    
+                      <li><a
+                        href='#pickweek'
+                        class='regular pre-open'>
+                        .pickWeek
+                      </a></li>
+                    
+                      <li><a
+                        href='#register'
+                        class='regular pre-open'>
+                        .register
+                      </a></li>
+                    
+                      <li><a
+                        href='#reset'
+                        class='regular pre-open'>
+                        .reset
+                      </a></li>
+                    
+                      <li><a
+                        href='#sessionlogin'
+                        class='regular pre-open'>
+                        .sessionLogin
+                      </a></li>
+                    
+                      <li><a
+                        href='#viewtasks'
+                        class='regular pre-open'>
+                        .viewTasks
+                      </a></li>
+                    
+                    </ul>
+                  
+                  
+                  
+                  
+                </div>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#api'
+                  class="h5 bold black caps toggle-sibling">
+                  API
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  <ul class='list-reset py1-ul pl1'>
+                    <li class='h5'><span>Static members</span></li>
+                    
+                      <li><a
+                        href='#addcusttag'
+                        class='regular pre-open'>
+                        .addCustTag
+                      </a></li>
+                    
+                      <li><a
+                        href='#addfreetime'
+                        class='regular pre-open'>
+                        .addFreetime
+                      </a></li>
+                    
+                      <li><a
+                        href='#addtagtotask'
+                        class='regular pre-open'>
+                        .addTagToTask
+                      </a></li>
+                    
+                      <li><a
+                        href='#addtaskapi'
+                        class='regular pre-open'>
+                        .addTaskAPI
+                      </a></li>
+                    
+                      <li><a
+                        href='#edittagapi'
+                        class='regular pre-open'>
+                        .editTagAPI
+                      </a></li>
+                    
+                      <li><a
+                        href='#getcategories'
+                        class='regular pre-open'>
+                        .getCategories
+                      </a></li>
+                    
+                      <li><a
+                        href='#getcoursebyname'
+                        class='regular pre-open'>
+                        .getCourseByName
+                      </a></li>
+                    
+                      <li><a
+                        href='#getcoursesbycategory'
+                        class='regular pre-open'>
+                        .getCoursesByCategory
+                      </a></li>
+                    
+                      <li><a
+                        href='#gettag'
+                        class='regular pre-open'>
+                        .getTag
+                      </a></li>
+                    
+                      <li><a
+                        href='#gettagref'
+                        class='regular pre-open'>
+                        .getTagRef
+                      </a></li>
+                    
+                      <li><a
+                        href='#gettags'
+                        class='regular pre-open'>
+                        .getTags
+                      </a></li>
+                    
+                      <li><a
+                        href='#gettaskid'
+                        class='regular pre-open'>
+                        .getTaskID
+                      </a></li>
+                    
+                      <li><a
+                        href='#gettasks'
+                        class='regular pre-open'>
+                        .getTasks
+                      </a></li>
+                    
+                      <li><a
+                        href='#modifytask'
+                        class='regular pre-open'>
+                        .modifyTask
+                      </a></li>
+                    
+                    </ul>
+                  
+                  
+                  
+                  
+                </div>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#firebase-functions'
+                  class="h5 bold black caps toggle-sibling">
+                  Firebase Functions
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  <ul class='list-reset py1-ul pl1'>
+                    <li class='h5'><span>Static members</span></li>
+                    
+                      <li><a
+                        href='#adduser'
+                        class='regular pre-open'>
+                        .addUser
+                      </a></li>
+                    
+                      <li><a
+                        href='#adduserinfo'
+                        class='regular pre-open'>
+                        .addUserInfo
+                      </a></li>
+                    
+                      <li><a
+                        href='#deleteuser'
+                        class='regular pre-open'>
+                        .deleteUser
+                      </a></li>
+                    
+                      <li><a
+                        href='#webapp'
+                        class='regular pre-open'>
+                        .webapp
+                      </a></li>
+                    
+                    </ul>
+                  
+                  
+                  
+                  
+                </div>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#misc-functions'
+                  class="h5 bold black caps toggle-sibling">
+                  Misc Functions
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  <ul class='list-reset py1-ul pl1'>
+                    <li class='h5'><span>Static members</span></li>
+                    
+                      <li><a
+                        href='#geteditlink'
+                        class='regular pre-open'>
+                        .getEditLink
+                      </a></li>
+                    
+                      <li><a
+                        href='#gettaglist'
+                        class='regular pre-open'>
+                        .getTagList
+                      </a></li>
+                    
+                      <li><a
+                        href='#getprioritylist'
+                        class='regular pre-open'>
+                        .getPriorityList
+                      </a></li>
+                    
+                      <li><a
+                        href='#retrievetasks'
+                        class='regular pre-open'>
+                        .retrieveTasks
+                      </a></li>
+                    
+                      <li><a
+                        href='#gettaskbygeneric'
+                        class='regular pre-open'>
+                        .getTaskByGeneric
+                      </a></li>
+                    
+                      <li><a
+                        href='#deletecollection'
+                        class='regular pre-open'>
+                        .deleteCollection
+                      </a></li>
+                    
+                      <li><a
+                        href='#deletequerybatch'
+                        class='regular pre-open'>
+                        .deleteQueryBatch
+                      </a></li>
+                    
+                    </ul>
+                  
+                  
+                  
+                  
+                </div>
+                
+                </li>
+              
+            </ul>
+          </div>
+          <div class='mt1 h6 quiet'>
+            <a href='https://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          </div>
+        </div>
+      </div>
+      <div id='split-right' class='relative overflow-auto height-viewport-100'>
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='pages'>
+      Pages
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>The web pages provided by our web app</p>
+
+    <div class='pre p1 fill-light mt0'>Pages</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Static Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='account'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>account(admin, app)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/account.js#L7-L22'>
+      <span>Firebase/functions/webapp/pages/account.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Renders the account page. If the user is signed in, it'll render the page. Otherwise, it'll redirect to the homepage</p>
+
+    <div class='pre p1 fill-light mt0'>account(admin: firebase-admin, app: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>app</span> <code class='quiet'>(express)</code>
+	    Our instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='addtag'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>addTag(admin, app)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/addTag.js#L9-L32'>
+      <span>Firebase/functions/webapp/pages/addTag.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Retrieves the course categories and renders the page for a user to add a tag. If not signed in, redirects to the homepage.</p>
+
+    <div class='pre p1 fill-light mt0'>addTag(admin: firebase-admin, app: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>app</span> <code class='quiet'>(express)</code>
+	    Our instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='addtask'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>addTask(admin, app)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/addTask.js#L9-L32'>
+      <span>Firebase/functions/webapp/pages/addTask.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Retrieves the User's tags and renders the page for a user to add a task. If not signed in, redirects to the homepage.</p>
+
+    <div class='pre p1 fill-light mt0'>addTask(admin: firebase-admin, app: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>app</span> <code class='quiet'>(express)</code>
+	    Our instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='delete-account'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>delete-account(admin, app)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/delete-account.js#L8-L25'>
+      <span>Firebase/functions/webapp/pages/delete-account.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Deletes a user's account If not signed in, redirects to the homepage.</p>
+
+    <div class='pre p1 fill-light mt0'>delete-account(admin: firebase-admin, app: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>app</span> <code class='quiet'>(express)</code>
+	    Our instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='edittag'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>editTag(admin, app)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/editTag.js#L9-L47'>
+      <span>Firebase/functions/webapp/pages/editTag.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Retrieves data and renders page to edit a tag. If not signed in, redirects to the homepage.</p>
+
+    <div class='pre p1 fill-light mt0'>editTag(admin: firebase-admin, app: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>app</span> <code class='quiet'>(express)</code>
+	    Our instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='edittask'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>editTask(admin, app)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/editTask.js#L7-L43'>
+      <span>Firebase/functions/webapp/pages/editTask.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Retrieves the data for a task and renders the page for a user to edit a task. If task ID is not specified in the query, redirects to the view tasks page. If they're not signed in, redirects to the homepage</p>
+
+    <div class='pre p1 fill-light mt0'>editTask(admin: firebase-admin, app: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>app</span> <code class='quiet'>(express)</code>
+	    Our instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='freetime'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>freetime(admin, app)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/freetime.js#L8-L66'>
+      <span>Firebase/functions/webapp/pages/freetime.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Renders the freetime page. If they're not signed in, redirects to the homepage</p>
+
+    <div class='pre p1 fill-light mt0'>freetime(admin: firebase-admin, app: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>app</span> <code class='quiet'>(express)</code>
+	    Our instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='expressapp'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>expressapp(app, admin)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/index.js#L10-L44'>
+      <span>Firebase/functions/webapp/pages/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Handles the regular pages of the site for express</p>
+
+    <div class='pre p1 fill-light mt0'>expressapp(app: express, admin: firebase-admin)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>app</span> <code class='quiet'>(express)</code>
+	    Our instance of Express.js
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='login'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>login(admin, app)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/login.js#L7-L15'>
+      <span>Firebase/functions/webapp/pages/login.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Renders the login page If they're signed in, redirects to the homepage</p>
+
+    <div class='pre p1 fill-light mt0'>login(admin: firebase-admin, app: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>app</span> <code class='quiet'>(express)</code>
+	    Our instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='logout'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>logout(admin, app)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/logout.js#L7-L12'>
+      <span>Firebase/functions/webapp/pages/logout.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Deletes the session cookie and redirects the user to the homepage</p>
+
+    <div class='pre p1 fill-light mt0'>logout(admin: firebase-admin, app: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>app</span> <code class='quiet'>(express)</code>
+	    Our instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='pickweek'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>pickWeek(admin, app)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/pickWeek.js#L7-L15'>
+      <span>Firebase/functions/webapp/pages/pickWeek.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Renders the week picker. If they're not signed in, redirects to the homepage</p>
+
+    <div class='pre p1 fill-light mt0'>pickWeek(admin: firebase-admin, app: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>app</span> <code class='quiet'>(express)</code>
+	    Our instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='register'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>register(admin, app)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/register.js#L7-L15'>
+      <span>Firebase/functions/webapp/pages/register.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Renders the registration page. If they're signed in, redirects to the homepage</p>
+
+    <div class='pre p1 fill-light mt0'>register(admin: firebase-admin, app: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>app</span> <code class='quiet'>(express)</code>
+	    Our instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='reset'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>reset(admin, app)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/reset.js#L7-L11'>
+      <span>Firebase/functions/webapp/pages/reset.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Renders the password reset page</p>
+
+    <div class='pre p1 fill-light mt0'>reset(admin: firebase-admin, app: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>app</span> <code class='quiet'>(express)</code>
+	    Our instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='sessionlogin'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>sessionLogin(admin, app)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/sessionLogin.js#L7-L29'>
+      <span>Firebase/functions/webapp/pages/sessionLogin.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Completes the sign-in after Firebase auth grants a login token</p>
+
+    <div class='pre p1 fill-light mt0'>sessionLogin(admin: firebase-admin, app: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>app</span> <code class='quiet'>(express)</code>
+	    Our instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='viewtasks'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>viewTasks(admin, app)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/viewTasks.js#L158-L242'>
+      <span>Firebase/functions/webapp/pages/viewTasks.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Renders the view tasks page. Query parameter specifies the sort type. If they're not signed in, redirects to the homepage</p>
+
+    <div class='pre p1 fill-light mt0'>viewTasks(admin: firebase-admin, app: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>app</span> <code class='quiet'>(express)</code>
+	    Our instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='api'>
+      API
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>The API calls provided by our web app</p>
+
+    <div class='pre p1 fill-light mt0'>API</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Static Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='addcusttag'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>addCustTag(admin, router)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/api/addCustTag.js#L7-L37'>
+      <span>Firebase/functions/webapp/api/addCustTag.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Post request to add a custom tag to the database. If they're not signed in, returns "Unauthorized"</p>
+
+    <div class='pre p1 fill-light mt0'>addCustTag(admin: firebase-admin, router: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>router</span> <code class='quiet'>(express)</code>
+	    Our router instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='addfreetime'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>addFreetime(admin, router)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/api/addFreetime.js#L22-L65'>
+      <span>Firebase/functions/webapp/api/addFreetime.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Post request to add addFreetime to the database. If they're not signed in, returns "Unauthorized"</p>
+
+    <div class='pre p1 fill-light mt0'>addFreetime(admin: firebase-admin, router: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>router</span> <code class='quiet'>(express)</code>
+	    Our router instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='addtagtotask'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>addTagToTask(admin, router)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/api/addTagToTask.js#L9-L42'>
+      <span>Firebase/functions/webapp/api/addTagToTask.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Post request to add a tag to a task to the database. If they're not signed in, returns "Unauthorized"</p>
+
+    <div class='pre p1 fill-light mt0'>addTagToTask(admin: firebase-admin, router: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>router</span> <code class='quiet'>(express)</code>
+	    Our router instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='addtaskapi'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>addTaskAPI(admin, router)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/api/addTask.js#L7-L45'>
+      <span>Firebase/functions/webapp/api/addTask.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Post request to add a task to the database. If they're not signed in, returns "Unauthorized"</p>
+
+    <div class='pre p1 fill-light mt0'>addTaskAPI(admin: firebase-admin, router: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>router</span> <code class='quiet'>(express)</code>
+	    Our router instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='edittagapi'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>editTagAPI(admin, router)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/api/editTag.js#L7-L44'>
+      <span>Firebase/functions/webapp/api/editTag.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Post request to edit a tag in the database. If they're not signed in, returns "Unauthorized"</p>
+
+    <div class='pre p1 fill-light mt0'>editTagAPI(admin: firebase-admin, router: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>router</span> <code class='quiet'>(express)</code>
+	    Our router instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='getcategories'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getCategories(admin, router)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/api/getCategories.js#L7-L30'>
+      <span>Firebase/functions/webapp/api/getCategories.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Retrieve the course categories from the database. If they're not signed in, returns "Unauthorized"</p>
+
+    <div class='pre p1 fill-light mt0'>getCategories(admin: firebase-admin, router: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>router</span> <code class='quiet'>(express)</code>
+	    Our router instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='getcoursebyname'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getCourseByName(admin, router)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/api/getCourseByName.js#L7-L33'>
+      <span>Firebase/functions/webapp/api/getCourseByName.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Retrive data about a course by name. If they're not signed in, returns "Unauthorized"</p>
+
+    <div class='pre p1 fill-light mt0'>getCourseByName(admin: firebase-admin, router: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>router</span> <code class='quiet'>(express)</code>
+	    Our router instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='getcoursesbycategory'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getCoursesByCategory(admin, router)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/api/getCoursesByCategory.js#L7-L31'>
+      <span>Firebase/functions/webapp/api/getCoursesByCategory.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Retrive courses that belong to a specific category. If they're not signed in, returns "Unauthorized"</p>
+
+    <div class='pre p1 fill-light mt0'>getCoursesByCategory(admin: firebase-admin, router: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>router</span> <code class='quiet'>(express)</code>
+	    Our router instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='gettag'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getTag(admin, router)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/api/getTag.js#L9-L43'>
+      <span>Firebase/functions/webapp/api/getTag.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Retrieve a User's Tag Data by ID. If they're not signed in, returns "Unauthorized"</p>
+
+    <div class='pre p1 fill-light mt0'>getTag(admin: firebase-admin, router: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>router</span> <code class='quiet'>(express)</code>
+	    Our router instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='gettagref'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getTagRef(admin, router)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/api/getTagRef.js#L7-L32'>
+      <span>Firebase/functions/webapp/api/getTagRef.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Retrieve the database path to a User's tag. If they're not signed in, returns "Unauthorized"</p>
+
+    <div class='pre p1 fill-light mt0'>getTagRef(admin: firebase-admin, router: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>router</span> <code class='quiet'>(express)</code>
+	    Our router instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='gettags'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getTags(admin, router)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/api/getTags.js#L7-L30'>
+      <span>Firebase/functions/webapp/api/getTags.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Retrive all of a user's tags. If they're not signed in, returns "Unauthorized"</p>
+
+    <div class='pre p1 fill-light mt0'>getTags(admin: firebase-admin, router: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>router</span> <code class='quiet'>(express)</code>
+	    Our router instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='gettaskid'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getTaskID(admin, router)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/api/getTaskID.js#L7-L33'>
+      <span>Firebase/functions/webapp/api/getTaskID.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Retrieve a task's ID by task name. If they're not signed in, returns "Unauthorized"</p>
+
+    <div class='pre p1 fill-light mt0'>getTaskID(admin: firebase-admin, router: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>router</span> <code class='quiet'>(express)</code>
+	    Our router instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='gettasks'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getTasks(admin, router)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/api/getTasks.js#L7-L30'>
+      <span>Firebase/functions/webapp/api/getTasks.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Retrive all of a user's tasks If they're not signed in, returns "Unauthorized"</p>
+
+    <div class='pre p1 fill-light mt0'>getTasks(admin: firebase-admin, router: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>router</span> <code class='quiet'>(express)</code>
+	    Our router instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='modifytask'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>modifyTask(admin, router)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/api/modifyTask.js#L7-L59'>
+      <span>Firebase/functions/webapp/api/modifyTask.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Edit a task in the database. If they're not signed in, returns "Unauthorized"</p>
+
+    <div class='pre p1 fill-light mt0'>modifyTask(admin: firebase-admin, router: express)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>router</span> <code class='quiet'>(express)</code>
+	    Our router instance of Express.js
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='firebase-functions'>
+      Firebase Functions
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>The background Firebase Cloud Functions</p>
+
+    <div class='pre p1 fill-light mt0'>Firebase Functions</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Static Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='adduser'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>addUser</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/addUser.js#L15-L34'>
+      <span>Firebase/functions/addUser.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Cloud function that handles adding a user to the database when a user account is created</p>
+
+    <div class='pre p1 fill-light mt0'>addUser</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='adduserinfo'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>addUserInfo</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/addUserInfo.js#L15-L38'>
+      <span>Firebase/functions/addUserInfo.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Cloud function that handles adding extra user info to an account after it's created</p>
+
+    <div class='pre p1 fill-light mt0'>addUserInfo</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='deleteuser'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>deleteUser</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/deleteUser.js#L64-L94'>
+      <span>Firebase/functions/deleteUser.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Handles the deletion of user data upon Firebase Auth User Deletion</p>
+
+    <div class='pre p1 fill-light mt0'>deleteUser</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>user</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;User>)</code>
+	    The object for the user that was deleted
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='webapp'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>webapp</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/index.js#L20-L20'>
+      <span>Firebase/functions/webapp/index.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>The base express.js app for handling our web requests</p>
+
+    <div class='pre p1 fill-light mt0'>webapp</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='misc-functions'>
+      Misc Functions
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Other Misc functions used in the application</p>
+
+    <div class='pre p1 fill-light mt0'>Misc Functions</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Static Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='geteditlink'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getEditLink(admin, name, uid)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/viewTasks.js#L9-L26'>
+      <span>Firebase/functions/webapp/pages/viewTasks.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Retrieves the edit link for a task based on its name</p>
+
+    <div class='pre p1 fill-light mt0'>getEditLink(admin: firebase-admin, name: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, uid: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>name</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    name of the Task
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>uid</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    The user's ID
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='gettaglist'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getTagList(tasks, currentTags)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/viewTasks.js#L34-L46'>
+      <span>Firebase/functions/webapp/pages/viewTasks.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Sorts the tasks into arrays based on tag name</p>
+
+    <div class='pre p1 fill-light mt0'>getTagList(tasks: any, currentTags: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>tasks</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>currentTags</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='getprioritylist'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getPriorityList(tasks, currentTags)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/viewTasks.js#L54-L62'>
+      <span>Firebase/functions/webapp/pages/viewTasks.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Sorts the tasks into arrays based on priority</p>
+
+    <div class='pre p1 fill-light mt0'>getPriorityList(tasks: any, currentTags: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>tasks</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>currentTags</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='retrievetasks'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>retrieveTasks(admin, uid, sortColumn)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/viewTasks.js#L71-L76'>
+      <span>Firebase/functions/webapp/pages/viewTasks.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Retreives the user's tasks from Firestore Cloud Database</p>
+
+    <div class='pre p1 fill-light mt0'>retrieveTasks(admin: firebase-admin, uid: any, sortColumn: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>uid</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>sortColumn</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='gettaskbygeneric'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getTaskByGeneric(admin, uid, sortColumn)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/webapp/pages/viewTasks.js#L85-L148'>
+      <span>Firebase/functions/webapp/pages/viewTasks.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Retrieves tasks and sorts by due date</p>
+
+    <div class='pre p1 fill-light mt0'>getTaskByGeneric(admin: firebase-admin, uid: any, sortColumn: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>admin</span> <code class='quiet'>(firebase-admin)</code>
+	    Firebase admin instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>uid</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>sortColumn</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='deletecollection'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>deleteCollection(db, collectionPath, batchSize)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/deleteUser.js#L17-L24'>
+      <span>Firebase/functions/deleteUser.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Delete a Firestore Collection and the documents belonging to it</p>
+
+    <div class='pre p1 fill-light mt0'>deleteCollection(db: firebase-admin.db, collectionPath: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, batchSize: int)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>db</span> <code class='quiet'>(firebase-admin.db)</code>
+	    Firestore Cloud Database instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>collectionPath</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    Path to collection for deletion
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>batchSize</span> <code class='quiet'>(int)</code>
+	    Limit of how many documents to delete in each go
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='deletequerybatch'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>deleteQueryBatch(db, query, resolve)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/x2110311x/HomeworkTracker/blob/28e29c42618f6cbb1cd288469c00d9d533f38e56/Firebase/functions/deleteUser.js#L33-L55'>
+      <span>Firebase/functions/deleteUser.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Delete documents in a collection en masse.</p>
+
+    <div class='pre p1 fill-light mt0'>deleteQueryBatch(db: firebase-admin.db, query: any, resolve: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>db</span> <code class='quiet'>(firebase-admin.db)</code>
+	    Firestore Cloud Database instance
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>query</span> <code class='quiet'>(any)</code>
+	    Firestore Query Object
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>resolve</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+      </div>
+    </div>
+  <script src='assets/anchor.js'></script>
+  <script src='assets/split.js'></script>
+  <script src='assets/site.js'></script>
+</body>
+</html>

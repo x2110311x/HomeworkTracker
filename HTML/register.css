@@ -1,0 +1,23 @@
+.register{
+    background-color: #2E4D34;
+    color:white;
+    text-align: center;
+    width:80%;
+    margin-left:10%;
+}
+
+.registerContent{
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 20%;
+}
+
+.registerContent h2{
+    text-align:center;
+}
+
+.linkStyle{
+    color: #2E4D34;
+}
+
+
