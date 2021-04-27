@@ -13,6 +13,10 @@ admin.initializeApp({
 });
 
 // Setup Express
+/**
+ * @name webapp
+ * @description The base express.js app for handling our web requests
+ */
 const web = express();
 
 function parseSessionCookie(req, res, next) {
@@ -49,4 +53,4 @@ web.use("/api", api);
 
 const pages = require("./pages")(web);
 
-module.exports = web
+module.exports = web;

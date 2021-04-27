@@ -1,6 +1,12 @@
 const fetch = require('node-fetch');
 
-module.exports = function (admin, router) {
+module.exports = 
+/**
+ * @description Post request to add a tag to a task to the database. If they're not signed in, returns "Unauthorized"
+ * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {express} router - Our router instance of Express.js
+ */
+function addTagToTask(admin, router) {
     router.post('/addTagToTask', (request, response) => {
         if (request.signedin) {
             var tagname = request.body.tag_name;

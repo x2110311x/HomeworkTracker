@@ -4,18 +4,31 @@
     ],
     "source": "functions"
   },
-  "hosting": {
-    "public": "public",
-    "rewrites": [{
-      "source": "**",
-      "function": "webapp"
-    }],
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  },
+  "hosting": [
+    {
+      "target": "app",
+      "public": "public",
+      "rewrites": [{
+        "source": "**",
+        "function": "webapp"
+      }],
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
+    },
+    {
+      "target": "docs",
+      "public": "docs",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
+    }
+],
+  
   "emulators": {
     "auth": {
       "port": 9099

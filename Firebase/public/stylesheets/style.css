@@ -32,7 +32,6 @@ body{
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-  
   }
   
   .topnav a:hover {
@@ -58,7 +57,7 @@ body{
 
  
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 900px) {
     .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
       float: right;
@@ -66,7 +65,7 @@ body{
     }
   }
   
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 900px) {
     .topnav.responsive {position: relative;}
     .topnav.responsive .icon {
       position: absolute;
@@ -110,7 +109,7 @@ body{
 .acctContent{
     width: 30%;
     margin-left: 35%;
-    margin-top: 20%;
+    margin-top: 10%;
 }
 
 .acctContent h2{
@@ -136,6 +135,10 @@ body{
 
 /* View Tasks */
 .card-title{
+    color: rgb(255,255,255);
+} 
+
+.card-subtitle{
     color: rgb(255,255,255);
 }
 
@@ -195,6 +198,15 @@ body{
   text-align:center;
 }
 
+.editTagContent{
+  width: 60%;
+  margin: 5% 20%;
+}
+
+.editTagContent h2{
+  text-align:center;
+}
+
 .tagHeader{
   text-align: center;
   margin:10% 0;
@@ -230,6 +242,16 @@ body{
   width:80%;
   margin-left: 10%;
 }
+.editTagBtn{
+  background-color: #9e9226;
+  color:white;
+  width:80%;
+  margin-left: 10%;
+}
+
+.editTagBtn:hover{
+  color: rgb(192, 192, 192);
+}
 
 /* END */
 
@@ -256,7 +278,7 @@ body{
 
 .editFormBottomButtons{
   width: 50%;
-  margin: 5% 25%;
+  margin: 0 25%;
 }
 
 
@@ -276,19 +298,37 @@ body{
   margin: 10px;
 }
 
+.sortingBtn{
+  background: #33467200;
+  border: #334672 3px solid;
+  color: #334672;
+}
+
+.sortingBtn:hover{
+  background: #33467260;
+}
+
 .addTaskBtn{
+  background: #334672;
+  border: #334672 3px solid;
+  color:white;
   margin: 10px;
   font-size: 20px;
 }
 
-.progressBarStyle{
+.addTaskBtn:hover{
+  background: #445fa0;
+}
+
+.progressBarBackground{
   background: rgb(118,118,118);
   border-style: none;
-  color: #334672;
   height: 15px;
   margin: 25px;
 }
-
+.progressBarColor{
+  background: #334672;
+}
 .timeBadge{
   margin-left: 10px;
 }
@@ -391,6 +431,72 @@ body{
 
 /* END */
 
+/* Datepicker */
+
+.datepicker-days table tr:hover td.day{
+  background: #596583;
+  color: #fff;
+}
+
+.datepicker-days table tr td.active.active{
+      background: #334672;
+}
+
+/* END */
+
+/* PickWeek Page */
+
+.weekCard{
+  background: #565555;
+  margin-bottom: 8px;
+}
+
+.weekCard h4{
+  margin-bottom: 12px;
+  font-size: 25px;
+}
+
+.weekCard button{
+    background: #2f4068;
+    color:white;
+}
+
+.weekCard button:hover{
+  background: #445fa0;
+}
+
+/* END */
+
+/* Freetime */
+
+.freeTimeContent h1{
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom:20px;
+}
+
+.setFreeTimeBtn{
+  width:40%;
+  margin: 5% 30%;
+  background-color: #334672;
+  color:white;
+}
+
+.addedTime{
+  background: #1a6d23;
+  padding: 5px;
+  border-radius: 4px; 
+  text-align:center;
+}
+
+.addSlotBtn{
+  margin: 5% 0;
+  width:100%; 
+  background-color: #334672;
+  color:white;
+}
+/* END */
+
 /* Responsive */
 
 @media screen and (max-width: 1200px) {
@@ -399,6 +505,13 @@ body{
       margin: 20% 25%;
   }
 
+
+
+
+.dueDate{
+    color: rgb(255,255,255);
+    margin-bottom: 8px;
+}
 }
 
 @media screen and (max-width: 1000px) {
@@ -406,7 +519,10 @@ body{
       width: 80%;
       margin: 5% 10%;
   }
-
+  .editTagContent{
+    width: 80%;
+    margin: 5% 10%;
+}
 }
 
 @media screen and (max-width: 776px) {
@@ -417,6 +533,25 @@ body{
   .addTaskContent{
     width: 100%;
     margin: 5% 0;
+  }
+  
+  .editTagContent{
+    width: 100%;
+    margin: 5% 0;
+  }
+
+  .card{
+    margin-bottom: 5%;
+  }
+  
+  .editCard{
+    width: 95%;
+    margin: 5% 2.5%;
+  }
+
+  .editFormBottomButtons{
+    width: 95%;
+    margin: 5% 2.5%;
   }
 
 }
@@ -432,6 +567,28 @@ body{
     margin: 5% 5%;
   }
 
+  .editTagContent{
+    width: 90%;
+    margin: 5% 5%;
+  }
+
+  .sectionHeader{
+    font-size: 26px;
+  }
+
+
+  .headingRow a{
+    font-size: small;
+  }
+
+  .headingRow span{
+    font-size: normal;
+  }
+  
+  .headingRow button{
+    font-size: small;
+  }
+
 
 }
 
@@ -439,6 +596,10 @@ body{
   margin: 1em auto auto auto;
   width: 100%;
   text-align: center;
+}
+
+.taskbody {
+  margin-top: .5em;
 }
 
 /* END */

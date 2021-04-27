@@ -1,6 +1,12 @@
 const fetch = require('node-fetch');
 
-module.exports = function (admin, app) {
+module.exports = 
+/**
+ * @description Retrieves the User's tags and renders the page for a user to add a task. If not signed in, redirects to the homepage.
+ * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {express} app - Our instance of Express.js
+ */
+function addTask(admin, app) {
     app.get('/addTask', (request, response) => {
         if (request.signedin) {
             var url = "https://homeworktracker-b9805.web.app";

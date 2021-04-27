@@ -1,4 +1,11 @@
 const fetch = require('node-fetch');
+/**
+ * @description Retrieves the edit link for a task based on its name
+ * @param {firebase-admin} admin - Firebase admin instance
+ * @param {string} name - name of the Task
+ * @param {string} uid - The user's ID
+ * @returns 
+ */
 async function getEditLink(admin, name, uid){
     var retvar = "#";
     admin.firestore().collection('Users').doc(uid).collection('tasks')
@@ -18,6 +25,12 @@ async function getEditLink(admin, name, uid){
       });
 }
 
+/**
+ * @description Sorts the tasks into arrays based on tag name
+ * @param {*} tasks 
+ * @param {*} currentTags 
+ * @returns 
+ */
 function getTagList(tasks, currentTags) {
     for (i = 0; i < tasks.length; i++)
     {
@@ -32,6 +45,12 @@ function getTagList(tasks, currentTags) {
     return currentTags
 }
 
+/**
+ * @description Sorts the tasks into arrays based on priority
+ * @param {*} tasks 
+ * @param {*} currentTags 
+ * @returns 
+ */
 function getPriorityList(tasks, currentTags) {
     for (i = 0; i < tasks.length; i++)
         if (!currentTags.hasOwnProperty(tasks[i].tagName))
@@ -42,6 +61,13 @@ function getPriorityList(tasks, currentTags) {
     return currentTags
 }
 
+/**
+ * @description Retreives the user's tasks from Firestore Cloud Database
+ * @param {firebase-admin} admin - Firebase admin instance
+ * @param {*} uid 
+ * @param {*} sortColumn 
+ * @returns 
+ */
 function retrieveTasks(admin, uid, sortColumn) {
     if (sortColumn == "tag") {
         return admin.firestore().collection('Users').doc(uid).collection('tasks').get()
@@ -49,6 +75,13 @@ function retrieveTasks(admin, uid, sortColumn) {
     return admin.firestore().collection('Users').doc(uid).collection('tasks').orderBy(sortColumn).get()
 }
 
+/**
+ * @description Retrieves tasks and sorts by due date
+ * @param {firebase-admin} admin - Firebase admin instance
+ * @param {*} uid 
+ * @param {*} sortColumn 
+ * @returns 
+ */
 async function getTaskByGeneric(admin, uid, sortColumn) {
     var curDay = new Date();
     var day = String(curDay.getDate()).padStart(2, '0');
@@ -65,6 +98,7 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
         let newDayStr =  newDay.getFullYear() + '-' + String(newDay.getMonth() + 1).padStart(2, '0') + '-' + String(newDay.getDate()).padStart(2, '0');
         upcomingDays.push(newDay);
     }
+    let overDueTasks = [];
     let todayTasks = [];
     let laterTasks = [];
     retrieveTasks(admin, uid, sortColumn)
@@ -90,10 +124,12 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
                             task.color = tagData.color;
                             task.tagName = tagData.full_name;
                         }).then(() => {
-                            if (data.due_date == today) {
+                            if (task.due_date == today) {
                                 todayTasks.push(task);
                             } else if (upcomingDays.includes(task.due_date)) {
                                 laterTasks.push(task);
+                            } else if (task.due_date < today && task.completed == false) {
+                                overDueTasks.push(task);
                             }
                         }).catch((error) => {
                             console.log("Can't find tag");
@@ -106,13 +142,20 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
         });
     return new Promise(resolve => {
         setTimeout(() => {
-            resolve([todayTasks, laterTasks]);
+            resolve([todayTasks, laterTasks, overDueTasks]);
         }, 2000);
     });
 }
 
 
-module.exports = function (admin, app) {
+module.exports = 
+
+/**
+ * @description Renders the view tasks page. Query parameter specifies the sort type. If they're not signed in, redirects to the homepage
+ * @param {firebase-admin} admin 
+ * @param {express} app - Our instance of Express.js
+ */
+function viewTasks(admin, app) {
     app.get('/viewTasks', (request, response) => {
         if (request.signedin) {
             let user = request.decodedClaims;
@@ -129,6 +172,7 @@ module.exports = function (admin, app) {
                 getTaskByGeneric(admin, user.uid, chosenSort, request).then((data) => {
                     var todayTasks = data[0];
                     var laterTasks = data[1];
+                    var overDueTasks = data[2];
                     var tags = {};
 
 
@@ -136,6 +180,8 @@ module.exports = function (admin, app) {
                         getTagList(todayTasks, tags);
                     if (laterTasks.length > 0)
                         getTagList(laterTasks, tags);
+                    if (overDueTasks.length > 0)
+                        getTagList(overDueTasks, tags);
 
                     if (Object.keys(tags).length !== 0)
                         for (var tag in tags) {
@@ -150,6 +196,11 @@ module.exports = function (admin, app) {
                 getTaskByGeneric(admin, user.uid, chosenSort, request).then((data) => {
                     var todayTasks = data[0];
                     var laterTasks = data[1];
+                    var overDueTasks = data[2];
+                    if (overDueTasks.length > 0) {
+                        let section = { title: "Overdue Tasks", completionPercent: 20, task: overDueTasks };
+                        sections.push(section);
+                    }
                     if (todayTasks.length > 0) {
                         let section = { title: "Due Today", completionPercent: 20, task: todayTasks };
                         sections.push(section);

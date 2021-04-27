@@ -1,0 +1,60 @@
+toc:
+  - name: Pages
+    description: |
+      The web pages provided by our web app
+    children:
+      - account
+      - addTag
+      - addTask
+      - delete-account
+      - editTag
+      - editTask
+      - freetime
+      - expressapp
+      - login
+      - logout
+      - pickWeek
+      - register
+      - reset
+      - sessionLogin
+      - viewTasks
+
+  - name: API
+    description: |
+      The API calls provided by our web app
+    children:
+      - addCustTag
+      - addFreetime
+      - addTagToTask
+      - addTaskAPI
+      - editTagAPI
+      - getCategories
+      - getCourseByName
+      - getCoursesByCategory
+      - getTag
+      - getTagRef
+      - getTags
+      - getTaskID
+      - getTasks
+      - modifyTask
+
+  - name: Firebase Functions
+    description: |
+      The background Firebase Cloud Functions
+    children:
+      - addUser
+      - addUserInfo
+      - deleteUser
+      - webapp
+
+  - name: Misc Functions
+    description: |
+      Other Misc functions used in the application
+    children:
+      - getEditLink
+      - getTagList
+      - getPriorityList
+      - retrieveTasks
+      - getTaskByGeneric
+      - deleteCollection
+      - deleteQueryBatch

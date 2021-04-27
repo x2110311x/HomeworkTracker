@@ -1,4 +1,10 @@
-module.exports = function (admin, router) {
+module.exports = 
+/**
+ * @description Retrieve a task's ID by task name. If they're not signed in, returns "Unauthorized"
+ * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {express} router - Our router instance of Express.js
+ */
+function getTaskID(admin, router) {
     router.get('/getTaskID', (request, response) => {
         (async () => {
             if (request.signedin) {
