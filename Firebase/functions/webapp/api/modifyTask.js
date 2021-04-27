@@ -1,4 +1,10 @@
-module.exports = function (admin, router) {
+module.exports = 
+/**
+ * @description Edit a task in the database. If they're not signed in, returns "Unauthorized"
+ * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {express} router - Our router instance of Express.js
+ */
+function modifyTask(admin, router) {
     router.post('/modifyTask', (request, response) => {
         if (request.signedin) {
             var user = request.decodedClaims;

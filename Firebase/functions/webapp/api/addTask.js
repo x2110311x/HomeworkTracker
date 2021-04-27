@@ -1,4 +1,10 @@
-module.exports = function (admin, router) {
+module.exports = 
+/**
+ * @description Post request to add a task to the database. If they're not signed in, returns "Unauthorized"
+ * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {express} router - Our router instance of Express.js
+ */
+function addTaskAPI(admin, router) {
     router.post("/addTask", (request, response) => {
         if (request.signedin) {
             var name = request.body.name;

@@ -7,7 +7,12 @@ admin.initializeApp({
     databaseURL: "https://homeworktracker-b9805-default-rtdb.firebaseio.com"
 }, "addUser");
 
-module.exports = functions.auth.user().onCreate((user) => {
+module.exports = 
+/**
+ * @name addUser
+ * @description Cloud function that handles adding a user to the database when a user account is created
+ */
+functions.auth.user().onCreate((user) => {
     var uname = user.providerData.displayName;
     if (uname == null) {
         var data = {

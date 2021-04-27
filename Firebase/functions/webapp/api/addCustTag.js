@@ -1,4 +1,10 @@
-module.exports = function (admin, router) {
+module.exports =
+/**
+ * @description Post request to add a custom tag to the database. If they're not signed in, returns "Unauthorized"
+ * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {express} router - Our router instance of Express.js
+ */
+function addCustTag(admin, router) {
     router.post("/addCustTag", (request, response) => {
         if (request.signedin) {
             var full_name = request.body.full_name;

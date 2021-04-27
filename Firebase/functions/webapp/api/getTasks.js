@@ -1,4 +1,10 @@
-module.exports = function (admin, router) {
+module.exports = 
+/**
+ * @description Retrive all of a user's tasks If they're not signed in, returns "Unauthorized"
+ * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {express} router - Our router instance of Express.js
+ */
+function getTasks(admin, router) {
     router.get('/getTasks', (request, response) => {
         (async () => {
             if (request.signedin) {

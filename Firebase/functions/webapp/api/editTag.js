@@ -1,4 +1,10 @@
-module.exports = function (admin, router) {
+module.exports = 
+/**
+ * @description Post request to edit a tag in the database. If they're not signed in, returns "Unauthorized"
+ * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {express} router - Our router instance of Express.js
+ */
+function editTagAPI(admin, router) {
     router.post("/editTag", (request, response) => {
         if (request.signedin) {
             var user = request.decodedClaims;

@@ -55,13 +55,13 @@ async function deleteQueryBatch(db, query, resolve) {
 } // from https://firebase.google.com/docs/firestore/manage-data/delete-data?authuser=0#collections
 
 
-module.exports = functions.auth.user().onDelete((user) => 
+module.exports = 
 /**
- * @name deleteUserData
+ * @name deleteUser
  * @description Handles the deletion of user data upon Firebase Auth User Deletion
  * @param {Promise<User>} user - The object for the user that was deleted
- */ 
-{
+ */
+functions.auth.user().onDelete((user) => {
     console.log('Deleting user ${user}');
     const db = admin.firestore();
     var taskCol = `/Users/${user.uid}/tasks`;

@@ -7,7 +7,12 @@ admin.initializeApp({
     databaseURL: "https://homeworktracker-b9805-default-rtdb.firebaseio.com"
 }, "addUserInfo");
 
-module.exports = functions.firestore.document("Users/{uid}").onCreate((snap, context) => {
+module.exports = 
+/**
+ * @name addUserInfo
+ * @description Cloud function that handles adding extra user info to an account after it's created
+ */
+functions.firestore.document("Users/{uid}").onCreate((snap, context) => {
     const db = admin.firestore();
     const userData = snap.data();
     const userID = userData.uid;

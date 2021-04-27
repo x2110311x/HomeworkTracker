@@ -13,7 +13,13 @@ function startOfWeek() {
     return startOfWeek;
 }
 
-module.exports = function (admin, router) {
+module.exports = 
+/**
+ * @description Post request to add addFreetime to the database. If they're not signed in, returns "Unauthorized"
+ * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {express} router - Our router instance of Express.js
+ */
+function addFreetime(admin, router) {
     router.post("/addFreetime", (request, response) => {
         if (request.signedin) {
 

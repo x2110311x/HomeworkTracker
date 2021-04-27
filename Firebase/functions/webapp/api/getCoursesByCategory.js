@@ -1,4 +1,10 @@
-module.exports = function (admin, router) {
+module.exports = 
+/**
+ * @description Retrive courses that belong to a specific category. If they're not signed in, returns "Unauthorized"
+ * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {express} router - Our router instance of Express.js
+ */
+function getCoursesByCategory(admin, router) {
     router.get('/getCoursesByCategory', (request, response) => {
         (async () => {
             if (request.signedin) {

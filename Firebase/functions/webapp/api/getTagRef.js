@@ -1,4 +1,10 @@
-module.exports = function (admin, router) {
+module.exports = 
+/**
+ * @description Retrieve the database path to a User's tag. If they're not signed in, returns "Unauthorized"
+ * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {express} router - Our router instance of Express.js
+ */
+function getTagRef(admin, router) {
     router.get('/getTagRef', (request, response) => {
         (async () => {
             if (request.signedin) {

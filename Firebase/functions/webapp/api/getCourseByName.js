@@ -1,4 +1,10 @@
-module.exports = function (admin, router) {
+module.exports = 
+/**
+ * @description Retrive data about a course by name. If they're not signed in, returns "Unauthorized"
+ * @param {firebase-admin} admin - Firebase admin instance 
+ * @param {express} router - Our router instance of Express.js
+ */
+function getCourseByName(admin, router) {
     router.get('/getCourseByName', (request, response) => {
         (async () => {
             if (request.signedin) {
