@@ -40,8 +40,6 @@
             <h1 class="sectionHeader">Your Tasks</h1>
         </div>
     </div>
-
-{{#if section.[0]}}
     <div class="row">
         <div class="col-12 text-center headingRow"><span class="text-center sortingRow">Sorting By:</span>
             <div class="dropdown d-inline dropdownSpacing" ><a class="btn sortingBtn btn-lg dropdown-toggle d-inline" aria-expanded="false" data-toggle="dropdown" role="button">{{sort}}</a>
@@ -53,6 +51,7 @@
             </div><button onclick="window.location.href='addTask'" class="btn addTaskBtn" type="button" >Add Task<strong>+</strong></button>
         </div>
     </div>
+{{#if section.[0]}}
 {{#each section}}
 
             <h1 class="sectionHeader">{{this.title}}</h1> <!-- LIKE "DUE TODAY" FOR EXAMPLE-->
@@ -62,7 +61,7 @@
 
     <div class="row">
 {{#each this.task}}  
-        <div class="col-md-3">
+        <div class="col-md-3 taskbody">
             <div class="card">
                 <div class="card-body" style="background:{{this.color}};"><!--Grab Color From TASK-->
                 <a href="{{this.editLink}}">

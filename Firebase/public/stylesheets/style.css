@@ -597,4 +597,8 @@ body{
   text-align: center;
 }
 
+.taskbody {
+  margin-top: .5em;
+}
+
 /* END */
