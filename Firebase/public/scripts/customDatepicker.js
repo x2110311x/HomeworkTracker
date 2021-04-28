@@ -1,6 +1,5 @@
 $('.datepicker').datepicker({
     format: {
-
         toDisplay: function (date, format, language) {
             var d = new Date(date);
             var n = d.getDay(); // Uses the day of the week picked as an offset
@@ -25,5 +24,13 @@ $('.datepicker').datepicker({
     },
     weekStart: '1',
     keyboardNavigation: false
-    
 });
+
+function editWeek(){
+    var d = $('.datepicker').datepicker('getDate');
+    var n = d.getDay(); // Uses the day of the week picked as an offset
+    var m = new Date(d);
+    m.setDate(m.getDate() + 1-n); //Finds and stores the monday value
+    var datestring = m.toLocaleDateString('en-US').replace('/','-').replace('/','-');
+    window.location.href = `/freetime?week=${datestring}`;
+}
