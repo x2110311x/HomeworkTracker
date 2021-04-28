@@ -94,9 +94,9 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
     var upcomingDays = [];
     for (i = 0; i < 7; i++) {
         var newDay = new Date(curDay);
-        newDay.setDate(newDay.getDate() + i)
+        newDay.setDate(newDay.getDate() + i);
         let newDayStr =  newDay.getFullYear() + '-' + String(newDay.getMonth() + 1).padStart(2, '0') + '-' + String(newDay.getDate()).padStart(2, '0');
-        upcomingDays.push(newDay);
+        upcomingDays.push(newDayStr);
     }
     let overDueTasks = [];
     let todayTasks = [];
@@ -128,8 +128,6 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
                                 todayTasks.push(task);
                             } else if (upcomingDays.includes(task.due_date)) {
                                 laterTasks.push(task);
-                            } else if (task.due_date < today && task.completed == false) {
-                                overDueTasks.push(task);
                             }
                         }).catch((error) => {
                             console.log("Can't find tag");
