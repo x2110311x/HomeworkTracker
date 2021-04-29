@@ -8,11 +8,11 @@
         var data = {
             name: document.getElementById("name").value,
             description: document.getElementById("description").value,
-            dueDate: Date.parse(document.getElementById("dueDate").value) + 14400000,
+            dueDate: Date.parse(document.getElementById("dueDate").value),
             priority: document.getElementById("priority").value,
             estTime: document.getElementById("estTime").value,
-            scheduledTimeStart: Date.parse(document.getElementById("scheduledTimeStart").value) + 14400000,
-            scheduledTimeEnd: Date.parse(document.getElementById("scheduledTimeEnd").value) + 14400000
+            scheduledTimeStart: Date.parse(document.getElementById("scheduledTimeStart").value),
+            scheduledTimeEnd: Date.parse(document.getElementById("scheduledTimeEnd").value)
         };
 
         fetch(`/api/getTagRef?full_name=${tag_name}`, {

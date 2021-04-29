@@ -121,15 +121,18 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
                             task.tagName = tagData.full_name;
                         }).then(() => {
                             if (!task.completed){
-                                if (Date.parse(new Date(task.due_date)) == today) {
+                                let due_date = new Date(task.due_date);
+                                due_date.setHours(0,0,0,0);
+                                let timestamp = Date.parse(due_date);
+                                if (timestamp == today) {
                                     let dateStr = new Date(task.due_date);
                                     task.due_date = dateStr.toLocaleDateString();
                                     todayTasks.push(task);
-                                } else if (Date.parse(new Date(task.due_date)) > today && Date.parse(Date(task.due_date)) < upcomingDays ) {
+                                } else if (timestamp > today && Date.parse(Date(task.due_date)) < upcomingDays ) {
                                     let dateStr = new Date(task.due_date);
                                     task.due_date = dateStr.toLocaleDateString();
                                     laterTasks.push(task);
-                                } else if (Date.parse(new Date(task.due_date)) < today){
+                                } else if (timestamp < today){
                                     let dateStr = new Date(task.due_date);
                                     task.due_date = dateStr.toLocaleDateString();
                                     overDueTasks.push(task);
