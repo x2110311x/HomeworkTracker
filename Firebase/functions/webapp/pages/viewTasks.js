@@ -21,7 +21,7 @@ async function getEditLink(admin, name, uid){
     return new Promise(resolve => {
         setTimeout(() => {
             resolve(retvar);
-        }, 750);
+        }, 950);
       });
 }
 
@@ -150,7 +150,7 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
     return new Promise(resolve => {
         setTimeout(() => {
             resolve([todayTasks, laterTasks, overDueTasks]);
-        }, 2000);
+        }, 2500);
     });
 }
 
