@@ -19,7 +19,7 @@
     <a href="https://homeworktrackerdocs.web.app/"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://homeworktracker-b9805.web.app/">View Demo</a>
+    <a href="https://homeworktracker-b9805.web.app/">View Webpage</a>
     ·
     <a href="https://github.com/x2110311x/HomeworkTracker/issues">Report Bug</a>
     ·
