@@ -53,7 +53,7 @@ function getTagList(tasks, currentTags) {
  */
 function getPriorityList(tasks, currentTags) {
     for (i = 0; i < tasks.length; i++)
-        if (!currentTags.hasOwnProperty(tasks[i].tagName))
+        if (!currentTags.hasOwnProperty(tasks[i].priority   ))
             currentTags[tasks[i].priority] = [tasks[i]];
         else
             currentTags[tasks[i].priority].push(tasks[i]);
@@ -84,20 +84,16 @@ function retrieveTasks(admin, uid, sortColumn) {
  */
 async function getTaskByGeneric(admin, uid, sortColumn) {
     var curDay = new Date();
-    var day = String(curDay.getDate()).padStart(2, '0');
-    var month = String(curDay.getMonth() + 1).padStart(2, '0');
-    var year = curDay.getFullYear();
+    curDay.setHours(0,0,0,0);
+
     sortColumn = sortColumn.toLowerCase();
     sortColumn = sortColumn.replace(" ", "_");
 
-    var today = year + '-' + month + '-' + day;
-    var upcomingDays = [];
-    for (i = 0; i < 7; i++) {
-        var newDay = new Date(curDay);
-        newDay.setDate(newDay.getDate() + i)
-        let newDayStr =  newDay.getFullYear() + '-' + String(newDay.getMonth() + 1).padStart(2, '0') + '-' + String(newDay.getDate()).padStart(2, '0');
-        upcomingDays.push(newDay);
-    }
+    var today = Date.parse(curDay);
+    var upcomingDays = today + 604800000;
+    console.log(today);
+    console.log(upcomingDays);
+
     let overDueTasks = [];
     let todayTasks = [];
     let laterTasks = [];
@@ -124,12 +120,23 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
                             task.color = tagData.color;
                             task.tagName = tagData.full_name;
                         }).then(() => {
-                            if (task.due_date == today) {
-                                todayTasks.push(task);
-                            } else if (upcomingDays.includes(task.due_date)) {
-                                laterTasks.push(task);
-                            } else if (task.due_date < today && task.completed == false) {
-                                overDueTasks.push(task);
+                            if (!task.completed){
+                                let due_date = new Date(task.due_date);
+                                due_date.setHours(0,0,0,0);
+                                let timestamp = Date.parse(due_date);
+                                if (timestamp == today) {
+                                    let dateStr = new Date(task.due_date);
+                                    task.due_date = dateStr.toLocaleDateString();
+                                    todayTasks.push(task);
+                                } else if (timestamp > today && Date.parse(Date(task.due_date)) < upcomingDays ) {
+                                    let dateStr = new Date(task.due_date);
+                                    task.due_date = dateStr.toLocaleDateString();
+                                    laterTasks.push(task);
+                                } else if (timestamp < today){
+                                    let dateStr = new Date(task.due_date);
+                                    task.due_date = dateStr.toLocaleDateString();
+                                    overDueTasks.push(task);
+                                }
                             }
                         }).catch((error) => {
                             console.log("Can't find tag");
@@ -149,7 +156,6 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
 
 
 module.exports = 
-
 /**
  * @description Renders the view tasks page. Query parameter specifies the sort type. If they're not signed in, redirects to the homepage
  * @param {firebase-admin} admin 
@@ -185,7 +191,7 @@ function viewTasks(admin, app) {
 
                     if (Object.keys(tags).length !== 0)
                         for (var tag in tags) {
-                            let section = { title: tag, completionPercent: 20, task: tags[tag] };
+                            let section = { title: tag, completionPercent: 0, task: tags[tag] };
                             sections.push(section);
                         }
 
@@ -197,16 +203,16 @@ function viewTasks(admin, app) {
                     var todayTasks = data[0];
                     var laterTasks = data[1];
                     var overDueTasks = data[2];
-                    if (overDueTasks.length > 0) {
-                        let section = { title: "Overdue Tasks", completionPercent: 20, task: overDueTasks };
-                        sections.push(section);
-                    }
                     if (todayTasks.length > 0) {
-                        let section = { title: "Due Today", completionPercent: 20, task: todayTasks };
+                        let section = { title: "Due Today", completionPercent: 0, task: todayTasks };
                         sections.push(section);
                     }
                     if (laterTasks.length > 0) {
-                        let section = { title: "Upcoming Tasks", completionPercent: 20, task: laterTasks };
+                        let section = { title: "Upcoming Tasks", completionPercent: 0, task: laterTasks };
+                        sections.push(section);
+                    }
+                    if (overDueTasks.length > 0) {
+                        let section = { title: "Overdue Tasks", completionPercent: 0, task: overDueTasks };
                         sections.push(section);
                     }
                     response.status(200).render('viewTasks', { section: sections, sort: chosenSort });
@@ -227,7 +233,7 @@ function viewTasks(admin, app) {
 
                     if (Object.keys(priorities).length !== 0)
                         for (var priority in priorities) {
-                            let section = { title: priority, completionPercent: 20, task: priorities[priority] };
+                            let section = { title: `Priority ${priority}`, completionPercent: 0, task: priorities[priority] };
                             sections.push(section);
                         }
 
