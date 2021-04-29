@@ -183,7 +183,7 @@ function viewTasks(admin, app) {
 
                     if (Object.keys(tags).length !== 0)
                         for (var tag in tags) {
-                            let section = { title: tag, completionPercent: 20, task: tags[tag] };
+                            let section = { title: tag, completionPercent: 0, task: tags[tag] };
                             sections.push(section);
                         }
 
@@ -196,15 +196,15 @@ function viewTasks(admin, app) {
                     var laterTasks = data[1];
                     var overDueTasks = data[2];
                     if (overDueTasks.length > 0) {
-                        let section = { title: "Overdue Tasks", completionPercent: 20, task: overDueTasks };
+                        let section = { title: "Overdue Tasks", completionPercent: 0, task: overDueTasks };
                         sections.push(section);
                     }
                     if (todayTasks.length > 0) {
-                        let section = { title: "Due Today", completionPercent: 20, task: todayTasks };
+                        let section = { title: "Due Today", completionPercent: 0, task: todayTasks };
                         sections.push(section);
                     }
                     if (laterTasks.length > 0) {
-                        let section = { title: "Upcoming Tasks", completionPercent: 20, task: laterTasks };
+                        let section = { title: "Upcoming Tasks", completionPercent: 0, task: laterTasks };
                         sections.push(section);
                     }
                     response.status(200).render('viewTasks', { section: sections, sort: chosenSort });
@@ -225,7 +225,7 @@ function viewTasks(admin, app) {
 
                     if (Object.keys(priorities).length !== 0)
                         for (var priority in priorities) {
-                            let section = { title: priority, completionPercent: 20, task: priorities[priority] };
+                            let section = { title: priority, completionPercent: 0, task: priorities[priority] };
                             sections.push(section);
                         }
 
