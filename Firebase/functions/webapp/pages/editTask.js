@@ -16,11 +16,11 @@ function editTask(admin, app) {
                     var task = {
                         name: data.name,
                         id: taskID,
-                        scheduled_time_start: data.scheduled_time_start.replace("-","/").replace("-","/"),
-                        scheduled_time_end: data.scheduled_time_end.replace("-","/").replace("-","/"),
+                        scheduled_time_start: new Date(data.scheduled_time_start).toLocaleDateString(),
+                        scheduled_time_end: new Date(data.scheduled_time_end).toLocaleDateString(),
                         description: data.description,
                         estTime: data.est_time,
-                        dueDate: data.due_date,
+                        dueDate: new Date(data.due_date).toLocaleDateString(),
                         priority: data.priority
                     }
                     if (data.completed == true){

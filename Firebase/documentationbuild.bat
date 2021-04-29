@@ -5,4 +5,4 @@ documentation build functions\index.js ^
     --config documentation.yml ^
     --github ^
     --format html ^
-    --output ..\docs\
+    --output docs\

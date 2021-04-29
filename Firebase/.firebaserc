@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "homeworktracker-b9805": {
+      "hosting": {
+        "docs": [
+          "homeworktrackerdocs"
+        ],
+        "app": [
+          "homeworktracker-b9805"
+        ]
+      }
+    }
+  }
+}
