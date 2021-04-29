@@ -47,7 +47,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Homework Tracker](https://i.imgur.com/llNXHTH.png)](https://homeworktracker-b9805.web.app/)
+[![Homework Tracker](https://i.imgur.com/39OHfHh.gif)](https://homeworktracker-b9805.web.app/)
 
 Homework Tracker is a web app that allows users to visualize all their upcoming tasks with each due date as well as a personally made priority listing
 

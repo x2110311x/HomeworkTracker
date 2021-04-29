@@ -90,9 +90,6 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
     sortColumn = sortColumn.replace(" ", "_");
 
     var today = Date.parse(curDay);
-    var upcomingDays = today + 604800000;
-    console.log(today);
-    console.log(upcomingDays);
 
     let overDueTasks = [];
     let todayTasks = [];
@@ -128,7 +125,7 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
                                     let dateStr = new Date(task.due_date);
                                     task.due_date = dateStr.toLocaleDateString();
                                     todayTasks.push(task);
-                                } else if (timestamp > today && Date.parse(Date(task.due_date)) < upcomingDays ) {
+                                } else if (timestamp > today) {
                                     let dateStr = new Date(task.due_date);
                                     task.due_date = dateStr.toLocaleDateString();
                                     laterTasks.push(task);
