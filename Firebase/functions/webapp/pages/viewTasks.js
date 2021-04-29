@@ -21,7 +21,7 @@ async function getEditLink(admin, name, uid){
     return new Promise(resolve => {
         setTimeout(() => {
             resolve(retvar);
-        }, 750);
+        }, 950);
       });
 }
 
@@ -150,7 +150,7 @@ async function getTaskByGeneric(admin, uid, sortColumn) {
     return new Promise(resolve => {
         setTimeout(() => {
             resolve([todayTasks, laterTasks, overDueTasks]);
-        }, 2000);
+        }, 2500);
     });
 }
 
@@ -222,6 +222,7 @@ function viewTasks(admin, app) {
                 getTaskByGeneric(admin, user.uid, chosenSort, request).then((data) => {
                     var todayTasks = data[0];
                     var laterTasks = data[1];
+                    var overDueTasks = data[2];
                     var priorities = {}
                     if (todayTasks.length > 0) {
                         getPriorityList(todayTasks, priorities);
@@ -229,6 +230,10 @@ function viewTasks(admin, app) {
                     if (laterTasks.length > 0) {
                         getPriorityList(laterTasks, priorities);
                     }
+                    if (laterTasks.length > 0) {
+                        getPriorityList(overDueTasks, priorities);
+                    }
+                    
 
 
                     if (Object.keys(priorities).length !== 0)
