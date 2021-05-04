@@ -19,10 +19,6 @@ This master list of courses is something everyone can read from (but not edit) f
 The Users collection will store the majority of our data.
 Under a user document, we will store their name, uid, and email address.
 Each user document will have 4 sub-collections:
-#### courses
-This sub-collection stores the courses that the user is actually involved with. It also stores data that is particular to the user. 
-We plan on storing the semester in which the course was taken, the option for the user to put a "Friendly name" (i.e if they wanted to name their "Computer Science Capstone" course "Capstone"), and a color for the tag.
-Each course here will contain a reference back to the global course list.
 
 These essentially function as tags, but reference the global course list.
 #### tags
@@ -32,7 +28,7 @@ It allows them to set a full and shortname (like the course name and code), and 
 This subcollection stores the times a user marks themselves available to schedule their tasks.
 Rather than storing these all as an array, we decided to do each week as a document. 
 This allows us to query weeks at a time, and allow the user to add time in advance.
-Each document stores the start of the week (for querying purposes) and a map of timestamps (for the beginning of the freetime and the end of the freetime).
+Each document stores the start of the week as the ID (for querying purposes) and a map of timestamps (for the beginning of the freetime and the end of the freetime).
 #### tasks
 Finally, we have our tasks subcollection.
 This is where the majority of data will be stored.
@@ -46,4 +42,4 @@ Here we will store the following items relating to the task
  - a priority (stored as an integer)
  - The scheduled start time(stored as a timestamp) - when the user schedules
  - The schedules end time(stored as a timestamp) - when the user schedules
- - An array of tags (stored as references to tags documents)
+ - An string for the associated tag (stores a reference to tags documents)
